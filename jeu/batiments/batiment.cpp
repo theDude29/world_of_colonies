@@ -1,0 +1,106 @@
+#include "jeu/batiments/batiment.h"
+#include "mainwindow.h"
+
+Batiment::Batiment(int maxPV, QSize taille, cout coutDeConstruction) : QObject(), m_maxPV(maxPV), m_taille(taille), m_cout(coutDeConstruction)
+{
+    m_sceneCollisionManager = SceneManager::getSceneManager()->getSceneCollisionManager();
+    m_id = -1;
+    m_idFichierVillage = -1;
+    m_meshSceneNode = NULL;
+    m_meshBatiment = NULL;
+}
+
+void Batiment::kill()
+{
+    m_meshSceneNode->setVisible(false);
+}
+
+irr::core::vector3df Batiment::getPosition()
+{
+    return m_meshSceneNode->getPosition();
+}
+
+void Batiment::setRotation(irr::core::vector3df rot)
+{
+    m_meshSceneNode->setRotation(rot);
+}
+
+irr::core::vector3df Batiment::getRotation()
+{
+    return m_meshSceneNode->getRotation();
+}
+
+void Batiment::setPseudo(QString pseudo)
+{
+    m_pseudo = pseudo;
+}
+
+void Batiment::setPosition(irr::core::vector3df pos)
+{
+    m_meshSceneNode->setPosition(pos);
+}
+
+void Batiment::setIdFichierVillage(int id)
+{
+    m_idFichierVillage = id;
+}
+
+irr::scene::IMeshSceneNode* Batiment::getMeshSceneNode()
+{
+    return m_meshSceneNode;
+}
+
+bool Batiment::isVisible()
+{
+    return m_meshSceneNode->isVisible();
+}
+
+int Batiment::getIdFichierVillage()
+{
+    return m_idFichierVillage;
+}
+
+cout Batiment::getCout()
+{
+    return m_cout;
+}
+
+int Batiment::getType()
+{
+    return m_typeBatiment;
+}
+
+irr::video::ITexture* Batiment::getTexture()
+{
+    return m_texture;
+}
+
+int Batiment::getId()
+{
+    return m_id;
+}
+
+void Batiment::setId(int id)
+{
+    m_id = id;
+}
+
+void Batiment::afficherBatimentConstruit()
+{
+    m_meshSceneNode->setVisible(true);
+}
+
+void Batiment::estVise()
+{
+
+}
+
+void Batiment::estPlusVise()
+{
+
+}
+
+Batiment::~Batiment()
+{
+
+}
