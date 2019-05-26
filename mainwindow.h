@@ -6,6 +6,7 @@
 #include "jeu/irrlichtwidget.h"
 #include "jeu/village.h"
 #include "gui/menuconstruire.h"
+#include "gui/widgetarmee.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,9 @@ private:
 
     //menu construction de batiment
     MenuConstruire* m_menuConstruire;
+
+    //menu armee
+    widgetArmee* m_menuArmee;
 
     //village
     Village* m_village;

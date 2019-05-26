@@ -33,7 +33,8 @@ SOURCES += main.cpp \
     jeu/batiments/defense/defense.cpp \
     jeu/batiments/defense/canon.cpp \
     jeu/batiments/defense/tourelle.cpp \
-    jeu/batiments/defense/mortier.cpp
+    jeu/batiments/defense/mortier.cpp \
+    gui/widgetarmee.cpp
 
 HEADERS += \
     singleton/Device.h \
@@ -63,7 +64,8 @@ HEADERS += \
     jeu/batiments/defense/defense.h \
     jeu/batiments/defense/canon.h \
     jeu/batiments/defense/tourelle.h \
-    jeu/batiments/defense/mortier.h
+    jeu/batiments/defense/mortier.h \
+    gui/widgetarmee.h
 
 
 unix|win32: LIBS += -lIrrlicht
@@ -73,4 +75,5 @@ FORMS += \
     gui/mainwindow.ui \
     gui/menuconstruire.ui \
     gui/widgetoptionsbatiments.ui \
-    bdd/widgetconnexion.ui
+    bdd/widgetconnexion.ui \
+    gui/widgetarmee.ui

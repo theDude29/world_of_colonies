@@ -80,14 +80,22 @@ void MainWindow::initVillage()
     ui->gridLayout->addWidget(m_menuConstruire, 1, 0);
     m_menuConstruire->cacherMenuConstuire();
 
+    //menu armee
+    m_menuArmee = new widgetArmee(this);
+    ui->gridLayout->addWidget(m_menuArmee, 1, 0);
+    m_menuArmee->cacherMenuArmee();
+
     //CONNECTIONS
     connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
+    connect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
 
     connect(m_menuConstruire, SIGNAL(affichage()), this, SLOT(cacherBoutons()));
     connect(m_menuConstruire, SIGNAL(cachage()), this, SLOT(afficherBoutons()));
-    connect(m_menuConstruire, SIGNAL(affichage()), m_irrlichtWidget->getCamera(), SLOT(pause()));
-    connect(m_menuConstruire, SIGNAL(cachage()), m_irrlichtWidget->getCamera(), SLOT(reprendre()));
 
+    connect(m_menuArmee, SIGNAL(affichage()), this, SLOT(cacherBoutons()));
+    connect(m_menuArmee, SIGNAL(cachage()), this, SLOT(afficherBoutons()));
+
+    //
     connect(m_village, SIGNAL(onPlaceBatiment()), this, SLOT(cacherBoutons()));
     connect(m_village, SIGNAL(onArretePlacerBatiment()), this, SLOT(afficherBoutons()));
 }
