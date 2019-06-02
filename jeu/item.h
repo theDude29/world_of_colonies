@@ -14,13 +14,14 @@ struct cout
 
 class Item : public QObject
 {
-    Q_OBJECT
+    Q_OBJECT;
 
 public:
     Item();
     virtual QString getInfo() = 0;
 
 protected:
+    cout m_cout;
     irr::scene::IMeshSceneNode* m_meshSceneNode;
     irr::video::ITexture* m_texture;
 };

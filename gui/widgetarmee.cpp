@@ -1,6 +1,7 @@
 #include "widgetarmee.h"
 #include "ui_widgetarmee.h"
 #include "utilitaire/getcss.h"
+#include "jeu/soldats/artilleur/artilleur.h"
 
 widgetArmee::widgetArmee(QWidget *parent) :
     QFrame(parent),
@@ -11,6 +12,13 @@ widgetArmee::widgetArmee(QWidget *parent) :
     //FINITONS
     setStyleSheet(getCSS("gui/css/style_menuConstruire.css"));
     ui->pushButton_retour->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
+
+    QPixmap pm(QCoreApplication::applicationDirPath() + "/gui/image/image/imageArtilleur.png");
+
+    ui->image1->setPixmap(pm);
+
+    Artilleur artilleur;
+    ui->label_1->setText(artilleur.getInfo());
 
     connect(ui->pushButton_retour, SIGNAL(clicked(bool)), this, SLOT(cacherMenuArmee()));
 }

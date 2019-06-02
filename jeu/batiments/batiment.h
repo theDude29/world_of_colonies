@@ -58,7 +58,6 @@ protected:
     irr::scene::ISceneCollisionManager* m_sceneCollisionManager;
     QSize m_taille;
     QString m_pseudo;
-    cout m_cout;
     irr::scene::IMesh *m_meshBatiment;
 };
 
