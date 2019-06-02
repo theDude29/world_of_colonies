@@ -2,19 +2,10 @@
 #define BATIMENT_H
 
 #include <QSize>
-#include <QObject>
-#include <QString>
 #include <QProgressBar>
-#include <irrlicht/IMeshSceneNode.h>
 #include "singleton/SceneManager.h"
 #include "singleton/Driver.h"
-
-struct cout
-{
-    int nbNourriture;
-    int nbOr;
-    int nbXp;
-};
+#include "jeu/item.h"
 
 enum typeBatiment
 {
@@ -31,10 +22,8 @@ enum typeBatiment
     mortier
 };
 
-class Batiment : public QObject
+class Batiment : public Item
 {
-    Q_OBJECT
-
 public:
     Batiment(int maxPV, QSize taille, cout coutDeConstruction);
     virtual ~Batiment();
@@ -46,7 +35,6 @@ public:
     void setPseudo(QString pseudo);
 
     int getIdFichierVillage();
-    virtual QString getInfo() = 0;
     cout getCout();
     int getType();
     irr::video::ITexture* getTexture();
@@ -71,9 +59,7 @@ protected:
     QSize m_taille;
     QString m_pseudo;
     cout m_cout;
-    irr::scene::IMeshSceneNode* m_meshSceneNode;
     irr::scene::IMesh *m_meshBatiment;
-    irr::video::ITexture* m_texture;
 };
 
 #endif // BATIMENT_H

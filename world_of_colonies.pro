@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     jeu/batiments/defense/canon.cpp \
     jeu/batiments/defense/tourelle.cpp \
     jeu/batiments/defense/mortier.cpp \
-    gui/widgetarmee.cpp
+    gui/widgetarmee.cpp \
+    jeu/item.cpp
 
 HEADERS += \
     singleton/Device.h \
@@ -65,7 +66,8 @@ HEADERS += \
     jeu/batiments/defense/canon.h \
     jeu/batiments/defense/tourelle.h \
     jeu/batiments/defense/mortier.h \
-    gui/widgetarmee.h
+    gui/widgetarmee.h \
+    jeu/item.h
 
 
 unix|win32: LIBS += -lIrrlicht
