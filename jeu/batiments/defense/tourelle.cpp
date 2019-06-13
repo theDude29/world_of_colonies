@@ -4,7 +4,7 @@ Tourelle::Tourelle() : Defense(MAX_PV_TOURELLE, QSize(TAILLE_TOURELLE_X, TAILLE_
 {
     m_typeBatiment = tourelle;
 
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/defense/tourelle.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/defense/tourelle.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

@@ -5,7 +5,7 @@ CampEntrainement::CampEntrainement() : Batiment(MAX_PV_CAMP_ENTRAINEMENT, QSize(
     m_typeBatiment = campEntrainement;
 
     m_texture = Driver::getDriver()->getTexture("mesh/texture/texture_armee.png");
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/armee/campEntrainement.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/armee/campEntrainement.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

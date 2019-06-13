@@ -127,12 +127,12 @@ void Village::majPosBatimentAConstruire(irr::core::vector2di posMouse)
 
     if(collisionEntreBatiment())
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/batimenttexture/rouge.jpg"));
     }
 
     else
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/batimenttexture/vert.jpg"));
     }
 }
 

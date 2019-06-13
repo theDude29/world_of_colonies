@@ -4,7 +4,7 @@ Conteneur_Or::Conteneur_Or() : Conteneur(MAX_PV_CONTENEUR_OR, QSize(TAILLE_CONTE
 {
     m_typeBatiment = conteneurOr;
 
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/ressource/banque.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/ressource/banque.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

@@ -5,7 +5,7 @@ Portail::Portail() : Batiment(MAX_PV_PORTAIL, QSize(TAILLE_PORTAIL_X, TAILLE_POR
     m_typeBatiment = portail;
 
     m_texture = Driver::getDriver()->getTexture("mesh/texture/texture_armee.png");
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/armee/portail.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/armee/portail.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

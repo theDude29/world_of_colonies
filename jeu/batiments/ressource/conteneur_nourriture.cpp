@@ -4,7 +4,7 @@ Conteneur_nourriture::Conteneur_nourriture() :  Conteneur(MAX_PV_CONTENEUR_NOURR
 {
     m_typeBatiment = conteneurNourriture;
 
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/ressource/entrepot.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/ressource/entrepot.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

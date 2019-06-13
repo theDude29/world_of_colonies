@@ -4,7 +4,7 @@ Travailleur_Nourriture::Travailleur_Nourriture(bool active) : Travailleur(MAX_PV
 {
     m_typeBatiment = travailleurNourriture;
 
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/ressource/maison.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/ressource/maison.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

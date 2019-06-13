@@ -4,7 +4,7 @@ Mortier::Mortier() : Defense(MAX_PV_MORTIER, QSize(TAILLE_MORTIER_X, TAILLE_MORT
 {
     m_typeBatiment = mortier;
 
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/defense/mortier.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/defense/mortier.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);

@@ -5,7 +5,7 @@ Travailleur_Or::Travailleur_Or(bool active)
 {
     m_typeBatiment = travailleurOr;
 
-    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/ressource/usine.obj");
+    m_meshBatiment = SceneManager::getSceneManager()->getMesh("mesh/batiment/ressource/usine.obj");
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(m_meshBatiment);
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setVisible(false);
