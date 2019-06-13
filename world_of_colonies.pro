@@ -37,7 +37,8 @@ SOURCES += main.cpp \
     gui/widgetarmee.cpp \
     jeu/item.cpp \
     jeu/soldats/soldat.cpp \
-    jeu/soldats/artilleur/artilleur.cpp
+    jeu/soldats/artilleur.cpp \
+    jeu/soldats/tank.cpp
 
 HEADERS += \
     singleton/Device.h \
@@ -71,7 +72,8 @@ HEADERS += \
     gui/widgetarmee.h \
     jeu/item.h \
     jeu/soldats/soldat.h \
-    jeu/soldats/artilleur/artilleur.h
+    jeu/soldats/artilleur.h \
+    jeu/soldats/tank.h
 
 
 unix|win32: LIBS += -lIrrlicht

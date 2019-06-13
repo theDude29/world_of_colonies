@@ -1,0 +1,36 @@
+#include "tank.h"
+
+Tank::Tank()
+{
+    m_degats = DEGAT_TANK;
+    m_vitesseAttaque = VITESSE_ATTAQUE_TANK;
+    m_dps = m_degats / m_vitesseAttaque;
+    m_pointsVies = PV_TANK;
+    m_vitesse = VITESSE_TANK;
+    m_portee = PORTEE_TANK;
+    m_cout.nbNourriture = COUT_NOURRITURRE_TANK;
+    m_cout.nbOr = COUT_OR_TANK;
+    m_cout.nbXp = XP_TANK;
+}
+
+QString Tank::getInfo()
+{
+    QString texte = "";
+    texte += "Le tank est un soldat possedants de nombreux points de vie.\n\n";
+    texte += "degats par seconde : ";
+    texte += QString::number(m_dps);
+    texte += "\nporte : ";
+    texte += QString::number(m_portee);
+    texte += "\npoints de vie : ";
+    texte += QString::number(m_pointsVies);
+    texte += "\nvitesse : ";
+    texte += QString::number(m_vitesse);
+    texte += "\n\n  -cout nourriture : ";
+    texte += QString::number(m_cout.nbNourriture);
+    texte += "\n";
+    texte += "  -cout or : ";
+    texte += QString::number(m_cout.nbOr);
+
+    return texte;
+}
+
