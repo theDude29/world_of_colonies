@@ -11,6 +11,7 @@ Artilleur::Artilleur()
     m_cout.nbNourriture = COUT_NOURRITURRE_ARTILLEUR;
     m_cout.nbOr = COUT_OR_ARTILLEUR;
     m_cout.nbXp = XP_ARTILLEUR;
+    m_place = PLACE_ARTILLEUR;
 }
 
 QString Artilleur::getInfo()

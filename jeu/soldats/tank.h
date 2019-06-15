@@ -11,6 +11,7 @@
 #define COUT_OR_TANK 200
 #define COUT_NOURRITURRE_TANK 900
 #define XP_TANK 150
+#define PLACE_TANK 15
 
 class Tank : public Soldat
 {

@@ -13,6 +13,7 @@ protected:
     int m_pointsVies;
     int m_vitesse;
     int m_portee;
+    int m_place;
 };
 
 #endif // SOLDAT_H

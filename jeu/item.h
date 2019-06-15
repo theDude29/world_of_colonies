@@ -19,6 +19,7 @@ class Item : public QObject
 public:
     Item();
     virtual QString getInfo() = 0;
+    cout getCout();
 
 protected:
     cout m_cout;

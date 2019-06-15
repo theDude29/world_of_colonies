@@ -11,6 +11,7 @@
 #define COUT_OR_ARTILLEUR 100
 #define COUT_NOURRITURRE_ARTILLEUR 400
 #define XP_ARTILLEUR 100
+#define PLACE_ARTILLEUR 5
 
 class Artilleur : public Soldat
 {

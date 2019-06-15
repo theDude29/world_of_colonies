@@ -37,6 +37,10 @@ public:
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
     std::vector<Travailleur*> getListeTravailleur();
+    int getNbOr();
+    int getNbNourriture();
+
+    void perdreRessource(cout nb);
 
     bool essayerConstruireBatiment(Batiment *batiment);
     void majPosBatimentAConstruire(irr::core::vector2di posMouse);

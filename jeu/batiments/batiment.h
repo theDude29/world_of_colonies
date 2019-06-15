@@ -35,7 +35,6 @@ public:
     void setPseudo(QString pseudo);
 
     int getIdFichierVillage();
-    cout getCout();
     int getType();
     irr::video::ITexture* getTexture();
     irr::scene::IMeshSceneNode* getMeshSceneNode();

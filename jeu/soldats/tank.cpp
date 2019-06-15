@@ -11,6 +11,7 @@ Tank::Tank()
     m_cout.nbNourriture = COUT_NOURRITURRE_TANK;
     m_cout.nbOr = COUT_OR_TANK;
     m_cout.nbXp = XP_TANK;
+    m_place = PLACE_TANK;
 }
 
 QString Tank::getInfo()

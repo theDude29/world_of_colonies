@@ -61,11 +61,6 @@ int Batiment::getIdFichierVillage()
     return m_idFichierVillage;
 }
 
-cout Batiment::getCout()
-{
-    return m_cout;
-}
-
 int Batiment::getType()
 {
     return m_typeBatiment;

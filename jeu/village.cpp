@@ -56,6 +56,26 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     m_leBatimentEtaitDejaConstruit = false;
 }
 
+int Village::getNbOr()
+{
+    return m_nbOr;
+}
+
+int Village::getNbNourriture()
+{
+    return m_nbNourriture;
+}
+
+void Village::perdreRessource(cout nb)
+{
+    m_nbOr -= nb.nbOr;
+    m_pbOr->setValue(m_nbOr);
+    m_nbNourriture -= nb.nbNourriture;
+    m_pbNourriture->setValue(m_nbNourriture);
+
+    Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+}
+
 std::vector<Travailleur*> Village::getListeTravailleur()
 {
     std::vector<Travailleur*> listeTravailleur;
@@ -127,12 +147,12 @@ void Village::majPosBatimentAConstruire(irr::core::vector2di posMouse)
 
     if(collisionEntreBatiment())
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/batimenttexture/rouge.jpg"));
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
     }
 
     else
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/batimenttexture/vert.jpg"));
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
     }
 }
 
