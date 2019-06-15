@@ -26,6 +26,8 @@ QString Artilleur::getInfo()
     texte += QString::number(m_pointsVies);
     texte += "\nvitesse : ";
     texte += QString::number(m_vitesse);
+    texte += "\nnombre de place requises : ";
+    texte += QString::number(m_place);
     texte += "\n\n  -cout nourriture : ";
     texte += QString::number(m_cout.nbNourriture);
     texte += "\n";

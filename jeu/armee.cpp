@@ -7,34 +7,34 @@ Armee::Armee() : QObject()
 
 void Armee::ajouterArtilleur()
 {
+    m_nbPlaceOccupee += PLACE_ARTILLEUR;
     m_nbArtilleur++;
 }
 
 void Armee::ajouterFantassin()
 {
+    m_nbPlaceOccupee += PLACE_FANTASSIN;
     m_nbFantassin++;
 }
 
 void Armee::ajouterTank()
 {
+    m_nbPlaceOccupee += PLACE_TANK;
     m_nbTank++;
 }
 
 int Armee::getNbArtilleur()
 {
-    m_nbPlaceOccupee += PLACE_ARTILLEUR;
     return m_nbArtilleur;
 }
 
 int Armee::getNbFantassin()
 {
-    m_nbPlaceOccupee += PLACE_FANTASSIN;
     return m_nbFantassin;
 }
 
 int Armee::getNbTank()
 {
-    m_nbPlaceOccupee += PLACE_TANK;
     return m_nbTank;
 }
 

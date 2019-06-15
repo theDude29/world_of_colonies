@@ -56,6 +56,14 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     m_leBatimentEtaitDejaConstruit = false;
 }
 
+void Village::setArmee(Armee *armee)
+{
+    m_armee = armee;
+
+    connect(this, SIGNAL(majNbCaserne(int)), m_armee, SLOT(majPlaceMax(int)));
+    emit majNbCaserne(m_nbCaserne);
+}
+
 int Village::getNbOr()
 {
     return m_nbOr;
@@ -215,6 +223,11 @@ void Village::ajouterBatiment()
     {
         Travailleur* travailleur = (Travailleur*)m_batimentADeplacer;
         travailleur->verifierTiming();
+    }
+
+    if(typeBat == caserne)
+    {
+        emit majNbCaserne(m_nbCaserne);
     }
 }
 

@@ -12,6 +12,8 @@ widgetArmee::widgetArmee(QWidget *parent, Village *village) :
 
     m_armee = new Armee();
 
+    m_village->setArmee(m_armee);
+
     //FINITONS
     setStyleSheet(getCSS("gui/css/style_menuConstruire.css"));
     ui->pushButton_retour->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
@@ -46,6 +48,8 @@ void widgetArmee::afficherMenuArmee()
 {
     setVisible(true);
 
+    majTexteStatsArmee();
+
     emit affichage();
 }
 
@@ -64,7 +68,6 @@ void widgetArmee::bouttonArtilleurClique()
         m_village->perdreRessource(m_artilleur.getCout());
         m_armee->ajouterArtilleur();
         majTexteStatsArmee();
-        std::cout<<"ssssssinge"<<std::endl;
     }
 
     else

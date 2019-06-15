@@ -17,7 +17,6 @@ public:
     int getNbTank();
     int getNbFantassin();
 
-    void majPlaceMax(int nbCaserne);
     int getNbPlaceMax();
     int getNbPlaceOccupe();
 
@@ -26,6 +25,8 @@ private:
     int m_nbArtilleur, m_nbTank, m_nbFantassin;
 
 public slots:
+    void majPlaceMax(int nbCaserne);
+
     void ajouterArtilleur();
     void ajouterTank();
     void ajouterFantassin();

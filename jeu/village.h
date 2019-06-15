@@ -24,6 +24,7 @@
 #include "jeu/batiments/defense/tourelle.h"
 #include "jeu/batiments/defense/mortier.h"
 #include "bdd/bdd.h"
+#include "jeu/armee.h"
 
 #define TAILLE_CASE 20
 
@@ -39,6 +40,8 @@ public:
     std::vector<Travailleur*> getListeTravailleur();
     int getNbOr();
     int getNbNourriture();
+
+    void setArmee(Armee* armee);
 
     void perdreRessource(cout nb);
 
@@ -63,6 +66,9 @@ private:
     irr::scene::ISceneManager* m_sceneManager;
     irr::video::IVideoDriver* m_driver;
     irr::scene::ISceneCollisionManager* m_collisionManager;
+
+    //
+    Armee* m_armee;
 
     //stat
     QString m_pseudo;
@@ -91,6 +97,8 @@ private:
 signals:
     void onPlaceBatiment();
     void onArretePlacerBatiment();
+
+    void majNbCaserne(int nb);
 
 public slots:
     void deplacerBatiment();

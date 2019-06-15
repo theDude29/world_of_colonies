@@ -26,6 +26,8 @@ QString Tank::getInfo()
     texte += QString::number(m_pointsVies);
     texte += "\nvitesse : ";
     texte += QString::number(m_vitesse);
+    texte += "\nnombre de places requises : ";
+    texte += QString::number(m_place);
     texte += "\n\n  -cout nourriture : ";
     texte += QString::number(m_cout.nbNourriture);
     texte += "\n";
