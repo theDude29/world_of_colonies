@@ -427,14 +427,19 @@ void Village::vendreBatiment()
 
         Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
 
-        m_batimentSelectionne->kill();
-
         Bdd::getBdd()->supprimerBatiment(m_pseudo, m_batimentSelectionne->getType(), m_batimentSelectionne->getIdFichierVillage());
         if(m_batimentSelectionne->getType() == travailleurNourriture || m_batimentSelectionne->getType() == travailleurOr)
         {
             Bdd::getBdd()->supprimerTimingBatiment(m_pseudo, m_batimentSelectionne->getType(), m_batimentSelectionne->getIdFichierVillage());
         }
         supprimerIdFichierVillage(m_batimentSelectionne->getType(), m_batimentSelectionne->getIdFichierVillage());
+
+        if(m_batimentSelectionne->getType() == caserne)
+        {
+            emit majNbCaserne(m_nbCaserne);
+        }
+
+        m_batimentSelectionne->kill();
     }
 
     else

@@ -82,6 +82,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label_infoTroupe1">
+            <property name="text">
+             <string>textlabel</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_1">
             <property name="text">
              <string>Former</string>
@@ -124,6 +131,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label_infoTroupe2">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_2">
             <property name="text">
              <string>Former</string>
@@ -162,6 +176,13 @@
             </property>
             <property name="wordWrap">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_infoTroupe3">
+            <property name="text">
+             <string>TextLabel</string>
             </property>
            </widget>
           </item>

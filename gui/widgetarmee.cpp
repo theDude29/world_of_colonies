@@ -42,6 +42,11 @@ void widgetArmee::majTexteStatsArmee()
     text += "/";
     text += QString::number(m_armee->getNbPlaceMax());
     ui->label_statArmee->setText(text);
+
+    text = "Actuellement ";
+    text += QString::number(m_armee->getNbArtilleur());
+    text += " dans l'armee.";
+    ui->label_infoTroupe1->setText(text);
 }
 
 void widgetArmee::afficherMenuArmee()
