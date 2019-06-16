@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_this = this;
 
     //FINITION DE LA FENETRE
-    setMinimumSize(840,680);
+    setMinimumSize(900,700);
     ui->bouton_assault->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
     ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/helmet.png"));
     ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/marteau.png"));

@@ -15,7 +15,7 @@ widgetArmee::widgetArmee(QWidget *parent, Village *village) :
     m_village->setArmee(m_armee);
 
     //FINITONS
-    setStyleSheet(getCSS("gui/css/style_menuConstruire.css"));
+    setStyleSheet(getCSS("gui/css/style_menuConstruireEtArmee.css"));
     ui->pushButton_retour->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
 
     QPixmap pm(QCoreApplication::applicationDirPath() + "/gui/image/image/imageArtilleur.png"),
@@ -33,6 +33,8 @@ widgetArmee::widgetArmee(QWidget *parent, Village *village) :
     connect(ui->pushButton_retour, SIGNAL(clicked(bool)), this, SLOT(cacherMenuArmee()));
 
     connect(ui->pushButton_1, SIGNAL(clicked(bool)), this, SLOT(bouttonArtilleurClique()));
+    connect(ui->pushButton_2, SIGNAL(clicked(bool)), this, SLOT(bouttonTankClique()));
+    connect(ui->pushButton_3, SIGNAL(clicked(bool)), this, SLOT(bouttonFantassinClique()));
 }
 
 void widgetArmee::majTexteStatsArmee()
@@ -47,6 +49,16 @@ void widgetArmee::majTexteStatsArmee()
     text += QString::number(m_armee->getNbArtilleur());
     text += " dans l'armee.";
     ui->label_infoTroupe1->setText(text);
+
+    text = "Actuellement ";
+    text += QString::number(m_armee->getNbTank());
+    text += " dans l'armee.";
+    ui->label_infoTroupe2->setText(text);
+
+    text = "Actuellement ";
+    text += QString::number(m_armee->getNbFantassin());
+    text += " dans l'armee.";
+    ui->label_infoTroupe3->setText(text);
 }
 
 void widgetArmee::afficherMenuArmee()
@@ -72,6 +84,40 @@ void widgetArmee::bouttonArtilleurClique()
     {
         m_village->perdreRessource(m_artilleur.getCout());
         m_armee->ajouterArtilleur();
+        majTexteStatsArmee();
+    }
+
+    else
+    {
+        QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
+        " necessaires a la formation de ce soldat");
+    }
+}
+
+void widgetArmee::bouttonTankClique()
+{
+    if(m_village->getNbOr() >= m_tank.getCout().nbOr &&
+            m_village->getNbNourriture() >= m_tank.getCout().nbNourriture)
+    {
+        m_village->perdreRessource(m_tank.getCout());
+        m_armee->ajouterTank();
+        majTexteStatsArmee();
+    }
+
+    else
+    {
+        QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
+        " necessaires a la formation de ce soldat");
+    }
+}
+
+void widgetArmee::bouttonFantassinClique()
+{
+    if(m_village->getNbOr() >= m_fantassin.getCout().nbOr &&
+            m_village->getNbNourriture() >= m_fantassin.getCout().nbNourriture)
+    {
+        m_village->perdreRessource(m_fantassin.getCout());
+        m_armee->ajouterFantassin();
         majTexteStatsArmee();
     }
 

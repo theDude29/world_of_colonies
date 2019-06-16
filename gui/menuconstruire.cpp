@@ -15,7 +15,7 @@ MenuConstruire::MenuConstruire(QWidget *parent, Village* village) :
     m_village = village;
 
     //FINITONS
-    setStyleSheet(getCSS("gui/css/style_menuConstruire.css"));
+    setStyleSheet(getCSS("gui/css/style_menuConstruireEtArmee.css"));
 
     QPixmap pm(QCoreApplication::applicationDirPath() + "/gui/image/image/imageMaison.png"),
             pm2(QCoreApplication::applicationDirPath() + "/gui/image/image/imageUsine.png"),

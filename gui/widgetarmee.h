@@ -27,6 +27,8 @@ public slots:
     void cacherMenuArmee();
 
     void bouttonArtilleurClique();
+    void bouttonTankClique();
+    void bouttonFantassinClique();
 
 private:
     Ui::widgetArmee *ui;
