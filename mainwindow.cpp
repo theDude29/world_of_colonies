@@ -81,7 +81,7 @@ void MainWindow::initVillage()
     m_menuConstruire->cacherMenuConstuire();
 
     //menu armee
-    m_menuArmee = new widgetArmee(this, m_village);
+    m_menuArmee = new widgetArmee(this, m_village, m_widgetConnexion->getPseudo());
     ui->gridLayout->addWidget(m_menuArmee, 1, 0);
     m_menuArmee->cacherMenuArmee();
 

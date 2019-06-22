@@ -29,6 +29,105 @@ sql::Connection* Bdd::getBddConnection()
     return connection;
 }
 
+int Bdd::getNbArtilleur(QString pseudo)
+{
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "SELECT nb_artilleur_dans_armee FROM Membres WHERE pseudo=\'" + pseudo.toStdString() +"\'";
+    sql::ResultSet* reponse = requete->executeQuery(sqlReq);
+
+    int nbArtilleur = 0;
+
+    reponse->next();
+    nbArtilleur = reponse->getInt("nb_artilleur_dans_armee");
+
+    delete requete;
+    delete reponse;
+    delete connection;
+
+    return nbArtilleur;
+}
+
+int Bdd::getNbTank(QString pseudo)
+{
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "SELECT nb_tank_dans_armee FROM Membres WHERE pseudo=\'" + pseudo.toStdString() +"\'";
+    sql::ResultSet* reponse = requete->executeQuery(sqlReq);
+
+    int nbTank = 0;
+
+    reponse->next();
+    nbTank = reponse->getInt("nb_tank_dans_armee");
+
+    delete requete;
+    delete reponse;
+    delete connection;
+
+    return nbTank;
+}
+
+void Bdd::setNbArtilleur(QString pseudo, int nb)
+{
+    sql::SQLString nb_str = QString::number(nb).toStdString();
+
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "UPDATE Membres SET nb_artilleur_dans_armee = \'" + nb_str + "\' WHERE pseudo = \'" + pseudo.toStdString() + "\'";
+
+    requete->executeUpdate(sqlReq);
+
+    delete requete;
+    delete connection;
+}
+
+void Bdd::setNbTank(QString pseudo, int nb)
+{
+    sql::SQLString nb_str = QString::number(nb).toStdString();
+
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "UPDATE Membres SET nb_tank_dans_armee = \'" + nb_str + "\' WHERE pseudo = \'" + pseudo.toStdString() + "\'";
+
+    requete->executeUpdate(sqlReq);
+
+    delete requete;
+    delete connection;
+}
+
+void Bdd::setNbFantassin(QString pseudo, int nb)
+{
+    sql::SQLString nb_str = QString::number(nb).toStdString();
+
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "UPDATE Membres SET nb_fantassin_dans_armee = \'" + nb_str + "\' WHERE pseudo = \'" + pseudo.toStdString() + "\'";
+
+    requete->executeUpdate(sqlReq);
+
+    delete requete;
+    delete connection;
+}
+
+int Bdd::getNbFantassin(QString pseudo)
+{
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "SELECT nb_fantassin_dans_armee FROM Membres WHERE pseudo=\'" + pseudo.toStdString() +"\'";
+    sql::ResultSet* reponse = requete->executeQuery(sqlReq);
+
+    int nbFantassin = 0;
+
+    reponse->next();
+    nbFantassin = reponse->getInt("nb_fantassin_dans_armee");
+
+    delete requete;
+    delete reponse;
+    delete connection;
+
+    return nbFantassin;
+}
+
 void Bdd::majTimingBatiment(QString pseudo, int typeBat, int id)
 {
     QString fichierTiming = getFichierTiming(pseudo);

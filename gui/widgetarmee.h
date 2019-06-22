@@ -17,7 +17,7 @@ class widgetArmee : public QFrame
     Q_OBJECT
 
 public:
-    widgetArmee(QWidget *parent, Village* village);
+    widgetArmee(QWidget *parent, Village* village, QString pseudo);
     ~widgetArmee();
 
     void majTexteStatsArmee();
@@ -33,6 +33,7 @@ public slots:
 private:
     Ui::widgetArmee *ui;
     Village* m_village;
+    QString m_pseudo;
     Armee* m_armee;
     Artilleur m_artilleur;
     Tank m_tank;

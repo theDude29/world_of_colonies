@@ -11,7 +11,7 @@ class Armee : public QObject
     Q_OBJECT
 
 public:
-    Armee();
+    Armee(QString pseudo);
 
     int getNbArtilleur();
     int getNbTank();
@@ -21,6 +21,7 @@ public:
     int getNbPlaceOccupe();
 
 private:
+    QString m_pseudo;
     int m_nbPlaceMax, m_nbPlaceOccupee;
     int m_nbArtilleur, m_nbTank, m_nbFantassin;
 

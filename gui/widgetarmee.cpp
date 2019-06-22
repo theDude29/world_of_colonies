@@ -2,7 +2,7 @@
 #include "ui_widgetarmee.h"
 #include "utilitaire/getcss.h"
 
-widgetArmee::widgetArmee(QWidget *parent, Village *village) :
+widgetArmee::widgetArmee(QWidget *parent, Village *village, QString pseudo) :
     QFrame(parent),
     ui(new Ui::widgetArmee)
 {
@@ -10,9 +10,11 @@ widgetArmee::widgetArmee(QWidget *parent, Village *village) :
 
     m_village = village;
 
-    m_armee = new Armee();
+    m_armee = new Armee(pseudo);
 
     m_village->setArmee(m_armee);
+
+    m_pseudo = pseudo;
 
     //FINITONS
     setStyleSheet(getCSS("gui/css/style_menuConstruireEtArmee.css"));

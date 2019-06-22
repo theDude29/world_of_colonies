@@ -15,6 +15,13 @@ public:
     static Bdd* getBdd();
     sql::Connection* getBddConnection();
 
+    int getNbArtilleur(QString pseudo);
+    int getNbTank(QString pseudo);
+    int getNbFantassin(QString pseudo);
+    void setNbArtilleur(QString pseudo, int nb);
+    void setNbTank(QString pseudo, int nb);
+    void setNbFantassin(QString pseudo, int nb);
+
     QString getFichierVillage(QString pseudo);
     void majNiveau(QString pseudo, int niveau, int xp);
     void majBatiment(QString pseudo, int typeBat, irr::core::vector2di posBat, int id);
