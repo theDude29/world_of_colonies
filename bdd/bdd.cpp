@@ -29,6 +29,63 @@ sql::Connection* Bdd::getBddConnection()
     return connection;
 }
 
+QStringList Bdd::recupererListJoueurs()
+{
+    sql::Connection* connection = getBddConnection();
+    sql::Statement* requete = connection->createStatement();
+    sql::SQLString sqlReq = "SELECT pseudo FROM Membres";
+    sql::ResultSet* reponse = requete->executeQuery(sqlReq);
+
+    QStringList listJoueurs;
+
+    while(reponse->next())
+    {
+        listJoueurs.append(QString(reponse->getString("pseudo").c_str()));
+    }
+
+    m_nbJoueurs = listJoueurs.size();
+
+    delete requete;
+    delete reponse;
+    delete connection;
+
+    return listJoueurs;
+}
+
+QString Bdd::getFichierVillageEnnemieAuPif(QString pseudo)
+{
+    QString pseudoEnnemie = getPseudoAuPif();
+    while(pseudoEnnemie == pseudo)
+    {
+        pseudoEnnemie = getPseudoAuPif();
+    }
+
+    QString fichierVillageEnnemie = getFichierVillage(pseudoEnnemie);
+
+    std::cout<<fichierVillageEnnemie.toStdString()<<"\n";
+
+    return fichierVillageEnnemie;
+}
+
+QString Bdd::getPseudoAuPif()
+{
+    QString pseudoEnnemie = "";
+
+    QStringList listJoueurs = recupererListJoueurs();
+    QStringList::iterator it = listJoueurs.begin();
+    int nbMystere = (rand() % (m_nbJoueurs - 0 + 1)) + 0;
+    for(int i = 0; i < nbMystere; ++i)
+    {
+        it++;
+    }
+
+    pseudoEnnemie = *(it);
+
+    std::cout<<pseudoEnnemie.toStdString()<<"\n";
+
+    return pseudoEnnemie;
+}
+
 int Bdd::getNbArtilleur(QString pseudo)
 {
     sql::Connection* connection = getBddConnection();

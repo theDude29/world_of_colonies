@@ -15,6 +15,10 @@ public:
     static Bdd* getBdd();
     sql::Connection* getBddConnection();
 
+    QStringList recupererListJoueurs();
+    QString getFichierVillageEnnemieAuPif(QString pseudo);
+    QString getPseudoAuPif();
+
     int getNbArtilleur(QString pseudo);
     int getNbTank(QString pseudo);
     int getNbFantassin(QString pseudo);
@@ -42,6 +46,8 @@ private:
     static Bdd* m_instance;
 
     sql::Connection* m_connection;
+
+    int m_nbJoueurs;
 };
 
 #endif // BDDCONNECTION_H
