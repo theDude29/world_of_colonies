@@ -55,7 +55,7 @@ QStringList Bdd::recupererListJoueurs()
 QString Bdd::getFichierVillageEnnemieAuPif(QString pseudo)
 {
     QString pseudoEnnemie = getPseudoAuPif();
-    while(pseudoEnnemie == pseudo)
+    while(pseudoEnnemie != pseudo)
     {
         pseudoEnnemie = getPseudoAuPif();
     }
