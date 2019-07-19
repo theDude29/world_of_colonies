@@ -101,6 +101,8 @@ signals:
     void majNbCaserne(int nb);
 
 public slots:
+    void cacherBatiments();
+
     void deplacerBatiment();
     void vendreBatiment();
     void pivoterDroite();
