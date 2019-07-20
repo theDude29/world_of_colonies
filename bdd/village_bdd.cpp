@@ -229,7 +229,6 @@ void Village::genererTypeBatiment(typeBatiment typeBat, QString fichier)
 
 void Village::genererVillage()
 {
-    QString fichierVillage2 = Bdd::getBdd()->getFichierVillageEnnemieAuPif(m_pseudo);
     QString fichierVillage = Bdd::getBdd()->getFichierVillage(m_pseudo);
 
     //info de tout

@@ -88,6 +88,7 @@ void MainWindow::initVillage()
     //CONNECTIONS
     connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
     connect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
+    connect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
 
     connect(m_menuConstruire, SIGNAL(affichage()), this, SLOT(cacherBoutons()));
     connect(m_menuConstruire, SIGNAL(cachage()), this, SLOT(afficherBoutons()));
@@ -98,6 +99,47 @@ void MainWindow::initVillage()
     //
     connect(m_village, SIGNAL(onPlaceBatiment()), this, SLOT(cacherBoutons()));
     connect(m_village, SIGNAL(onArretePlacerBatiment()), this, SLOT(afficherBoutons()));
+}
+
+void MainWindow::passerEnGuiAssault()
+{
+    m_village->cacherBatiments();
+
+    disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
+    disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
+    disconnect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
+
+    connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiMonVillage()));
+
+    ui->bouton_menuConstruire->setText(QString(" Revenir au village"));
+    ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
+    //
+    ui->bouton_menuArmee->setText(QString(" Attaquer"));
+    ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
+    //
+    ui->bouton_assault->setText(QString("Village suivant (200 or)"));
+    ui->bouton_assault->setIcon(QIcon("pas d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
+}
+
+void MainWindow::passerEnGuiMonVillage()
+{
+    m_village->afficherBatiments();
+
+    //disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
+    //disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
+    disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiMonVillage()));
+
+    connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
+    connect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
+    connect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
+
+    ui->bouton_menuConstruire->setText(QString(" Construire"));
+    ui->bouton_menuArmee->setText(QString(" Armee"));
+    ui->bouton_assault->setText(QString(" Assault"));
+
+    ui->bouton_assault->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
+    ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/helmet.png"));
+    ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/marteau.png"));
 }
 
 void MainWindow::drawIrrlichtScene()

@@ -102,6 +102,7 @@ signals:
 
 public slots:
     void cacherBatiments();
+    void afficherBatiments();
 
     void deplacerBatiment();
     void vendreBatiment();

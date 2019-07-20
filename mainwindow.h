@@ -48,6 +48,9 @@ public slots:
 
     void drawIrrlichtScene();
 
+    void passerEnGuiAssault();
+    void passerEnGuiMonVillage();
+
     void cacherBoutons();
     void afficherBoutons();
     void cacherWidgetsEnfants();

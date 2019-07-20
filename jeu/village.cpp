@@ -56,6 +56,24 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     m_leBatimentEtaitDejaConstruit = false;
 }
 
+void Village::cacherBatiments()
+{
+    std::vector<Batiment*>::iterator it = m_listeBatiments.begin();
+    for(it; it != m_listeBatiments.end(); ++it)
+    {
+        (*it)->getMeshSceneNode()->setVisible(false);
+    }
+}
+
+void Village::afficherBatiments()
+{
+    std::vector<Batiment*>::iterator it = m_listeBatiments.begin();
+    for(it; it != m_listeBatiments.end(); ++it)
+    {
+        (*it)->getMeshSceneNode()->setVisible(true);
+    }
+}
+
 void Village::setArmee(Armee *armee)
 {
     m_armee = armee;
