@@ -98,5 +98,5 @@ void Batiment::estPlusVise()
 
 Batiment::~Batiment()
 {
-
+    m_meshSceneNode->setVisible(false);
 }
