@@ -73,15 +73,13 @@ QString Bdd::getPseudoAuPif()
 
     QStringList listJoueurs = recupererListJoueurs();
     QStringList::iterator it = listJoueurs.begin();
-    int nbMystere = (rand() % (m_nbJoueurs - 0 + 1)) + 0;
+    int nbMystere = ((rand() % (listJoueurs.size() - 0 + 1)) + 0) - 1;
     for(int i = 0; i < nbMystere; ++i)
     {
         it++;
     }
 
     pseudoEnnemie = *(it);
-
-    std::cout<<pseudoEnnemie.toStdString()<<"\n";
 
     return pseudoEnnemie;
 }

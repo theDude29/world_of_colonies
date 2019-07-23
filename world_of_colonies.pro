@@ -40,7 +40,8 @@ SOURCES += main.cpp \
     jeu/soldats/artilleur.cpp \
     jeu/soldats/tank.cpp \
     jeu/soldats/fantassin.cpp \
-    jeu/armee.cpp
+    jeu/armee.cpp \
+    jeu/villageennemi.cpp
 
 HEADERS += \
     singleton/Device.h \
@@ -77,7 +78,8 @@ HEADERS += \
     jeu/soldats/artilleur.h \
     jeu/soldats/tank.h \
     jeu/soldats/fantassin.h \
-    jeu/armee.h
+    jeu/armee.h \
+    jeu/villageennemi.h
 
 
 unix|win32: LIBS += -lIrrlicht

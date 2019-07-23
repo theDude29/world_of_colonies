@@ -7,6 +7,7 @@
 #include "jeu/village.h"
 #include "gui/menuconstruire.h"
 #include "gui/widgetarmee.h"
+#include "jeu/villageennemi.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +43,9 @@ private:
 
     //village
     Village* m_village;
+
+    //village ennemi
+    VillageEnnemi* m_villageEnnemie;
 
 public slots:
     void initVillage();
