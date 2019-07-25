@@ -26,7 +26,7 @@ void VillageEnnemi::genererVillage(QString fichier)
     itInfos++;
     genererTypeBatiment(hdv, infosHdv);
 
-    /*//maison
+    //maison
     QString infosmaison = (*itInfos);
     itInfos++;
     genererTypeBatiment(travailleurNourriture, infosmaison);
@@ -74,7 +74,7 @@ void VillageEnnemi::genererVillage(QString fichier)
     //mortier
     QString infosMortier = (*itInfos);
     itInfos++;
-    genererTypeBatiment(mortier, infosMortier);*/
+    genererTypeBatiment(mortier, infosMortier);
 }
 
 void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
@@ -183,14 +183,22 @@ void VillageEnnemi::genererVillageAuPif()
     {
         pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
     }
+    std::cout<<pseudoEnnemi.toStdString()<<std::endl;
 
     QString fichierVillage = Bdd::getBdd()->getFichierVillage(pseudoEnnemi);
 
     genererVillage(fichierVillage);
+
 }
 
 void VillageEnnemi::detruireVillage()
 {
+    std::vector<Batiment*>::iterator it = m_listeBatiments.begin();
+    for(it; it != m_listeBatiments.end(); ++it)
+    {
+        (*it)->kill();
+    }
+
     for(unsigned int i = 0; i < m_listeBatiments.size(); ++i)
     {
         m_listeBatiments.pop_back();

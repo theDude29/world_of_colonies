@@ -24,7 +24,6 @@ public:
     ~VillageEnnemi();
     void genererVillage(QString fichier);
     void genererTypeBatiment(typeBatiment typeBat, QString fichier);
-    void detruireVillage();
 
 private:
     QString m_pseudo;
@@ -32,6 +31,7 @@ private:
 
 public slots:
     void genererVillageAuPif();
+    void detruireVillage();
 };
 
 #endif // VILLAGEENNEMI_H

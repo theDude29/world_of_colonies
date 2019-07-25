@@ -83,6 +83,7 @@ void Batiment::setId(int id)
 
 void Batiment::afficherBatimentConstruit()
 {
+    m_meshSceneNode->setMaterialTexture(0, m_texture);
     m_meshSceneNode->setVisible(true);
 }
 

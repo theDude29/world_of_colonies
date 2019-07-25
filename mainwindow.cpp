@@ -127,6 +127,8 @@ void MainWindow::passerEnGuiAssault()
 
 void MainWindow::passerEnGuiMonVillage()
 {
+    m_villageEnnemie->detruireVillage();
+
     m_village->afficherBatiments();
 
     //disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
