@@ -55,6 +55,8 @@ public slots:
     void passerEnGuiAssault();
     void passerEnGuiMonVillage();
 
+    void cacherBoutonsAssault();
+    void afficherBoutonAssault();
     void cacherBoutons();
     void afficherBoutons();
     void cacherWidgetsEnfants();

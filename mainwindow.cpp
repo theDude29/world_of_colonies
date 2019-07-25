@@ -59,6 +59,7 @@ void MainWindow::initVillage()
     QPalette p;
     this->setPalette(p);
     afficherWidgetsEnfants();
+    cacherBoutonsAssault();
 
     //irrlicht
     m_irrlichtWidget = new IrrlichtWidget(this);
@@ -76,7 +77,7 @@ void MainWindow::initVillage()
     this->installEventFilter(m_village);
 
     //village ennemie
-    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo());
+    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), ui->label_pseudo_ennemi);
 
     //menu construire
     m_menuConstruire = new MenuConstruire(this, m_village);
@@ -108,6 +109,7 @@ void MainWindow::initVillage()
 void MainWindow::passerEnGuiAssault()
 {
     m_village->cacherBatiments();
+    afficherBoutonAssault();
 
     disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
     disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
@@ -128,6 +130,7 @@ void MainWindow::passerEnGuiAssault()
 void MainWindow::passerEnGuiMonVillage()
 {
     m_villageEnnemie->detruireVillage();
+    cacherBoutonsAssault();
 
     m_village->afficherBatiments();
 
@@ -169,6 +172,7 @@ void MainWindow::afficherBoutons()
 
 void MainWindow::cacherWidgetsEnfants()
 {
+    cacherBoutonsAssault();
     cacherBoutons();
     ui->progressBar_niveau->setVisible(false);
     ui->progressBar_ressource1->setVisible(false);
@@ -181,6 +185,7 @@ void MainWindow::cacherWidgetsEnfants()
 
 void MainWindow::afficherWidgetsEnfants()
 {
+    afficherBoutonAssault();
     afficherBoutons();
     ui->progressBar_niveau->setVisible(true);
     ui->progressBar_ressource1->setVisible(true);
@@ -190,6 +195,20 @@ void MainWindow::afficherWidgetsEnfants()
     ui->label_pseudo->setVisible(true);
     ui->label_ressource1->setVisible(true);
     ui->label_ressource2->setVisible(true);
+}
+
+void MainWindow::afficherBoutonAssault()
+{
+    ui->frame_boutonAssault->setVisible(true);
+
+    ui->label_pseudo_ennemi->setVisible(true);
+}
+
+void MainWindow::cacherBoutonsAssault()
+{
+    ui->frame_boutonAssault->setVisible(false);
+
+    ui->label_pseudo_ennemi->setVisible(false);
 }
 
 MainWindow::~MainWindow()

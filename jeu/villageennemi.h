@@ -20,14 +20,15 @@ class VillageEnnemi : public QObject
     Q_OBJECT
 
 public:
-    VillageEnnemi(QObject* parent, QString pseudo);
+    VillageEnnemi(QWidget* parent, QString pseudo, QLabel* texteInfoEnnemie);
     ~VillageEnnemi();
     void genererVillage(QString fichier);
     void genererTypeBatiment(typeBatiment typeBat, QString fichier);
 
 private:
-    QString m_pseudo;
+    QString m_pseudo, m_pseudoEnnemi;
     std::vector<Batiment*> m_listeBatiments;
+    QLabel* m_textInfoEnnemie;
 
 public slots:
     void genererVillageAuPif();

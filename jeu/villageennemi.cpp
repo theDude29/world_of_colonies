@@ -2,9 +2,10 @@
 #include "iostream"
 #include "bdd/bdd.h"
 
-VillageEnnemi::VillageEnnemi(QObject* parent, QString pseudo) : QObject(parent)
+VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, QLabel* texteInfoEnnemie) : QObject(parent)
 {
     m_pseudo = pseudo;
+    m_textInfoEnnemie = texteInfoEnnemie;
 }
 
 void VillageEnnemi::genererVillage(QString fichier)
@@ -13,13 +14,30 @@ void VillageEnnemi::genererVillage(QString fichier)
     QStringList listInfos = fichier.split('.');
     QStringList::iterator itInfos = listInfos.begin();
 
-    //niveau (on sen fout)
+    //info joueurs :
+    QString infoJoueur = m_pseudoEnnemi;
+
+    //niveau
     QStringList listInfosNiveau = (*itInfos).split(';');
     itInfos++;
+    QStringList::iterator itInfosNiveau = listInfosNiveau.begin();
+    int niveau = (*itInfosNiveau).toInt();
+    //
+    infoJoueur += " (niveau " + QString::number(niveau) + ") : ";
 
-    //nombre ressource (on sen fout)
+    //nombre ressource (on
     QStringList listInfosNbRessource = (*itInfos).split(',');
     itInfos++;
+    QStringList::iterator itInfosNbResssource = listInfosNbRessource.begin();
+    int nombreOr = (*itInfosNbResssource).toInt();
+    itInfosNbResssource++;
+    int nombreNourriture = (*itInfosNbResssource).toInt();
+    //
+    infoJoueur += QString::number(nombreOr) + " or, " + QString::number(nombreNourriture) + " nourriture";
+
+    m_textInfoEnnemie->setText(infoJoueur);
+
+    //batiment :
 
     //hdv
     QString infosHdv = (*itInfos);
@@ -178,12 +196,14 @@ void VillageEnnemi::genererVillageAuPif()
 {
     detruireVillage();
 
+    m_textInfoEnnemie->setVisible(true);
+
     QString pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
     while(pseudoEnnemi == m_pseudo)
     {
         pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
     }
-    std::cout<<pseudoEnnemi.toStdString()<<std::endl;
+    m_pseudoEnnemi = pseudoEnnemi;
 
     QString fichierVillage = Bdd::getBdd()->getFichierVillage(pseudoEnnemi);
 
