@@ -2,10 +2,20 @@
 #include "iostream"
 #include "bdd/bdd.h"
 
-VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, QLabel* texteInfoEnnemie) : QObject(parent)
+VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank) : QObject(parent)
 {
     m_pseudo = pseudo;
+
+    m_armee = armee;
+
     m_textInfoEnnemie = texteInfoEnnemie;
+    //
+    m_bouttonArtilleur = bouttonArtilleur;
+    connect(m_bouttonArtilleur, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_artilleur()));
+    m_bouttonFantassin = bouttonFantassin;
+    connect(m_bouttonFantassin, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_fantassin()));
+    m_boutonTank = boutonTank;
+    connect(m_boutonTank, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_tank()));
 }
 
 void VillageEnnemi::genererVillage(QString fichier)
@@ -116,11 +126,11 @@ void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
             break;
 
         case travailleurNourriture:
-            batimentAConstuire = new Travailleur_Nourriture;
+            batimentAConstuire = new Travailleur_Nourriture(false);
             break;
 
         case travailleurOr:
-            batimentAConstuire = new Travailleur_Or;
+            batimentAConstuire = new Travailleur_Or(false);
             break;
 
         case conteneurNourriture:
@@ -197,6 +207,7 @@ void VillageEnnemi::genererVillageAuPif()
     detruireVillage();
 
     m_textInfoEnnemie->setVisible(true);
+    majTextBouttons();
 
     QString pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
     while(pseudoEnnemi == m_pseudo)
@@ -223,6 +234,30 @@ void VillageEnnemi::detruireVillage()
     {
         m_listeBatiments.pop_back();
     }
+}
+
+void VillageEnnemi::soldatActuelle_artilleur()
+{
+    m_soldatActuelle = artilleur;
+    std::cout<<"artileur\n";;
+}
+
+void VillageEnnemi::soldatActuelle_fantassin()
+{
+    m_soldatActuelle = fantassin;
+    std::cout<<"fantassin\n";
+}
+
+void VillageEnnemi::soldatActuelle_tank()
+{
+    m_soldatActuelle = tank;
+}
+
+void VillageEnnemi::majTextBouttons()
+{
+    m_bouttonArtilleur->setText("Artilleur (" + QString::number(m_armee->getNbArtilleur()) + " unite(s))");
+    m_bouttonFantassin->setText("Fantassin (" + QString::number(m_armee->getNbFantassin()) + " unite(s))");
+    m_boutonTank->setText("Tank (" + QString::number(m_armee->getNbTank()) + " unite(s))");
 }
 
 VillageEnnemi::~VillageEnnemi()

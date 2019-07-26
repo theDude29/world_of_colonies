@@ -10,9 +10,10 @@ Travailleur::Travailleur(int maxPV, QSize taille, cout coutDeConstruction, int c
     m_productivite = productivite;
     m_tempsDeConstruction = TEMPS_CONSTRUCTION_TRAVAILLEUR;
 
+    m_boutonCollecte = new QPushButton(MainWindow::getMainWindow());
+    m_boutonCollecte->setVisible(false);
     if(active)
     {
-        m_boutonCollecte = new QPushButton(MainWindow::getMainWindow());
         connect(m_boutonCollecte, SIGNAL(clicked(bool)), this, SLOT(recolterRessource()));
 
         QTimer* timer = new QTimer(MainWindow::getMainWindow());

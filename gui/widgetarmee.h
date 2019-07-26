@@ -22,6 +22,8 @@ public:
 
     void majTexteStatsArmee();
 
+    Armee* getArmee();
+
 public slots:
     void afficherMenuArmee();
     void cacherMenuArmee();

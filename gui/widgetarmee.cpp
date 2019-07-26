@@ -39,6 +39,11 @@ widgetArmee::widgetArmee(QWidget *parent, Village *village, QString pseudo) :
     connect(ui->pushButton_3, SIGNAL(clicked(bool)), this, SLOT(bouttonFantassinClique()));
 }
 
+Armee* widgetArmee::getArmee()
+{
+    return m_armee;
+}
+
 void widgetArmee::majTexteStatsArmee()
 {
     QString text = "Nombre de places occupes : ";

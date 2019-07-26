@@ -76,9 +76,6 @@ void MainWindow::initVillage()
     m_village = new Village(this, m_widgetConnexion->getPseudo(), ui->progressBar_niveau, ui->label_niveau, ui->progressBar_ressource1, ui->progressBar_ressource2);
     this->installEventFilter(m_village);
 
-    //village ennemie
-    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), ui->label_pseudo_ennemi);
-
     //menu construire
     m_menuConstruire = new MenuConstruire(this, m_village);
     ui->gridLayout->addWidget(m_menuConstruire, 1, 0);
@@ -88,6 +85,9 @@ void MainWindow::initVillage()
     m_menuArmee = new widgetArmee(this, m_village, m_widgetConnexion->getPseudo());
     ui->gridLayout->addWidget(m_menuArmee, 1, 0);
     m_menuArmee->cacherMenuArmee();
+
+    //village ennemie
+    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank);
 
     //CONNECTIONS
     connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
