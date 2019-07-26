@@ -28,19 +28,25 @@ class VillageEnnemi : public QObject
     Q_OBJECT
 
 public:
-    VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank);
+    VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector);
     ~VillageEnnemi();
     void genererVillage(QString fichier);
     void genererTypeBatiment(typeBatiment typeBat, QString fichier);
 
+    void majSoldatSelectionne();
+
     void majTextBouttons();
 
 private:
+    irr::scene::ISceneCollisionManager* m_collisionSceneManager;
+    irr::scene::ITriangleSelector* m_terrainSelector;
+
     QString m_pseudo, m_pseudoEnnemi;
+
     Armee* m_armee;
     std::vector<Batiment*> m_listeBatiments;
 
-    typeSoldat m_soldatActuelle;
+    Soldat* m_soldatActuelle;
 
     QLabel* m_textInfoEnnemie;
     QPushButton* m_bouttonArtilleur, *m_bouttonFantassin, *m_boutonTank;

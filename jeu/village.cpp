@@ -50,7 +50,7 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     connect(m_WidgetOptionsBats->getBoutonGauche(), SIGNAL(clicked(bool)), this, SLOT(pivoterGauche()));
     connect(m_WidgetOptionsBats->getBoutonRetour(), SIGNAL(clicked(bool)), this, SLOT(quitterOptionBat()));
 
-    //autre
+    //autre#include "singleton/SceneManager.h"
     m_batimentADeplacer = NULL;
     m_batimentSelectionne = NULL;
     m_leBatimentEtaitDejaConstruit = false;
@@ -58,8 +58,7 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
 
 void Village::cacherBatiments()
 {
-    std::vector<Batiment*>::iterator it = m_listeBatiments.begin();
-    for(it; it != m_listeBatiments.end(); ++it)
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
     {
         (*it)->getMeshSceneNode()->setVisible(false);
     }
@@ -67,8 +66,7 @@ void Village::cacherBatiments()
 
 void Village::afficherBatiments()
 {
-    std::vector<Batiment*>::iterator it = m_listeBatiments.begin();
-    for(it; it != m_listeBatiments.end(); ++it)
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
     {
         (*it)->getMeshSceneNode()->setVisible(true);
     }
@@ -510,6 +508,11 @@ void Village::gagneOr(int nbOr)
 void Village::quitterOptionBat()
 {
     m_batimentSelectionne->estPlusVise();
+}
+
+irr::scene::ITriangleSelector* Village::getTerrainSelector()
+{
+    return m_terrainSelector;
 }
 
 Village::~Village()

@@ -1,6 +1,7 @@
 #include "fantassin.h"
+#include "singleton/SceneManager.h"
 
-Fantassin::Fantassin()
+Fantassin::Fantassin() : Soldat()
 {
     m_degats = DEGAT_FANTASSIN;
     m_vitesseAttaque = VITESSE_ATTAQUE_FANTASSIN;
@@ -12,6 +13,9 @@ Fantassin::Fantassin()
     m_cout.nbOr = COUT_OR_FANTASSIN;
     m_cout.nbXp = XP_FANTASSIN;
     m_place = PLACE_FANTASSIN;
+
+    m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/fantassin.obj"));
+    m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
 }
 
 QString Fantassin::getInfo()

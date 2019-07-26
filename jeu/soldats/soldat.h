@@ -7,6 +7,7 @@ class Soldat : public Item
 {
 public:
     Soldat();
+    void setPosition(irr::core::vector3df pos);
 
 protected:
     int m_degats, m_vitesseAttaque, m_dps;

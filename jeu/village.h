@@ -40,6 +40,7 @@ public:
     std::vector<Travailleur*> getListeTravailleur();
     int getNbOr();
     int getNbNourriture();
+    irr::scene::ITriangleSelector* getTerrainSelector();
 
     void setArmee(Armee* armee);
 

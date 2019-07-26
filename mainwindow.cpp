@@ -87,7 +87,7 @@ void MainWindow::initVillage()
     m_menuArmee->cacherMenuArmee();
 
     //village ennemie
-    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank);
+    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank, m_village->getTerrainSelector());
 
     //CONNECTIONS
     connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));

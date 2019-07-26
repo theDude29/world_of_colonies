@@ -1,6 +1,7 @@
 #include "tank.h"
+#include "singleton/SceneManager.h"
 
-Tank::Tank()
+Tank::Tank() : Soldat()
 {
     m_degats = DEGAT_TANK;
     m_vitesseAttaque = VITESSE_ATTAQUE_TANK;
@@ -12,6 +13,9 @@ Tank::Tank()
     m_cout.nbOr = COUT_OR_TANK;
     m_cout.nbXp = XP_TANK;
     m_place = PLACE_TANK;
+
+    m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/fantassin.obj"));
+    m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
 }
 
 QString Tank::getInfo()

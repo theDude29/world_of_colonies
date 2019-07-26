@@ -2,11 +2,16 @@
 #include "iostream"
 #include "bdd/bdd.h"
 
-VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank) : QObject(parent)
+VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
 {
+    m_collisionSceneManager = SceneManager::getSceneManager()->getSceneCollisionManager();
+    m_terrainSelector = triangleSelector;
+
     m_pseudo = pseudo;
 
     m_armee = armee;
+
+    m_soldatActuelle = new Artilleur;
 
     m_textInfoEnnemie = texteInfoEnnemie;
     //
@@ -16,6 +21,30 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLab
     connect(m_bouttonFantassin, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_fantassin()));
     m_boutonTank = boutonTank;
     connect(m_boutonTank, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_tank()));
+}
+
+void VillageEnnemi::majSoldatSelectionne()
+{
+    irr::core::line3df line;
+    //line = m_collisionSceneManager->getRayFromScreenCoordinates(posMouse);
+
+    irr::core::vector3df pos;
+    irr::core::triangle3df tri;
+    irr::scene::ISceneNode* node;
+    if(m_collisionSceneManager->getCollisionPoint(line, m_terrainSelector, pos, tri, node))
+    {
+        m_soldatActuelle->setPosition(pos);
+    }
+
+    /*if(collisionEntreBatiment())
+    {
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
+    }
+
+    else
+    {
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
+    }*/
 }
 
 void VillageEnnemi::genererVillage(QString fichier)
@@ -224,8 +253,7 @@ void VillageEnnemi::genererVillageAuPif()
 
 void VillageEnnemi::detruireVillage()
 {
-    std::vector<Batiment*>::iterator it = m_listeBatiments.begin();
-    for(it; it != m_listeBatiments.end(); ++it)
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
     {
         (*it)->kill();
     }
@@ -238,19 +266,20 @@ void VillageEnnemi::detruireVillage()
 
 void VillageEnnemi::soldatActuelle_artilleur()
 {
-    m_soldatActuelle = artilleur;
-    std::cout<<"artileur\n";;
+    delete m_soldatActuelle;
+    m_soldatActuelle = new Artilleur;
 }
 
 void VillageEnnemi::soldatActuelle_fantassin()
 {
-    m_soldatActuelle = fantassin;
-    std::cout<<"fantassin\n";
+    delete m_soldatActuelle;
+    m_soldatActuelle = new Fantassin;
 }
 
 void VillageEnnemi::soldatActuelle_tank()
 {
-    m_soldatActuelle = tank;
+    delete m_soldatActuelle;
+    m_soldatActuelle = new Tank;
 }
 
 void VillageEnnemi::majTextBouttons()
@@ -262,5 +291,6 @@ void VillageEnnemi::majTextBouttons()
 
 VillageEnnemi::~VillageEnnemi()
 {
+    delete m_soldatActuelle;
     detruireVillage();
 }

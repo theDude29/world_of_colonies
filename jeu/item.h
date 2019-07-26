@@ -20,6 +20,7 @@ public:
     Item();
     virtual QString getInfo() = 0;
     cout getCout();
+    void setVisible(bool visible);
 
 protected:
     cout m_cout;
