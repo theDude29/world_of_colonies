@@ -21,6 +21,10 @@ public:
     ~Item();
     static QString getInfo();
     virtual cout getCout();
+    irr::video::ITexture* getTexture();
+    irr::core::vector3df getPosition();
+    irr::core::vector3df getRotation();
+    virtual void kill();
     void setVisible(bool visible);
     irr::scene::IMeshSceneNode* getMeshSceneNode();
 

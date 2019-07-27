@@ -11,24 +11,9 @@ Batiment::Batiment(int maxPV, QSize taille, cout coutDeConstruction) : Item(), m
     m_cout = coutDeConstruction;
 }
 
-void Batiment::kill()
-{
-    m_meshSceneNode->setVisible(false);
-}
-
-irr::core::vector3df Batiment::getPosition()
-{
-    return m_meshSceneNode->getPosition();
-}
-
 void Batiment::setRotation(irr::core::vector3df rot)
 {
     m_meshSceneNode->setRotation(rot);
-}
-
-irr::core::vector3df Batiment::getRotation()
-{
-    return m_meshSceneNode->getRotation();
 }
 
 void Batiment::setPseudo(QString pseudo)
@@ -59,11 +44,6 @@ int Batiment::getIdFichierVillage()
 int Batiment::getType()
 {
     return m_typeBatiment;
-}
-
-irr::video::ITexture* Batiment::getTexture()
-{
-    return m_texture;
 }
 
 int Batiment::getId()

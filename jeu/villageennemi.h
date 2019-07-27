@@ -14,14 +14,7 @@
 #include "jeu/batiments/defense/canon.h"
 #include "jeu/batiments/defense/tourelle.h"
 #include "jeu/batiments/defense/mortier.h"
-#include "jeu/armee.h"
-
-enum typeSoldat
-{
-    artilleur,
-    fantassin,
-    tank
-};
+#include "jeu/Gestionattaquevillage.h"
 
 class VillageEnnemi : public QObject
 {
@@ -42,8 +35,11 @@ public:
     void majTextBouttons();
 
 private:
+    bool m_enAction;
     irr::scene::ISceneCollisionManager* m_collisionSceneManager;
     irr::scene::ITriangleSelector* m_terrainSelector;
+
+    GestionAttaqueVillage* m_gestionnaireAttaque;
 
     QString m_pseudo, m_pseudoEnnemi;
 

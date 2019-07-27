@@ -3,6 +3,8 @@
 
 Fantassin::Fantassin() : Soldat()
 {
+    m_type = fantassin;
+
     m_degats = DEGAT_FANTASSIN;
     m_vitesseAttaque = VITESSE_ATTAQUE_FANTASSIN;
     m_dps = m_degats / m_vitesseAttaque;
@@ -17,6 +19,7 @@ Fantassin::Fantassin() : Soldat()
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/fantassin.obj"));
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setRotation(irr::core::vector3df(0,90,0));
+    m_meshSceneNode->setPosition(irr::core::vector3df(-10000000,0,0)); //on ecarte pour le style
     m_meshSceneNode->setMaterialTexture(0, m_texture);
 }
 

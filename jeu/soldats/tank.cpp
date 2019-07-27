@@ -3,6 +3,8 @@
 
 Tank::Tank() : Soldat()
 {
+    m_type = tank;
+
     m_degats = DEGAT_TANK;
     m_vitesseAttaque = VITESSE_ATTAQUE_TANK;
     m_dps = m_degats / m_vitesseAttaque;
@@ -18,6 +20,7 @@ Tank::Tank() : Soldat()
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
     m_meshSceneNode->setRotation(irr::core::vector3df(0,180,0));
     m_meshSceneNode->setMaterialTexture(0, m_texture);
+        m_meshSceneNode->setPosition(irr::core::vector3df(-10000000,0,0)); //on ecarte pour le style
 }
 
 QString Tank::getInfo()

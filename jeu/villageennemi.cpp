@@ -5,12 +5,19 @@
 
 VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
 {
+    m_enAction = false;
+
     m_collisionSceneManager = SceneManager::getSceneManager()->getSceneCollisionManager();
     m_terrainSelector = triangleSelector;
+
+    m_gestionnaireAttaque = new GestionAttaqueVillage;
 
     m_pseudo = pseudo;
 
     m_armee = armee;
+    m_nbArtilleur = m_armee->getNbArtilleur();
+    m_nbFantassin = m_armee->getNbFantassin();
+    m_nbTank = m_armee->getNbTank();
 
     m_soldatActuelle = new Artilleur;
 
@@ -80,6 +87,35 @@ bool VillageEnnemi::eventFilter(QObject *obj, QEvent *event)
             case QEvent::MouseMove:
                 mouseEvent = (QMouseEvent*)event;
                 majSoldatSelectionne(irr::core::vector2di(mouseEvent->x(), mouseEvent->y()));
+                break;
+
+            case QEvent::MouseButtonPress:
+                mouseEvent = (QMouseEvent*)event;
+                if(mouseEvent->button() == Qt::LeftButton)
+                {
+                    if(!collisionAvecBatiment() && !m_pasDeSoldatSelectionnerEnReserve && m_enAction)
+                    {
+                        m_gestionnaireAttaque->ajouterTroupe(m_soldatActuelle->getType(), m_soldatActuelle->getPosition());
+
+                        switch(m_soldatActuelle->getType())
+                        {
+                        case artilleur:
+                            m_nbArtilleur--;
+                            soldatActuelle_artilleur();
+                            break;
+                        case fantassin:
+                            m_nbFantassin--;
+                            soldatActuelle_fantassin();
+                            break;
+                        case tank:
+                            m_nbTank--;
+                            soldatActuelle_tank();
+                            break;
+                        default: break;
+                        }
+                        majTextBouttons();
+                    }
+                }
                 break;
 
             default : break;
@@ -275,6 +311,7 @@ void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
 void VillageEnnemi::genererVillageAuPif()
 {
     detruireVillage();
+    m_enAction = true;
 
     m_textInfoEnnemie->setVisible(true);
     majTextBouttons();
@@ -303,6 +340,10 @@ void VillageEnnemi::detruireVillage()
     {
         m_listeBatiments.pop_back();
     }
+
+    m_gestionnaireAttaque->detruireTroupe();
+
+    m_enAction = false;
 }
 
 void VillageEnnemi::soldatActuelle_artilleur()
@@ -355,10 +396,6 @@ void VillageEnnemi::soldatActuelle_tank()
 
 void VillageEnnemi::majTextBouttons()
 {
-    m_nbArtilleur = m_armee->getNbArtilleur();
-    m_nbFantassin = m_armee->getNbFantassin();
-    m_nbTank = m_armee->getNbTank();
-
     m_bouttonArtilleur->setText("Artilleur (" + QString::number(m_nbArtilleur) + " unite(s))");
     m_bouttonFantassin->setText("Fantassin (" + QString::number(m_nbFantassin) + " unite(s))");
     m_boutonTank->setText("Tank (" + QString::number(m_nbTank) + " unite(s))");
@@ -371,6 +408,7 @@ void VillageEnnemi::montrerSoldat(bool vrai)
 
 VillageEnnemi::~VillageEnnemi()
 {
+    delete m_gestionnaireAttaque;
     delete m_soldatActuelle;
     detruireVillage();
 }

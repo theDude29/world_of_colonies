@@ -36,15 +36,11 @@ public:
 
     int getIdFichierVillage();
     int getType();
-    irr::video::ITexture* getTexture();
-    irr::core::vector3df getPosition();
-    irr::core::vector3df getRotation();
     int getId();
     bool isVisible();
 
     virtual void estVise();
     virtual void estPlusVise();
-    virtual void kill();
     virtual void afficherBatimentConstruit();
 
 protected:
