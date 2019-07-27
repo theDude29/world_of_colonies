@@ -1,6 +1,7 @@
 #include "villageennemi.h"
 #include "iostream"
 #include "bdd/bdd.h"
+#include <QMouseEvent>
 
 VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
 {
@@ -13,6 +14,8 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLab
 
     m_soldatActuelle = new Artilleur;
 
+    m_pasDeSoldatSelectionnerEnReserve = false;
+
     m_textInfoEnnemie = texteInfoEnnemie;
     //
     m_bouttonArtilleur = bouttonArtilleur;
@@ -23,10 +26,10 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLab
     connect(m_boutonTank, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_tank()));
 }
 
-void VillageEnnemi::majSoldatSelectionne()
+void VillageEnnemi::majSoldatSelectionne(irr::core::vector2di posMouse)
 {
     irr::core::line3df line;
-    //line = m_collisionSceneManager->getRayFromScreenCoordinates(posMouse);
+    line = m_collisionSceneManager->getRayFromScreenCoordinates(posMouse);
 
     irr::core::vector3df pos;
     irr::core::triangle3df tri;
@@ -36,15 +39,53 @@ void VillageEnnemi::majSoldatSelectionne()
         m_soldatActuelle->setPosition(pos);
     }
 
-    /*if(collisionEntreBatiment())
+    if(collisionAvecBatiment() || m_pasDeSoldatSelectionnerEnReserve)
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
+        m_soldatActuelle->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
     }
 
     else
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
-    }*/
+        m_soldatActuelle->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
+    }
+}
+
+bool VillageEnnemi::collisionAvecBatiment()
+{
+    irr::core::aabbox3df bb_soldatActuelle = m_soldatActuelle->getMeshSceneNode()->getTransformedBoundingBox();
+    irr::core::aabbox3df bb_autreBatiment;
+    bool collision = false;
+
+    for(unsigned int i = 0; i < m_listeBatiments.size(); i++)
+    {
+            if(m_listeBatiments[i]->isVisible())
+            {
+                bb_autreBatiment =  m_listeBatiments[i]->getMeshSceneNode()->getTransformedBoundingBox();
+                if(bb_autreBatiment.intersectsWithBox(bb_soldatActuelle))
+                {
+                    collision = true;
+                }
+            }
+    }
+
+   return collision;
+}
+
+bool VillageEnnemi::eventFilter(QObject *obj, QEvent *event)
+{
+        QMouseEvent* mouseEvent = NULL;
+
+            switch(event->type())
+            {
+            case QEvent::MouseMove:
+                mouseEvent = (QMouseEvent*)event;
+                majSoldatSelectionne(irr::core::vector2di(mouseEvent->x(), mouseEvent->y()));
+                break;
+
+            default : break;
+            }
+
+    return QObject::eventFilter(obj, event);
 }
 
 void VillageEnnemi::genererVillage(QString fichier)
@@ -268,25 +309,64 @@ void VillageEnnemi::soldatActuelle_artilleur()
 {
     delete m_soldatActuelle;
     m_soldatActuelle = new Artilleur;
+
+    if(m_nbArtilleur < 1)
+    {
+        m_pasDeSoldatSelectionnerEnReserve = true;
+    }
+
+    else
+    {
+        m_pasDeSoldatSelectionnerEnReserve = false;
+    }
 }
 
 void VillageEnnemi::soldatActuelle_fantassin()
 {
     delete m_soldatActuelle;
     m_soldatActuelle = new Fantassin;
+
+    if(m_nbFantassin < 1)
+    {
+        m_pasDeSoldatSelectionnerEnReserve = true;
+    }
+
+    else
+    {
+        m_pasDeSoldatSelectionnerEnReserve = false;
+    }
 }
 
 void VillageEnnemi::soldatActuelle_tank()
 {
     delete m_soldatActuelle;
     m_soldatActuelle = new Tank;
+
+    if(m_nbTank < 1)
+    {
+        m_pasDeSoldatSelectionnerEnReserve = true;
+    }
+
+    else
+    {
+        m_pasDeSoldatSelectionnerEnReserve = false;
+    }
 }
 
 void VillageEnnemi::majTextBouttons()
 {
-    m_bouttonArtilleur->setText("Artilleur (" + QString::number(m_armee->getNbArtilleur()) + " unite(s))");
-    m_bouttonFantassin->setText("Fantassin (" + QString::number(m_armee->getNbFantassin()) + " unite(s))");
-    m_boutonTank->setText("Tank (" + QString::number(m_armee->getNbTank()) + " unite(s))");
+    m_nbArtilleur = m_armee->getNbArtilleur();
+    m_nbFantassin = m_armee->getNbFantassin();
+    m_nbTank = m_armee->getNbTank();
+
+    m_bouttonArtilleur->setText("Artilleur (" + QString::number(m_nbArtilleur) + " unite(s))");
+    m_bouttonFantassin->setText("Fantassin (" + QString::number(m_nbFantassin) + " unite(s))");
+    m_boutonTank->setText("Tank (" + QString::number(m_nbTank) + " unite(s))");
+}
+
+void VillageEnnemi::montrerSoldat(bool vrai)
+{
+    m_soldatActuelle->setVisible(vrai);
 }
 
 VillageEnnemi::~VillageEnnemi()

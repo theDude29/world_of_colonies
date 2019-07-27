@@ -37,7 +37,6 @@ public:
     int getIdFichierVillage();
     int getType();
     irr::video::ITexture* getTexture();
-    irr::scene::IMeshSceneNode* getMeshSceneNode();
     irr::core::vector3df getPosition();
     irr::core::vector3df getRotation();
     int getId();

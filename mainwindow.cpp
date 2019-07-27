@@ -88,6 +88,8 @@ void MainWindow::initVillage()
 
     //village ennemie
     m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank, m_village->getTerrainSelector());
+    m_villageEnnemie->montrerSoldat(false);
+    this->installEventFilter(m_villageEnnemie);
 
     //CONNECTIONS
     connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
@@ -108,29 +110,39 @@ void MainWindow::initVillage()
 
 void MainWindow::passerEnGuiAssault()
 {
-    m_village->cacherBatiments();
-    afficherBoutonAssault();
+    if(m_village->PortailDansLeVillage())
+    {
+        m_village->cacherBatiments();
+        afficherBoutonAssault();
+        m_villageEnnemie->montrerSoldat(true);
 
-    disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
-    disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
-    disconnect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
+        disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
+        disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
+        disconnect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
 
-    connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiMonVillage()));
+        connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiMonVillage()));
 
-    ui->bouton_menuConstruire->setText(QString(" Revenir au village"));
-    ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
-    //
-    ui->bouton_menuArmee->setText(QString(" Attaquer"));
-    ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
-    //
-    ui->bouton_assault->setText(QString("Village suivant (200 or)"));
-    ui->bouton_assault->setIcon(QIcon("pas d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
+        ui->bouton_menuConstruire->setText(QString(" Revenir au village"));
+        ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
+        //
+        ui->bouton_menuArmee->setText(QString(" Attaquer"));
+        ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
+        //
+        ui->bouton_assault->setText(QString("Village suivant (50 or)"));
+        ui->bouton_assault->setIcon(QIcon("pas d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
+    }
+
+    else
+    {
+        QMessageBox::critical(this, "Erreur", "Vous devez posseder un portail afin de pouvoir vous teleporter dans les villages ennemie et les attaquer !");
+    }
 }
 
 void MainWindow::passerEnGuiMonVillage()
 {
     m_villageEnnemie->detruireVillage();
     cacherBoutonsAssault();
+    m_villageEnnemie->montrerSoldat(false);
 
     m_village->afficherBatiments();
 

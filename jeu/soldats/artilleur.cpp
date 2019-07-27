@@ -16,6 +16,8 @@ Artilleur::Artilleur() : Soldat()
 
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/artilleur.obj"));
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));
+    m_meshSceneNode->setRotation(irr::core::vector3df(0,-90,0));
+    m_meshSceneNode->setMaterialTexture(0, m_texture);
 }
 
 QString Artilleur::getInfo()

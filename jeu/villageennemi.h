@@ -30,10 +30,14 @@ class VillageEnnemi : public QObject
 public:
     VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector);
     ~VillageEnnemi();
+    virtual bool eventFilter(QObject *obj, QEvent *event);
+
     void genererVillage(QString fichier);
     void genererTypeBatiment(typeBatiment typeBat, QString fichier);
 
-    void majSoldatSelectionne();
+    void majSoldatSelectionne(irr::core::vector2di posMouse);
+    bool collisionAvecBatiment();
+    void montrerSoldat(bool vrai);
 
     void majTextBouttons();
 
@@ -45,6 +49,8 @@ private:
 
     Armee* m_armee;
     std::vector<Batiment*> m_listeBatiments;
+    int m_nbArtilleur, m_nbFantassin, m_nbTank;
+    bool m_pasDeSoldatSelectionnerEnReserve;
 
     Soldat* m_soldatActuelle;
 

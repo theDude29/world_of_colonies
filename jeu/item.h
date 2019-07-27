@@ -18,9 +18,11 @@ class Item : public QObject
 
 public:
     Item();
+    ~Item();
     static QString getInfo();
     virtual cout getCout();
     void setVisible(bool visible);
+    irr::scene::IMeshSceneNode* getMeshSceneNode();
 
 protected:
     cout m_cout;

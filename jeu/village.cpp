@@ -50,10 +50,23 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     connect(m_WidgetOptionsBats->getBoutonGauche(), SIGNAL(clicked(bool)), this, SLOT(pivoterGauche()));
     connect(m_WidgetOptionsBats->getBoutonRetour(), SIGNAL(clicked(bool)), this, SLOT(quitterOptionBat()));
 
-    //autre#include "singleton/SceneManager.h"
+    //autre
     m_batimentADeplacer = NULL;
     m_batimentSelectionne = NULL;
     m_leBatimentEtaitDejaConstruit = false;
+}
+
+bool Village::PortailDansLeVillage()
+{
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
+    {
+        if((*it)->getType() == portail && (*it)->isVisible())
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void Village::cacherBatiments()

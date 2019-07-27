@@ -46,11 +46,6 @@ void Batiment::setIdFichierVillage(int id)
     m_idFichierVillage = id;
 }
 
-irr::scene::IMeshSceneNode* Batiment::getMeshSceneNode()
-{
-    return m_meshSceneNode;
-}
-
 bool Batiment::isVisible()
 {
     return m_meshSceneNode->isVisible();
@@ -99,5 +94,5 @@ void Batiment::estPlusVise()
 
 Batiment::~Batiment()
 {
-    m_meshSceneNode->setVisible(false);
+
 }

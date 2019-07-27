@@ -46,6 +46,8 @@ public:
 
     void perdreRessource(cout nb);
 
+    bool PortailDansLeVillage();
+
     bool essayerConstruireBatiment(Batiment *batiment);
     void majPosBatimentAConstruire(irr::core::vector2di posMouse);
     bool collisionEntreBatiment();
