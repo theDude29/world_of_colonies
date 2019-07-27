@@ -17,7 +17,7 @@ class Fantassin : public Soldat
 {
 public:
     Fantassin();
-    virtual QString getInfo();
+    static QString getInfo();
 };
 
 #endif // FANTASSIN_H

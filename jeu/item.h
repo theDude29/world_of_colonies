@@ -18,8 +18,8 @@ class Item : public QObject
 
 public:
     Item();
-    virtual QString getInfo() = 0;
-    cout getCout();
+    static QString getInfo();
+    virtual cout getCout();
     void setVisible(bool visible);
 
 protected:

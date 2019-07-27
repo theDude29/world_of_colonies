@@ -28,9 +28,9 @@ widgetArmee::widgetArmee(QWidget *parent, Village *village, QString pseudo) :
     ui->image2->setPixmap(pm2);
     ui->image3->setPixmap(pm3);
 
-    ui->label_1->setText(m_artilleur.getInfo());
-    ui->label_2->setText(m_tank.getInfo());
-    ui->label_3->setText(m_fantassin.getInfo());
+    ui->label_1->setText(Artilleur::getInfo());
+    ui->label_2->setText(Tank::getInfo());
+    ui->label_3->setText(Fantassin::getInfo());
 
     connect(ui->pushButton_retour, SIGNAL(clicked(bool)), this, SLOT(cacherMenuArmee()));
 
@@ -86,10 +86,10 @@ void widgetArmee::cacherMenuArmee()
 
 void widgetArmee::bouttonArtilleurClique()
 {
-    if(m_village->getNbOr() >= m_artilleur.getCout().nbOr &&
-            m_village->getNbNourriture() >= m_artilleur.getCout().nbNourriture)
+    if(m_village->getNbOr() >= COUT_OR_ARTILLEUR &&
+            m_village->getNbNourriture() >= COUT_NOURRITURRE_ARTILLEUR)
     {
-        m_village->perdreRessource(m_artilleur.getCout());
+        m_village->perdreRessource(cout{COUT_NOURRITURRE_ARTILLEUR, COUT_OR_ARTILLEUR, XP_ARTILLEUR});
         m_armee->ajouterArtilleur();
         majTexteStatsArmee();
     }
@@ -103,10 +103,10 @@ void widgetArmee::bouttonArtilleurClique()
 
 void widgetArmee::bouttonTankClique()
 {
-    if(m_village->getNbOr() >= m_tank.getCout().nbOr &&
-            m_village->getNbNourriture() >= m_tank.getCout().nbNourriture)
+    if(m_village->getNbOr() >= COUT_OR_TANK &&
+            m_village->getNbNourriture() >= COUT_NOURRITURRE_TANK)
     {
-        m_village->perdreRessource(m_tank.getCout());
+        m_village->perdreRessource(cout{COUT_NOURRITURRE_TANK, COUT_OR_TANK, XP_TANK});
         m_armee->ajouterTank();
         majTexteStatsArmee();
     }
@@ -120,10 +120,10 @@ void widgetArmee::bouttonTankClique()
 
 void widgetArmee::bouttonFantassinClique()
 {
-    if(m_village->getNbOr() >= m_fantassin.getCout().nbOr &&
-            m_village->getNbNourriture() >= m_fantassin.getCout().nbNourriture)
+    if(m_village->getNbOr() >= COUT_OR_FANTASSIN &&
+            m_village->getNbNourriture() >= COUT_NOURRITURRE_FANTASSIN)
     {
-        m_village->perdreRessource(m_fantassin.getCout());
+        m_village->perdreRessource(cout{COUT_NOURRITURRE_FANTASSIN, COUT_OR_FANTASSIN, XP_FANTASSIN});
         m_armee->ajouterFantassin();
         majTexteStatsArmee();
     }

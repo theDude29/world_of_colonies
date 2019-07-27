@@ -17,7 +17,7 @@ class Artilleur : public Soldat
 {
 public:
     Artilleur();
-    virtual QString getInfo();
+    static QString getInfo();
 };
 
 #endif // ARTILLEUR_H

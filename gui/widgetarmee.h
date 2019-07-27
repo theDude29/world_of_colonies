@@ -37,10 +37,6 @@ private:
     Village* m_village;
     QString m_pseudo;
     Armee* m_armee;
-    Artilleur m_artilleur;
-    Tank m_tank;
-    Fantassin m_fantassin;
-
 
 signals:
     void affichage();

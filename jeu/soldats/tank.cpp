@@ -23,20 +23,20 @@ QString Tank::getInfo()
     QString texte = "";
     texte += "Le tank est un soldat possedants de nombreux points de vie.\n\n";
     texte += "degats par seconde : ";
-    texte += QString::number(m_dps);
+    texte += QString::number(DEGAT_TANK / VITESSE_ATTAQUE_TANK);
     texte += "\nporte : ";
-    texte += QString::number(m_portee);
+    texte += QString::number(PORTEE_TANK);
     texte += "\npoints de vie : ";
-    texte += QString::number(m_pointsVies);
+    texte += QString::number(PV_TANK);
     texte += "\nvitesse : ";
-    texte += QString::number(m_vitesse);
+    texte += QString::number(VITESSE_TANK);
     texte += "\nnombre de places requises : ";
-    texte += QString::number(m_place);
+    texte += QString::number(PLACE_TANK);
     texte += "\n\n  -cout nourriture : ";
-    texte += QString::number(m_cout.nbNourriture);
+    texte += QString::number(COUT_NOURRITURRE_TANK);
     texte += "\n";
     texte += "  -cout or : ";
-    texte += QString::number(m_cout.nbOr);
+    texte += QString::number(COUT_OR_TANK);
 
     return texte;
 }

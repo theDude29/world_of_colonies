@@ -17,7 +17,7 @@ class Tank : public Soldat
 {
 public:
     Tank();
-    virtual QString getInfo();
+    static QString getInfo();
 };
 
 #endif // TANK_H

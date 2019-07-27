@@ -23,20 +23,20 @@ QString Artilleur::getInfo()
     QString texte = "";
     texte += "L'artilleur est un soldat infligeant des gros degats et possedants une grande portee.\n\n";
     texte += "degats par seconde : ";
-    texte += QString::number(m_dps);
+    texte += QString::number(DEGAT_ARTILLEUR / VITESSE_ATTAQUE_ARTILLEUR);
     texte += "\nporte : ";
-    texte += QString::number(m_portee);
+    texte += QString::number(PORTEE_ARTILLEUR);
     texte += "\npoints de vie : ";
-    texte += QString::number(m_pointsVies);
+    texte += QString::number(PV_ARTILLEUR);
     texte += "\nvitesse : ";
-    texte += QString::number(m_vitesse);
+    texte += QString::number(VITESSE_ARTILLEUR);
     texte += "\nnombre de place requises : ";
-    texte += QString::number(m_place);
+    texte += QString::number(PLACE_ARTILLEUR);
     texte += "\n\n  -cout nourriture : ";
-    texte += QString::number(m_cout.nbNourriture);
+    texte += QString::number(COUT_NOURRITURRE_ARTILLEUR);
     texte += "\n";
     texte += "  -cout or : ";
-    texte += QString::number(m_cout.nbOr);
+    texte += QString::number(COUT_OR_ARTILLEUR);
 
     return texte;
 }

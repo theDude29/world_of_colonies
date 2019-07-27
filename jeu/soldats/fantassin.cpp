@@ -23,20 +23,20 @@ QString Fantassin::getInfo()
     QString texte = "";
     texte += "Le fantassin est un soldat polyvalant ayant une bonne sante et de bon degat mais une faible portee.\n\n";
     texte += "degats par seconde : ";
-    texte += QString::number(m_dps);
+    texte += QString::number(DEGAT_FANTASSIN / VITESSE_ATTAQUE_FANTASSIN);
     texte += "\nporte : ";
-    texte += QString::number(m_portee);
+    texte += QString::number(PORTEE_FANTASSIN);
     texte += "\npoints de vie : ";
-    texte += QString::number(m_pointsVies);
+    texte += QString::number(PV_FANTASSIN);
     texte += "\nvitesse : ";
-    texte += QString::number(m_vitesse);
+    texte += QString::number(VITESSE_FANTASSIN);
     texte += "\nnombre de places requises : ";
-    texte += QString::number(m_place);
+    texte += QString::number(PLACE_FANTASSIN);
     texte += "\n\n  -cout nourriture : ";
-    texte += QString::number(m_cout.nbNourriture);
+    texte += QString::number(COUT_NOURRITURRE_FANTASSIN);
     texte += "\n";
     texte += "  -cout or : ";
-    texte += QString::number(m_cout.nbOr);
+    texte += QString::number(COUT_OR_FANTASSIN);
 
     return texte;
 }
