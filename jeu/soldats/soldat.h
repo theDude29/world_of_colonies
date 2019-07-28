@@ -16,6 +16,8 @@ public:
     Soldat();
     void setPosition(irr::core::vector3df pos);
     int getType();
+    int getPorte();
+    int getVitesse();
 
 protected:
     int m_degats, m_vitesseAttaque, m_dps;

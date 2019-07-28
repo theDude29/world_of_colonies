@@ -16,3 +16,12 @@ int Soldat::getType()
     return m_type;
 }
 
+int Soldat::getVitesse()
+{
+    return m_vitesse;
+}
+
+int Soldat::getPorte()
+{
+    return m_portee;
+}

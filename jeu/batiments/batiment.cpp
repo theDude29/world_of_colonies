@@ -11,11 +11,6 @@ Batiment::Batiment(int maxPV, QSize taille, cout coutDeConstruction) : Item(), m
     m_cout = coutDeConstruction;
 }
 
-void Batiment::setRotation(irr::core::vector3df rot)
-{
-    m_meshSceneNode->setRotation(rot);
-}
-
 void Batiment::setPseudo(QString pseudo)
 {
     m_pseudo = pseudo;

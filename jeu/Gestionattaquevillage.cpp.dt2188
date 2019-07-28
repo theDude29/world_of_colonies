@@ -2,32 +2,23 @@
 #include <QTimer>
 #include <math.h>
 #include <iostream>
-#include <irrlicht/irrlicht.h>
 
 GestionAttaqueVillage::GestionAttaqueVillage(QObject *parent) : QObject(parent)
 {
     //timer pour maj
     QTimer* timer = new QTimer(this);
-    timer->setInterval(40);
+    timer->setInterval(20);
     timer->start();
     connect(timer, SIGNAL(timeout()), this, SLOT(maj()));
 }
 
 void GestionAttaqueVillage::maj()
 {
-    irr::core::vector3df posBatLePlusPres;
-    irr::core::vector3df direction;
-    int distance;
+    getBatLePlusPres(irr::core::vector3df(0,0,0));
+
     for(std::vector<Soldat*>::iterator it = m_listeSoldats.begin(); it != m_listeSoldats.end(); ++it)
     {
-        posBatLePlusPres = getBatLePlusPres((*it)->getPosition());
-        direction = posBatLePlusPres - (*it)->getPosition();
-        (*it)->setRotation(direction.getHorizontalAngle());
-        distance = sqrt(pow(direction.X,2) + pow(direction.Y,2) + pow(direction.Z,2));
-        if(distance > (*it)->getPorte())
-        {
-            (*it)->setPosition((*it)->getPosition() + (direction.normalize() * (*it)->getVitesse()));
-        }
+
     }
 }
 
@@ -45,11 +36,9 @@ irr::core::vector3df GestionAttaqueVillage::getBatLePlusPres(irr::core::vector3d
         if(longueur < longueurLaPlusPetite)
         {
             longueurLaPlusPetite = longueur;
-            posDuBatLePlusPres = (*it)->getPosition();
         }
     }
 
-    return posDuBatLePlusPres;
 }
 
 void GestionAttaqueVillage::setListeBatiment(std::vector<Batiment *> listeBats)

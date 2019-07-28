@@ -10,6 +10,11 @@ cout Item::getCout()
     return m_cout;
 }
 
+void Item::setRotation(irr::core::vector3df rot)
+{
+    m_meshSceneNode->setRotation(rot);
+}
+
 irr::core::vector3df Item::getPosition()
 {
     return m_meshSceneNode->getPosition();

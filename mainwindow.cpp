@@ -68,7 +68,7 @@ void MainWindow::initVillage()
     QTimer* timer = new QTimer(this);
     timer->setInterval(1);
     timer->start();
-    connect(timer, SIGNAL(timeout()), this, SLOT(drawIrrlichtScene()));//ici la merde
+    connect(timer, SIGNAL(timeout()), this, SLOT(drawIrrlichtScene()));
     //ce qui a un rapport avec irrlicht (comme le gestionnair de village
     //doit etre initilaliser apres le irrlicht widget  IMPORTANT
 

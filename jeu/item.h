@@ -24,6 +24,7 @@ public:
     irr::video::ITexture* getTexture();
     irr::core::vector3df getPosition();
     irr::core::vector3df getRotation();
+    void setRotation(irr::core::vector3df rot);
     virtual void kill();
     void setVisible(bool visible);
     irr::scene::IMeshSceneNode* getMeshSceneNode();

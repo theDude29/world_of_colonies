@@ -101,14 +101,17 @@ bool VillageEnnemi::eventFilter(QObject *obj, QEvent *event)
                         {
                         case artilleur:
                             m_nbArtilleur--;
+                            //Bdd::getBdd()->setNbArtilleur(m_pseudo, m_nbArtilleur);
                             soldatActuelle_artilleur();
                             break;
                         case fantassin:
                             m_nbFantassin--;
+                            //Bdd::getBdd()->setNbFantassin(m_pseudo, m_nbFantassin);
                             soldatActuelle_fantassin();
                             break;
                         case tank:
                             m_nbTank--;
+                            //Bdd::getBdd()->setNbTank(m_pseudo, m_nbTank);
                             soldatActuelle_tank();
                             break;
                         default: break;
@@ -326,6 +329,8 @@ void VillageEnnemi::genererVillageAuPif()
     QString fichierVillage = Bdd::getBdd()->getFichierVillage(pseudoEnnemi);
 
     genererVillage(fichierVillage);
+
+    m_gestionnaireAttaque->setListeBatiment(m_listeBatiments);
 
 }
 

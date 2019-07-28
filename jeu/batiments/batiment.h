@@ -29,7 +29,6 @@ public:
     virtual ~Batiment();
 
     void setPosition(irr::core::vector3df pos);
-    void setRotation(irr::core::vector3df rot);
     void setIdFichierVillage(int id);
     void setId(int id);
     void setPseudo(QString pseudo);
