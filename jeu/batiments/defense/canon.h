@@ -15,7 +15,7 @@
 class Canon : public Defense
 {
 public:
-    Canon();
+    Canon(QObject* parent);
     virtual QString getInfo();
 };
 

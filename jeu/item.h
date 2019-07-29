@@ -17,7 +17,7 @@ class Item : public QObject
     Q_OBJECT;
 
 public:
-    Item();
+    Item(QObject* parent);
     ~Item();
     static QString getInfo();
     virtual cout getCout();

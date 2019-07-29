@@ -15,7 +15,7 @@ class Travailleur : public Conteneur
     Q_OBJECT
 
 public:
-    Travailleur(int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax, int productivite, bool active = true);
+    Travailleur(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax, int productivite, bool active = true);
 
     void majPosBoutonCollecte(int hauteur);
     void cacherBoutonCollecte();

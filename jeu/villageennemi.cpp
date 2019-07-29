@@ -19,7 +19,7 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLab
     m_nbFantassin = m_armee->getNbFantassin();
     m_nbTank = m_armee->getNbTank();
 
-    m_soldatActuelle = new Artilleur;
+    m_soldatActuelle = new Artilleur(this);
 
     m_pasDeSoldatSelectionnerEnReserve = false;
 
@@ -231,47 +231,47 @@ void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
         switch(typeBat)
         {
         case hdv:
-            batimentAConstuire = new HotelDeVille;
+            batimentAConstuire = new HotelDeVille(this);
             break;
 
         case travailleurNourriture:
-            batimentAConstuire = new Travailleur_Nourriture(false);
+            batimentAConstuire = new Travailleur_Nourriture(this, false);
             break;
 
         case travailleurOr:
-            batimentAConstuire = new Travailleur_Or(false);
+            batimentAConstuire = new Travailleur_Or(this, false);
             break;
 
         case conteneurNourriture:
-            batimentAConstuire = new Conteneur_nourriture;
+            batimentAConstuire = new Conteneur_nourriture(this);
             break;
 
         case conteneurOr:
-            batimentAConstuire = new Conteneur_Or;
+            batimentAConstuire = new Conteneur_Or(this);
             break;
 
         case campEntrainement:
-            batimentAConstuire = new CampEntrainement;
+            batimentAConstuire = new CampEntrainement(this);
             break;
 
         case caserne:
-            batimentAConstuire = new Caserne;
+            batimentAConstuire = new Caserne(this);
             break;
 
         case portail:
-            batimentAConstuire = new Portail;
+            batimentAConstuire = new Portail(this);
             break;
 
         case canon:
-            batimentAConstuire = new Canon;
+            batimentAConstuire = new Canon(this);
             break;
 
         case tourelle:
-            batimentAConstuire = new Tourelle;
+            batimentAConstuire = new Tourelle(this);
             break;
 
         case mortier:
-            batimentAConstuire = new Mortier;
+            batimentAConstuire = new Mortier(this);
             break;
 
         default:
@@ -354,7 +354,7 @@ void VillageEnnemi::detruireVillage()
 void VillageEnnemi::soldatActuelle_artilleur()
 {
     delete m_soldatActuelle;
-    m_soldatActuelle = new Artilleur;
+    m_soldatActuelle = new Artilleur(this);
 
     if(m_nbArtilleur < 1)
     {
@@ -370,7 +370,7 @@ void VillageEnnemi::soldatActuelle_artilleur()
 void VillageEnnemi::soldatActuelle_fantassin()
 {
     delete m_soldatActuelle;
-    m_soldatActuelle = new Fantassin;
+    m_soldatActuelle = new Fantassin(this);
 
     if(m_nbFantassin < 1)
     {
@@ -386,7 +386,7 @@ void VillageEnnemi::soldatActuelle_fantassin()
 void VillageEnnemi::soldatActuelle_tank()
 {
     delete m_soldatActuelle;
-    m_soldatActuelle = new Tank;
+    m_soldatActuelle = new Tank(this);
 
     if(m_nbTank < 1)
     {

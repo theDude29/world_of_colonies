@@ -13,7 +13,7 @@
 class Caserne : public Batiment
 {
 public:
-    Caserne();
+    Caserne(QObject* parent);
     virtual QString getInfo();
 };
 

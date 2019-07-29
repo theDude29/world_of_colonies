@@ -9,7 +9,7 @@
 class Conteneur : public Batiment
 {
 public:
-    Conteneur(int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax);
+    Conteneur(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax);
     virtual int getContenanceMax();
 
 protected:

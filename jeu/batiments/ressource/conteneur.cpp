@@ -1,6 +1,6 @@
 #include "jeu/batiments/ressource/conteneur.h"
 
-Conteneur::Conteneur(int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax) : Batiment(maxPV, taille, coutDeConstruction)
+Conteneur::Conteneur(QObject *parent, int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax) : Batiment(parent, maxPV, taille, coutDeConstruction)
 {
     m_texture = Driver::getDriver()->getTexture("mesh/texture/textureRessource.png");
     m_contenanceMax = contenanceMax;

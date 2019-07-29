@@ -145,51 +145,51 @@ void Village::genererTypeBatiment(typeBatiment typeBat, QString fichier)
         switch(typeBat)
         {
         case hdv:
-            m_batimentADeplacer = new HotelDeVille;
+            m_batimentADeplacer = new HotelDeVille(this);
             break;
 
         case travailleurNourriture:
-            m_batimentADeplacer = new Travailleur_Nourriture;
+            m_batimentADeplacer = new Travailleur_Nourriture(this);
             travailleur = (Travailleur*)m_batimentADeplacer;
             connect(travailleur, SIGNAL(gagneDesRessources(int)), this, SLOT(gagneNourriture(int)));
             break;
 
         case travailleurOr:
-            m_batimentADeplacer = new Travailleur_Or;
+            m_batimentADeplacer = new Travailleur_Or(this);
             travailleur = (Travailleur*)m_batimentADeplacer;
             connect(travailleur, SIGNAL(gagneDesRessources(int)), this, SLOT(gagneOr(int)));
             break;
 
         case conteneurNourriture:
-            m_batimentADeplacer = new Conteneur_nourriture;
+            m_batimentADeplacer = new Conteneur_nourriture(this);
             break;
 
         case conteneurOr:
-            m_batimentADeplacer = new Conteneur_Or;
+            m_batimentADeplacer = new Conteneur_Or(this);
             break;
 
         case campEntrainement:
-            m_batimentADeplacer = new CampEntrainement;
+            m_batimentADeplacer = new CampEntrainement(this);
             break;
 
         case caserne:
-            m_batimentADeplacer = new Caserne;
+            m_batimentADeplacer = new Caserne(this);
             break;
 
         case portail:
-            m_batimentADeplacer = new Portail;
+            m_batimentADeplacer = new Portail(this);
             break;
 
         case canon:
-            m_batimentADeplacer = new Canon;
+            m_batimentADeplacer = new Canon(this);
             break;
 
         case tourelle:
-            m_batimentADeplacer = new Tourelle;
+            m_batimentADeplacer = new Tourelle(this);
             break;
 
         case mortier:
-            m_batimentADeplacer = new Mortier;
+            m_batimentADeplacer = new Mortier(this);
             break;
 
         default:

@@ -6,7 +6,7 @@
 class Defense : public Batiment
 {
 public:
-    Defense(int maxPV, QSize taille, cout coutDeConstruction);
+    Defense(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction);
     virtual void estVise();
     virtual void estPlusVise();
 

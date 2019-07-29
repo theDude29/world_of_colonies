@@ -11,7 +11,7 @@
 class HotelDeVille : public Conteneur
 {
 public:
-    HotelDeVille();
+    HotelDeVille(QObject* parent);
     virtual ~HotelDeVille();
     virtual QString getInfo();
 };

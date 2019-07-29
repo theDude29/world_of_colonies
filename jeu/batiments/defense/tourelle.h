@@ -15,7 +15,7 @@
 class Tourelle : public Defense
 {
 public:
-    Tourelle();
+    Tourelle(QObject* parent);
     virtual QString getInfo();
 };
 

@@ -13,7 +13,7 @@
 class Portail : public Batiment
 {
 public:
-    Portail();
+    Portail(QObject* parent);
     virtual QString getInfo();
 };
 

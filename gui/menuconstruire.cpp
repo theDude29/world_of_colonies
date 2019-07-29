@@ -39,25 +39,25 @@ MenuConstruire::MenuConstruire(QWidget *parent, Village* village) :
     ui->image_defense2->setPixmap(pm9);
     ui->image_defense3->setPixmap(pm10);
 
-    Conteneur_Or ctnOr;
+    Conteneur_Or ctnOr(this);
     ui->label_ressource3->setText(ctnOr.getInfo());
-    Conteneur_nourriture ctnNour;
+    Conteneur_nourriture ctnNour(this);
     ui->label_ressource4->setText(ctnNour.getInfo());
     Travailleur_Or trvOr(false);
     ui->label_descriptionRessource2->setText(trvOr.getInfo());
     Travailleur_Nourriture trvNour(false);
     ui->label_DescriptionRessource1->setText(trvNour.getInfo());
-    CampEntrainement camp;
+    CampEntrainement camp(this);
     ui->label_armee1->setText(camp.getInfo());
-    Caserne caserne;
+    Caserne caserne(this);
     ui->label_armee2->setText(caserne.getInfo());
-    Portail portail;
+    Portail portail(this);
     ui->label_armee3->setText(portail.getInfo());
-    Canon canon;
+    Canon canon(this);
     ui->label_defense1->setText(canon.getInfo());
-    Tourelle tourelle;
+    Tourelle tourelle(this);
     ui->label_defense2->setText(tourelle.getInfo());
-    Mortier mortier;
+    Mortier mortier(this);
     ui->label_defense3->setText(mortier.getInfo());
 
     ui->pushButton_retour->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
@@ -92,7 +92,7 @@ void MenuConstruire::afficherMenuConstruire()
 
 void MenuConstruire::bouttonRc1Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Travailleur_Nourriture))
+    if(m_village->essayerConstruireBatiment(new Travailleur_Nourriture(this)))
     {
         cacherMenuConstuire();
     }
@@ -106,7 +106,7 @@ void MenuConstruire::bouttonRc1Clique()
 
 void MenuConstruire::bouttonRc2Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Travailleur_Or))
+    if(m_village->essayerConstruireBatiment(new Travailleur_Or(this)))
     {
         cacherMenuConstuire();
     }
@@ -120,7 +120,7 @@ void MenuConstruire::bouttonRc2Clique()
 
 void MenuConstruire::bouttonRc3Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Conteneur_Or()))
+    if(m_village->essayerConstruireBatiment(new Conteneur_Or(this)))
     {
         cacherMenuConstuire();
     }
@@ -134,7 +134,7 @@ void MenuConstruire::bouttonRc3Clique()
 
 void MenuConstruire::bouttonRc4Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Conteneur_nourriture()))
+    if(m_village->essayerConstruireBatiment(new Conteneur_nourriture(this)))
     {
         cacherMenuConstuire();
     }
@@ -148,7 +148,7 @@ void MenuConstruire::bouttonRc4Clique()
 
 void MenuConstruire::bouttonArmee1Clique()
 {
-    if(m_village->essayerConstruireBatiment(new CampEntrainement()))
+    if(m_village->essayerConstruireBatiment(new CampEntrainement(this)))
     {
         cacherMenuConstuire();
     }
@@ -162,7 +162,7 @@ void MenuConstruire::bouttonArmee1Clique()
 
 void MenuConstruire::bouttonArmee2Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Caserne()))
+    if(m_village->essayerConstruireBatiment(new Caserne(this)))
     {
         cacherMenuConstuire();
     }
@@ -176,7 +176,7 @@ void MenuConstruire::bouttonArmee2Clique()
 
 void MenuConstruire::bouttonArmee3Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Portail()))
+    if(m_village->essayerConstruireBatiment(new Portail(this)))
     {
         cacherMenuConstuire();
     }
@@ -190,7 +190,7 @@ void MenuConstruire::bouttonArmee3Clique()
 
 void MenuConstruire::bouttonDefense1Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Canon()))
+    if(m_village->essayerConstruireBatiment(new Canon(this)))
     {
         cacherMenuConstuire();
     }
@@ -204,7 +204,7 @@ void MenuConstruire::bouttonDefense1Clique()
 
 void MenuConstruire::bouttonDefense2Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Tourelle()))
+    if(m_village->essayerConstruireBatiment(new Tourelle(this)))
     {
         cacherMenuConstuire();
     }
@@ -218,7 +218,7 @@ void MenuConstruire::bouttonDefense2Clique()
 
 void MenuConstruire::bouttonDefense3Clique()
 {
-    if(m_village->essayerConstruireBatiment(new Mortier))
+    if(m_village->essayerConstruireBatiment(new Mortier(this)))
     {
         cacherMenuConstuire();
     }

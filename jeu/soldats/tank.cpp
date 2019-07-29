@@ -1,7 +1,7 @@
 #include "tank.h"
 #include "singleton/SceneManager.h"
 
-Tank::Tank() : Soldat()
+Tank::Tank(QObject *parent) : Soldat(parent)
 {
     m_type = tank;
 
@@ -15,6 +15,7 @@ Tank::Tank() : Soldat()
     m_cout.nbOr = COUT_OR_TANK;
     m_cout.nbXp = XP_TANK;
     m_place = PLACE_TANK;
+    m_tailleProjectile = 10;
 
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/tank.obj"));
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));

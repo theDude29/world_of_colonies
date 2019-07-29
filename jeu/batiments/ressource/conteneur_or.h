@@ -13,7 +13,7 @@
 class Conteneur_Or : public Conteneur
 {
 public:
-    Conteneur_Or();
+    Conteneur_Or(QObject* parent);
     virtual ~Conteneur_Or();
 
     virtual QString getInfo();

@@ -13,7 +13,7 @@
 class CampEntrainement : public Batiment
 {
 public:
-    CampEntrainement();
+    CampEntrainement(QObject* parent);
     virtual QString getInfo();
 
 private:

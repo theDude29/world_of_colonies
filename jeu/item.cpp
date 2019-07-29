@@ -1,6 +1,6 @@
 #include "item.h"
 
-Item::Item() : QObject()
+Item::Item(QObject *parent) : QObject(parent)
 {
 
 }

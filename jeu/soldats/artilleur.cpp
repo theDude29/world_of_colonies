@@ -1,7 +1,7 @@
 #include "artilleur.h"
 #include "singleton/SceneManager.h"
 
-Artilleur::Artilleur() : Soldat()
+Artilleur::Artilleur(QObject *parent) : Soldat(parent)
 {
     m_type = artilleur;
 
@@ -15,6 +15,7 @@ Artilleur::Artilleur() : Soldat()
     m_cout.nbOr = COUT_OR_ARTILLEUR;
     m_cout.nbXp = XP_ARTILLEUR;
     m_place = PLACE_ARTILLEUR;
+    m_tailleProjectile = 5;
 
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/artilleur.obj"));
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));

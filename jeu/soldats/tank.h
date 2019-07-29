@@ -5,7 +5,7 @@
 
 #define PV_TANK 500
 #define DEGAT_TANK 40
-#define VITESSE_ATTAQUE_TANK 3
+#define VITESSE_ATTAQUE_TANK 2
 #define VITESSE_TANK 2
 #define PORTEE_TANK 180
 #define COUT_OR_TANK 200
@@ -16,7 +16,7 @@
 class Tank : public Soldat
 {
 public:
-    Tank();
+    Tank(QObject* parent);
     static QString getInfo();
 };
 

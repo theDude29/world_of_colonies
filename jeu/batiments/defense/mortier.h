@@ -15,7 +15,7 @@
 class Mortier : public Defense
 {
 public:
-    Mortier();
+    Mortier(QObject* parent);
     virtual QString getInfo();
 };
 

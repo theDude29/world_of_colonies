@@ -1,6 +1,6 @@
 #include "defense.h"
 
-Defense::Defense(int maxPV, QSize taille, cout coutDeConstruction) : Batiment(maxPV, taille, coutDeConstruction)
+Defense::Defense(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction) : Batiment(parent, maxPV, taille, coutDeConstruction)
 {
     m_texture = Driver::getDriver()->getTexture("mesh/texture/textureDefense.png");
     m_porte = 0;

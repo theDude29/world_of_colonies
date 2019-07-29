@@ -1,7 +1,7 @@
 #include "jeu/batiments/batiment.h"
 #include "mainwindow.h"
 
-Batiment::Batiment(int maxPV, QSize taille, cout coutDeConstruction) : Item(), m_maxPV(maxPV), m_taille(taille)
+Batiment::Batiment(QObject *parent, int maxPV, QSize taille, cout coutDeConstruction) : Item(parent), m_maxPV(maxPV), m_taille(taille)
 {
     m_sceneCollisionManager = SceneManager::getSceneManager()->getSceneCollisionManager();
     m_id = -1;

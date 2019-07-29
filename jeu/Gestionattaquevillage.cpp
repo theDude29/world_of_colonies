@@ -18,15 +18,28 @@ void GestionAttaqueVillage::maj()
     irr::core::vector3df posBatLePlusPres;
     irr::core::vector3df direction;
     int distance;
+
+    //on parcour tout les soldats
     for(std::vector<Soldat*>::iterator it = m_listeSoldats.begin(); it != m_listeSoldats.end(); ++it)
     {
+        //on recupere le batiment le plus pres
         posBatLePlusPres = getBatLePlusPres((*it)->getPosition());
+        //la direction dans laquelle il se trouve
         direction = posBatLePlusPres - (*it)->getPosition();
+        //on s oriente dans cette direction
         (*it)->setRotation(direction.getHorizontalAngle());
+
+        //on calcul la distance
         distance = sqrt(pow(direction.X,2) + pow(direction.Y,2) + pow(direction.Z,2));
+        //si plus petite que porte on tape sinon on se rapproche
         if(distance > (*it)->getPorte())
         {
             (*it)->setPosition((*it)->getPosition() + (direction.normalize() * (*it)->getVitesse()));
+        }
+
+        else
+        {
+            (*it)->attaque(direction.normalize());
         }
     }
 }
@@ -65,13 +78,13 @@ void GestionAttaqueVillage::ajouterTroupe(int typeDuSoldat, irr::core::vector3df
     switch(typeDuSoldat)
     {
     case artilleur:
-        soldat = new Artilleur;
+        soldat = new Artilleur(this);
         break;
     case fantassin:
-        soldat = new Fantassin;
+        soldat = new Fantassin(this);
         break;
     case tank:
-        soldat = new Tank;
+        soldat = new Tank(this);
         break;
     default : break;
     }

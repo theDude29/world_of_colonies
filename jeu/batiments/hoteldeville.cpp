@@ -1,6 +1,6 @@
 #include "hoteldeville.h"
 
-HotelDeVille::HotelDeVille() : Conteneur(MAX_PV_HDV, QSize(TAILLE_HDV_W, TAILLE_HDV_H), cout{0,0,0}, CONTENANCE_MAX_HDV)
+HotelDeVille::HotelDeVille(QObject *parent) : Conteneur(parent, MAX_PV_HDV, QSize(TAILLE_HDV_W, TAILLE_HDV_H), cout{0,0,0}, CONTENANCE_MAX_HDV)
 {
     m_typeBatiment = hdv;
     m_texture = Driver::getDriver()->getTexture("mesh/texture/texture_hdv.png");

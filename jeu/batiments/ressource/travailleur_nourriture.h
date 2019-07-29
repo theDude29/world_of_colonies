@@ -14,7 +14,7 @@
 class Travailleur_Nourriture : public Travailleur
 {
 public:
-    Travailleur_Nourriture(bool active = true);
+    Travailleur_Nourriture(QObject* parent, bool active = true);
     virtual ~Travailleur_Nourriture();
 
     virtual QString getInfo();

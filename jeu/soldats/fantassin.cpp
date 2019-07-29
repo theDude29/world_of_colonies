@@ -1,7 +1,7 @@
 #include "fantassin.h"
 #include "singleton/SceneManager.h"
 
-Fantassin::Fantassin() : Soldat()
+Fantassin::Fantassin(QObject *parent) : Soldat(parent)
 {
     m_type = fantassin;
 
@@ -15,6 +15,7 @@ Fantassin::Fantassin() : Soldat()
     m_cout.nbOr = COUT_OR_FANTASSIN;
     m_cout.nbXp = XP_FANTASSIN;
     m_place = PLACE_FANTASSIN;
+    m_tailleProjectile = 3;
 
     m_meshSceneNode = SceneManager::getSceneManager()->addMeshSceneNode(SceneManager::getSceneManager()->getMesh("mesh/troupe/fantassin.obj"));
     m_meshSceneNode->setScale(irr::core::vector3df(10,10,10));

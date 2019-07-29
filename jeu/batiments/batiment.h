@@ -25,7 +25,7 @@ enum typeBatiment
 class Batiment : public Item
 {
 public:
-    Batiment(int maxPV, QSize taille, cout coutDeConstruction);
+    Batiment(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction);
     virtual ~Batiment();
 
     void setPosition(irr::core::vector3df pos);

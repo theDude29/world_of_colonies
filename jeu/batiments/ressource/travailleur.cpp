@@ -4,8 +4,8 @@
 #include <QDateTime>
 #include <QTimer>
 
-Travailleur::Travailleur(int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax, int productivite, bool active)
-    : Conteneur(maxPV, taille, coutDeConstruction, contenanceMax)
+Travailleur::Travailleur(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction, int contenanceMax, int productivite, bool active)
+    : Conteneur(parent, maxPV, taille, coutDeConstruction, contenanceMax)
 {
     m_productivite = productivite;
     m_tempsDeConstruction = TEMPS_CONSTRUCTION_TRAVAILLEUR;

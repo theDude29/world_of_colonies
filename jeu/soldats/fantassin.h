@@ -16,7 +16,7 @@
 class Fantassin : public Soldat
 {
 public:
-    Fantassin();
+    Fantassin(QObject* parent);
     static QString getInfo();
 };
 

@@ -16,7 +16,7 @@
 class Artilleur : public Soldat
 {
 public:
-    Artilleur();
+    Artilleur(QObject* parent);
     static QString getInfo();
 };
 

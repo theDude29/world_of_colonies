@@ -59,6 +59,7 @@ const CameraSTR* IrrlichtWidget::getCamera()
 
 IrrlichtWidget::~IrrlichtWidget()
 {
+    delete m_device->getTimer();
     delete m_camera;
     delete m_device;
 }

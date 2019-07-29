@@ -13,7 +13,7 @@
 class Conteneur_nourriture : public Conteneur
 {
 public:
-    Conteneur_nourriture();
+    Conteneur_nourriture(QObject* parent);
     virtual ~Conteneur_nourriture();
 
     virtual QString getInfo();
