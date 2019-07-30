@@ -3,14 +3,14 @@
 #include "bdd/bdd.h"
 #include <QMouseEvent>
 
-VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
+VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
 {
     m_enAction = false;
 
     m_collisionSceneManager = SceneManager::getSceneManager()->getSceneCollisionManager();
     m_terrainSelector = triangleSelector;
 
-    m_gestionnaireAttaque = new GestionAttaqueVillage;
+    m_gestionnaireAttaque = new GestionAttaqueVillage(this, textVictoire);
 
     m_pseudo = pseudo;
 

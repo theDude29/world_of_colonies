@@ -87,7 +87,7 @@ void MainWindow::initVillage()
     m_menuArmee->cacherMenuArmee();
 
     //village ennemie
-    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank, m_village->getTerrainSelector());
+    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank, ui->label_victoire, m_village->getTerrainSelector());
     m_villageEnnemie->montrerSoldat(false);
     this->installEventFilter(m_villageEnnemie);
 
@@ -186,6 +186,7 @@ void MainWindow::cacherWidgetsEnfants()
 {
     cacherBoutonsAssault();
     cacherBoutons();
+    ui->label_victoire->setVisible(false);
     ui->progressBar_niveau->setVisible(false);
     ui->progressBar_ressource1->setVisible(false);
     ui->progressBar_ressource2->setVisible(false);

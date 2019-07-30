@@ -5,8 +5,10 @@
 #include <irrlicht/irrlicht.h>
 #include <iostream>
 
-GestionAttaqueVillage::GestionAttaqueVillage(QObject *parent) : QObject(parent)
+GestionAttaqueVillage::GestionAttaqueVillage(QObject *parent, QLabel* textVictoire) : QObject(parent)
 {
+    m_textVictoire = textVictoire;
+
     //timer pour maj
     QTimer* timer = new QTimer(this);
     timer->setInterval(40);
@@ -20,11 +22,16 @@ void GestionAttaqueVillage::maj()
     irr::core::vector3df direction;
     int distance;
 
-        //on parcour tout les soldats
-        for(std::vector<Soldat*>::iterator it = m_listeSoldats.begin(); it != m_listeSoldats.end(); ++it)
+    //on parcour tout les soldats
+    for(std::vector<Soldat*>::iterator it = m_listeSoldats.begin(); it != m_listeSoldats.end(); ++it)
+    {
+        //on recupere le batiment le plus pres
+        posBatLePlusPres = getBatLePlusPres((*it)->getPosition());
+
+        if(posBatLePlusPres.X != 10000) //cela veut dire que tout les batiments sont detruits
         {
-            //on recupere le batiment le plus pres
-            posBatLePlusPres = getBatLePlusPres((*it)->getPosition());
+            m_textVictoire->setVisible(false);
+
             //la direction dans laquelle il se trouve
             direction = posBatLePlusPres - (*it)->getPosition();
             //on s oriente dans cette direction
@@ -43,32 +50,36 @@ void GestionAttaqueVillage::maj()
                 (*it)->attaque(direction.normalize(), &m_listeBatiments);
             }
         }
+
+        else //tout les batiments sont detruit
+        {
+            m_textVictoire->setVisible(true);
+        }
+    }
 }
 
 irr::core::vector3df GestionAttaqueVillage::getBatLePlusPres(irr::core::vector3df posSoldat)
 {
-    //if(m_listeBatiments.size() != 0)
-    //{
         irr::core::vector3df vecteurDistance;
         int longueur;
         int longueurLaPlusPetite = 100000;
-        irr::core::vector3df posDuBatLePlusPres;
+        irr::core::vector3df posDuBatLePlusPres(10000,0,0);
         for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
         {
-            vecteurDistance = (*it)->getPosition() - posSoldat;
-            longueur = sqrt(pow(vecteurDistance.X,2) + pow(vecteurDistance.Y,2) + pow(vecteurDistance.Z,2));
-
-            if(longueur < longueurLaPlusPetite)
+            if((*it)->isVisible())
             {
-                longueurLaPlusPetite = longueur;
-                posDuBatLePlusPres = (*it)->getPosition();
+                vecteurDistance = (*it)->getPosition() - posSoldat;
+                longueur = sqrt(pow(vecteurDistance.X,2) + pow(vecteurDistance.Y,2) + pow(vecteurDistance.Z,2));
+
+                if(longueur < longueurLaPlusPetite)
+                {
+                    longueurLaPlusPetite = longueur;
+                    posDuBatLePlusPres = (*it)->getPosition();
+                }
             }
         }
 
         return posDuBatLePlusPres;
-    //}
-
-    //return irr::core::vector3df(0,0,0);
 }
 
 void GestionAttaqueVillage::setListeBatiment(std::vector<Batiment *> listeBats)

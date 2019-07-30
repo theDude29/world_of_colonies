@@ -50,16 +50,18 @@ void Shoot::maj()
     irr::core::aabbox3df boxEnnemi;
     for(std::vector<Batiment*>::iterator it = m_listeBatiment->begin(); it != m_listeBatiment->end(); it++)
     {
-        boxEnnemi = (*it)->getMeshSceneNode()->getTransformedBoundingBox();
-        if(boxEnnemi.intersectsWithBox(maBox))
+        if((*it)->isVisible())
         {
-            if((*it)->prendreDesPV(m_degat))
+            boxEnnemi = (*it)->getMeshSceneNode()->getTransformedBoundingBox();
+            if(boxEnnemi.intersectsWithBox(maBox))
             {
-                (*it)->kill();
-                //it = m_listeBatiment->erase(it);
-            }
+                if((*it)->prendreDesPV(m_degat))
+                {
+                    (*it)->kill();
+                }
 
-            this->kill();
+                this->kill();
+            }
         }
     }
 }

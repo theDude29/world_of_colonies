@@ -21,7 +21,7 @@ class VillageEnnemi : public QObject
     Q_OBJECT
 
 public:
-    VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, irr::scene::ITriangleSelector* triangleSelector);
+    VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector);
     ~VillageEnnemi();
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
