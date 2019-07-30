@@ -23,9 +23,12 @@ enum typeBatiment
 
 class Batiment : public Item
 {
+    Q_OBJECT
+
 public:
     Batiment(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction);
     virtual ~Batiment();
+    virtual void kill(bool Detruit = false);
 
     void setPosition(irr::core::vector3df pos);
     void setIdFichierVillage(int id);
@@ -49,6 +52,9 @@ protected:
     QSize m_taille;
     QString m_pseudo;
     irr::scene::IMesh *m_meshBatiment;
+
+signals:
+    void detruit();
 };
 
 #endif // BATIMENT_H

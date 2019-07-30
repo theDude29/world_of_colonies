@@ -87,7 +87,7 @@ void MainWindow::initVillage()
     m_menuArmee->cacherMenuArmee();
 
     //village ennemie
-    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank, ui->label_victoire, m_village->getTerrainSelector());
+    m_villageEnnemie = new VillageEnnemi(this, m_widgetConnexion->getPseudo(), m_village, m_menuArmee->getArmee(), ui->label_pseudo_ennemi, ui->pushButton_choixArtilleur, ui->pushButton_choixFantassin, ui->pushButton_choixTank, ui->label_victoire, m_village->getTerrainSelector());
     m_villageEnnemie->montrerSoldat(false);
     this->installEventFilter(m_villageEnnemie);
 

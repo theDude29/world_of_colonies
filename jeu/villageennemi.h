@@ -15,13 +15,14 @@
 #include "jeu/batiments/defense/tourelle.h"
 #include "jeu/batiments/defense/mortier.h"
 #include "jeu/Gestionattaquevillage.h"
+#include "jeu/village.h"
 
 class VillageEnnemi : public QObject
 {
     Q_OBJECT
 
 public:
-    VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector);
+    VillageEnnemi(QWidget* parent, QString pseudo, Village* village, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector);
     ~VillageEnnemi();
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
@@ -33,8 +34,10 @@ public:
     void montrerSoldat(bool vrai);
 
     void majTextBouttons();
+    void majTextEnnemie(int nbOr, int nbNourriture);
 
 private:
+    Village* m_village;
     bool m_enAction;
     irr::scene::ISceneCollisionManager* m_collisionSceneManager;
     irr::scene::ITriangleSelector* m_terrainSelector;
@@ -45,12 +48,15 @@ private:
 
     Armee* m_armee;
     std::vector<Batiment*> m_listeBatiments;
+    int m_valeurOrBatimentEnnemie, m_valeurNourritureBatimentEnnemie;
+    int m_lvlEnnemi;
+    int m_nbOrEnnemie, m_nbNourritureEnnemie;
     int m_nbArtilleur, m_nbFantassin, m_nbTank;
     bool m_pasDeSoldatSelectionnerEnReserve;
 
     Soldat* m_soldatActuelle;
 
-    QLabel* m_textInfoEnnemie;
+    QLabel* m_textInfoEnnemie, *m_textVictoire;
     QPushButton* m_bouttonArtilleur, *m_bouttonFantassin, *m_boutonTank;
 
 public slots:
@@ -60,6 +66,8 @@ public slots:
     void soldatActuelle_artilleur();
     void soldatActuelle_fantassin();
     void soldatActuelle_tank();
+
+    void batimentDetruit();
 };
 
 #endif // VILLAGEENNEMI_H

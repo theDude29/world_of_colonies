@@ -56,11 +56,16 @@ void Travailleur::majPosBoutonCollecte(int hauteur)
     m_boutonCollecte->move(QPoint(pos2d.X + 5, pos2d.Y));
 }
 
-void Travailleur::kill()
+void Travailleur::kill(bool Detruit)
 {
     m_meshSceneNode->setVisible(false);
     m_pbPV->setVisible(false);
     cacherBoutonCollecte();
+
+    if(Detruit)
+    {
+        emit detruit();
+    }
 }
 
 void Travailleur::recolterRessource()

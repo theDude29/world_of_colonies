@@ -57,7 +57,7 @@ void Shoot::maj()
             {
                 if((*it)->prendreDesPV(m_degat))
                 {
-                    (*it)->kill();
+                    (*it)->kill(true);
                 }
 
                 this->kill();

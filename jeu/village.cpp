@@ -56,6 +56,32 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     m_leBatimentEtaitDejaConstruit = false;
 }
 
+void Village::setNbOr(int nbOr)
+{
+    m_nbOr = nbOr;
+    if(m_nbOr > m_nbMaxOr)
+    {
+        m_nbOr = m_nbMaxOr;
+    }
+
+    m_pbOr->setValue(m_nbOr);
+
+    Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+}
+
+void Village::setNbNourriture(int nbNourriture)
+{
+    m_nbNourriture = nbNourriture;
+    if(m_nbNourriture > m_nbMaxNourriture)
+    {
+        m_nbNourriture = m_nbMaxNourriture;
+    }
+
+    m_pbNourriture->setValue(m_nbNourriture);
+
+    Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+}
+
 bool Village::PortailDansLeVillage()
 {
     for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
@@ -105,12 +131,8 @@ int Village::getNbNourriture()
 
 void Village::perdreRessource(cout nb)
 {
-    m_nbOr -= nb.nbOr;
-    m_pbOr->setValue(m_nbOr);
-    m_nbNourriture -= nb.nbNourriture;
-    m_pbNourriture->setValue(m_nbNourriture);
-
-    Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+    setNbOr(nb.nbOr);
+    setNbNourriture(nb.nbNourriture);
 }
 
 std::vector<Travailleur*> Village::getListeTravailleur()
@@ -293,13 +315,8 @@ void Village::construireBatiment(bool gratuitement)
 
             cout coutDeConstruction = m_batimentADeplacer->getCout();
 
-            m_nbOr -= coutDeConstruction.nbOr;
-            m_pbOr->setValue(m_nbOr);
-
-            m_nbNourriture -= coutDeConstruction.nbNourriture;
-            m_pbNourriture->setValue(m_nbNourriture);
-
-            Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+            setNbOr(getNbOr() - coutDeConstruction.nbOr);
+            setNbNourriture(getNbNourriture() - coutDeConstruction.nbNourriture);
 
             gagneDeLXp(coutDeConstruction.nbXp);
 
@@ -494,28 +511,12 @@ void Village::pivoterGauche()
 
 void Village::gagneNourriture(int nbNourriture)
 {
-    m_nbNourriture += nbNourriture;
-    if(m_nbNourriture > m_nbMaxNourriture)
-    {
-        m_nbNourriture = m_nbMaxNourriture;
-    }
-
-    m_pbNourriture->setValue(m_nbNourriture);
-
-    Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+    setNbNourriture(getNbNourriture() + nbNourriture);
 }
 
 void Village::gagneOr(int nbOr)
 {
-    m_nbOr += nbOr;
-    if(m_nbOr > m_nbMaxOr)
-    {
-        m_nbOr = m_nbMaxOr;
-    }
-
-    m_pbOr->setValue(m_nbOr);
-
-    Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
+    setNbOr(getNbOr() + nbOr);
 }
 
 void Village::quitterOptionBat()

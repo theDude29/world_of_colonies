@@ -30,8 +30,6 @@ void GestionAttaqueVillage::maj()
 
         if(posBatLePlusPres.X != 10000) //cela veut dire que tout les batiments sont detruits
         {
-            m_textVictoire->setVisible(false);
-
             //la direction dans laquelle il se trouve
             direction = posBatLePlusPres - (*it)->getPosition();
             //on s oriente dans cette direction

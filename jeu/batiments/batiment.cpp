@@ -20,6 +20,17 @@ void Batiment::setPosition(irr::core::vector3df pos)
     m_meshSceneNode->setPosition(pos);
 }
 
+void Batiment::kill(bool Detruit)
+{
+    m_meshSceneNode->setVisible(false);
+    m_pbPV->setVisible(false);
+
+    if(Detruit)
+    {
+         emit detruit();
+    }
+}
+
 void Batiment::setIdFichierVillage(int id)
 {
     m_idFichierVillage = id;

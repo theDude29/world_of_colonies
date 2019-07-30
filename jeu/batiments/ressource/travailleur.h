@@ -19,7 +19,7 @@ public:
 
     void majPosBoutonCollecte(int hauteur);
     void cacherBoutonCollecte();
-    virtual void kill();
+    virtual void kill(bool Detruit = false);
 
 protected:
     int m_productivite;

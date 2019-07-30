@@ -3,8 +3,9 @@
 #include "bdd/bdd.h"
 #include <QMouseEvent>
 
-VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
+VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Village* village, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
 {
+    m_village = village;
     m_enAction = false;
 
     m_collisionSceneManager = SceneManager::getSceneManager()->getSceneCollisionManager();
@@ -24,6 +25,7 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Armee* armee, QLab
     m_pasDeSoldatSelectionnerEnReserve = false;
 
     m_textInfoEnnemie = texteInfoEnnemie;
+    m_textVictoire = textVictoire;
     //
     m_bouttonArtilleur = bouttonArtilleur;
     connect(m_bouttonArtilleur, SIGNAL(clicked(bool)), this, SLOT(soldatActuelle_artilleur()));
@@ -133,28 +135,22 @@ void VillageEnnemi::genererVillage(QString fichier)
     QStringList listInfos = fichier.split('.');
     QStringList::iterator itInfos = listInfos.begin();
 
-    //info joueurs :
-    QString infoJoueur = m_pseudoEnnemi;
-
+    //info joueur ennemie
     //niveau
     QStringList listInfosNiveau = (*itInfos).split(';');
     itInfos++;
     QStringList::iterator itInfosNiveau = listInfosNiveau.begin();
-    int niveau = (*itInfosNiveau).toInt();
+    m_lvlEnnemi = (*itInfosNiveau).toInt();
     //
-    infoJoueur += " (niveau " + QString::number(niveau) + ") : ";
-
-    //nombre ressource (on
+    //nombre ressource
     QStringList listInfosNbRessource = (*itInfos).split(',');
     itInfos++;
     QStringList::iterator itInfosNbResssource = listInfosNbRessource.begin();
-    int nombreOr = (*itInfosNbResssource).toInt();
+    m_nbOrEnnemie = (*itInfosNbResssource).toInt();
     itInfosNbResssource++;
-    int nombreNourriture = (*itInfosNbResssource).toInt();
+    m_nbNourritureEnnemie = (*itInfosNbResssource).toInt();
     //
-    infoJoueur += QString::number(nombreOr) + " or, " + QString::number(nombreNourriture) + " nourriture";
-
-    m_textInfoEnnemie->setText(infoJoueur);
+    majTextEnnemie(m_nbOrEnnemie, m_nbNourritureEnnemie);
 
     //batiment :
 
@@ -212,6 +208,19 @@ void VillageEnnemi::genererVillage(QString fichier)
     QString infosMortier = (*itInfos);
     itInfos++;
     genererTypeBatiment(mortier, infosMortier);
+}
+
+void VillageEnnemi::majTextEnnemie(int nbOr, int nbNourriture)
+{
+    //info joueurs :
+    //pseudo
+    QString infoJoueur = m_pseudoEnnemi;
+    //niveau
+    infoJoueur += " (niveau " + QString::number(m_lvlEnnemi) + ") : ";
+    //ressource
+    infoJoueur += QString::number(m_nbOrEnnemie) + " or, " + QString::number(m_nbNourritureEnnemie) + " nourriture";
+    //
+    m_textInfoEnnemie->setText(infoJoueur);
 }
 
 void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
@@ -304,6 +313,7 @@ void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
         //on construi
         batimentAConstuire->afficherBatimentConstruit();
 
+        connect(batimentAConstuire, SIGNAL(detruit()), this, SLOT(batimentDetruit()));
         m_listeBatiments.push_back(batimentAConstuire);
 
         //on passe au paquet de position suivant
@@ -315,6 +325,7 @@ void VillageEnnemi::genererVillageAuPif()
 {
     detruireVillage();
     m_enAction = true;
+    m_textVictoire->setVisible(false);
 
     m_textInfoEnnemie->setVisible(true);
     majTextBouttons();
@@ -330,8 +341,25 @@ void VillageEnnemi::genererVillageAuPif()
 
     genererVillage(fichierVillage);
 
-    m_gestionnaireAttaque->setListeBatiment(m_listeBatiments);
+    int nbBatiment = m_listeBatiments.size();
+    double ratioBat = 1.0 / nbBatiment;
+    m_valeurOrBatimentEnnemie = m_nbOrEnnemie * ratioBat;
+    m_valeurNourritureBatimentEnnemie = m_nbNourritureEnnemie * ratioBat;
 
+    m_gestionnaireAttaque->setListeBatiment(m_listeBatiments);
+}
+
+void VillageEnnemi::batimentDetruit()
+{
+    m_village->gagneDeLXp(300);
+    m_village->setNbOr(m_village->getNbOr() + m_valeurOrBatimentEnnemie);
+    m_nbOrEnnemie -= m_valeurOrBatimentEnnemie;
+    m_village->setNbNourriture(m_village->getNbNourriture() + m_valeurNourritureBatimentEnnemie);
+    m_nbNourritureEnnemie -= m_valeurNourritureBatimentEnnemie;
+
+    Bdd::getBdd()->majNbRessource(m_pseudoEnnemi, m_nbOrEnnemie, m_nbNourritureEnnemie);
+
+    majTextEnnemie(m_nbOrEnnemie, m_nbNourritureEnnemie);
 }
 
 void VillageEnnemi::detruireVillage()
@@ -346,6 +374,8 @@ void VillageEnnemi::detruireVillage()
     m_gestionnaireAttaque->detruireTroupe();
 
     m_enAction = false;
+
+    m_textVictoire->setVisible(false);
 }
 
 void VillageEnnemi::soldatActuelle_artilleur()
