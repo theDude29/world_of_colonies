@@ -341,10 +341,7 @@ void VillageEnnemi::detruireVillage()
         (*it)->kill();
     }
 
-    for(unsigned int i = 0; i < m_listeBatiments.size(); ++i)
-    {
-        m_listeBatiments.pop_back();
-    }
+    m_listeBatiments.clear();
 
     m_gestionnaireAttaque->detruireTroupe();
 

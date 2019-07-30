@@ -59,6 +59,7 @@ void Travailleur::majPosBoutonCollecte(int hauteur)
 void Travailleur::kill()
 {
     m_meshSceneNode->setVisible(false);
+    m_pbPV->setVisible(false);
     cacherBoutonCollecte();
 }
 

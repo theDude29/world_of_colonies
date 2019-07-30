@@ -1,9 +1,8 @@
 #include "jeu/batiments/batiment.h"
 #include "mainwindow.h"
 
-Batiment::Batiment(QObject *parent, int maxPV, QSize taille, cout coutDeConstruction) : Item(parent), m_maxPV(maxPV), m_taille(taille)
+Batiment::Batiment(QObject *parent, int maxPV, QSize taille, cout coutDeConstruction) : Item(parent, maxPV), m_taille(taille)
 {
-    m_sceneCollisionManager = SceneManager::getSceneManager()->getSceneCollisionManager();
     m_id = -1;
     m_idFichierVillage = -1;
     m_meshSceneNode = NULL;

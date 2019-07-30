@@ -1,9 +1,11 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include <irrlicht/IMeshSceneNode.h>
+#include <irrlicht/irrlicht.h>
 #include <QString>
 #include <QObject>
+#include <QProgressBar>
+#include "singleton/SceneManager.h"
 
 struct cout
 {
@@ -17,7 +19,7 @@ class Item : public QObject
     Q_OBJECT;
 
 public:
-    Item(QObject* parent);
+    Item(QObject* parent, int maxPV = 0);
     ~Item();
     static QString getInfo();
     virtual cout getCout();
@@ -28,11 +30,16 @@ public:
     virtual void kill();
     void setVisible(bool visible);
     irr::scene::IMeshSceneNode* getMeshSceneNode();
+    bool prendreDesPV(int nbPv);
 
 protected:
+    int m_maxPV, m_pvActuelle;
+    bool m_intact;
     cout m_cout;
     irr::scene::IMeshSceneNode* m_meshSceneNode;
     irr::video::ITexture* m_texture;
+    QProgressBar* m_pbPV;
+    irr::scene::ISceneCollisionManager* m_sceneCollisionManager;
 };
 
 #endif // ITEM_H

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <iostream>
 #include <irrlicht/irrlicht.h>
+#include <iostream>
 
 GestionAttaqueVillage::GestionAttaqueVillage(QObject *parent) : QObject(parent)
 {
@@ -19,50 +20,55 @@ void GestionAttaqueVillage::maj()
     irr::core::vector3df direction;
     int distance;
 
-    //on parcour tout les soldats
-    for(std::vector<Soldat*>::iterator it = m_listeSoldats.begin(); it != m_listeSoldats.end(); ++it)
-    {
-        //on recupere le batiment le plus pres
-        posBatLePlusPres = getBatLePlusPres((*it)->getPosition());
-        //la direction dans laquelle il se trouve
-        direction = posBatLePlusPres - (*it)->getPosition();
-        //on s oriente dans cette direction
-        (*it)->setRotation(direction.getHorizontalAngle());
-
-        //on calcul la distance
-        distance = sqrt(pow(direction.X,2) + pow(direction.Y,2) + pow(direction.Z,2));
-        //si plus petite que porte on tape sinon on se rapproche
-        if(distance > (*it)->getPorte())
+        //on parcour tout les soldats
+        for(std::vector<Soldat*>::iterator it = m_listeSoldats.begin(); it != m_listeSoldats.end(); ++it)
         {
-            (*it)->setPosition((*it)->getPosition() + (direction.normalize() * (*it)->getVitesse()));
-        }
+            //on recupere le batiment le plus pres
+            posBatLePlusPres = getBatLePlusPres((*it)->getPosition());
+            //la direction dans laquelle il se trouve
+            direction = posBatLePlusPres - (*it)->getPosition();
+            //on s oriente dans cette direction
+            (*it)->setRotation(direction.getHorizontalAngle());
 
-        else
-        {
-            (*it)->attaque(direction.normalize());
+            //on calcul la distance
+            distance = sqrt(pow(direction.X,2) + pow(direction.Y,2) + pow(direction.Z,2));
+            //si plus petite que porte on tape sinon on se rapproche
+            if(distance > (*it)->getPorte())
+            {
+                (*it)->setPosition((*it)->getPosition() + (direction.normalize() * (*it)->getVitesse()));
+            }
+
+            else
+            {
+                (*it)->attaque(direction.normalize(), &m_listeBatiments);
+            }
         }
-    }
 }
 
 irr::core::vector3df GestionAttaqueVillage::getBatLePlusPres(irr::core::vector3df posSoldat)
 {
-    irr::core::vector3df vecteurDistance;
-    int longueur;
-    int longueurLaPlusPetite = 100000;
-    irr::core::vector3df posDuBatLePlusPres;
-    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
-    {
-        vecteurDistance = (*it)->getPosition() - posSoldat;
-        longueur = sqrt(pow(vecteurDistance.X,2) + pow(vecteurDistance.Y,2) + pow(vecteurDistance.Z,2));
-
-        if(longueur < longueurLaPlusPetite)
+    //if(m_listeBatiments.size() != 0)
+    //{
+        irr::core::vector3df vecteurDistance;
+        int longueur;
+        int longueurLaPlusPetite = 100000;
+        irr::core::vector3df posDuBatLePlusPres;
+        for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
         {
-            longueurLaPlusPetite = longueur;
-            posDuBatLePlusPres = (*it)->getPosition();
-        }
-    }
+            vecteurDistance = (*it)->getPosition() - posSoldat;
+            longueur = sqrt(pow(vecteurDistance.X,2) + pow(vecteurDistance.Y,2) + pow(vecteurDistance.Z,2));
 
-    return posDuBatLePlusPres;
+            if(longueur < longueurLaPlusPetite)
+            {
+                longueurLaPlusPetite = longueur;
+                posDuBatLePlusPres = (*it)->getPosition();
+            }
+        }
+
+        return posDuBatLePlusPres;
+    //}
+
+    //return irr::core::vector3df(0,0,0);
 }
 
 void GestionAttaqueVillage::setListeBatiment(std::vector<Batiment *> listeBats)
@@ -100,9 +106,6 @@ void GestionAttaqueVillage::detruireTroupe()
         (*it)->kill();
     }
 
-    for(unsigned int i = 0; i < m_listeSoldats.size(); ++i)
-    {
-        m_listeSoldats.pop_back();
-    }
+    m_listeSoldats.clear();
 }
 

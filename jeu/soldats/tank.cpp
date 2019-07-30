@@ -1,14 +1,12 @@
 #include "tank.h"
-#include "singleton/SceneManager.h"
 
-Tank::Tank(QObject *parent) : Soldat(parent)
+Tank::Tank(QObject *parent) : Soldat(parent, PV_TANK)
 {
     m_type = tank;
 
     m_degats = DEGAT_TANK;
     m_vitesseAttaque = VITESSE_ATTAQUE_TANK;
     m_dps = m_degats / m_vitesseAttaque;
-    m_pointsVies = PV_TANK;
     m_vitesse = VITESSE_TANK;
     m_portee = PORTEE_TANK;
     m_cout.nbNourriture = COUT_NOURRITURRE_TANK;

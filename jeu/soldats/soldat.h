@@ -1,8 +1,9 @@
 #ifndef SOLDAT_H
 #define SOLDAT_H
 
-#include "jeu/item.h"
 #include <irrlicht/ITimer.h>
+#include <vector>
+#include "jeu/batiments/batiment.h"
 
 enum typeSoldat
 {
@@ -14,9 +15,9 @@ enum typeSoldat
 class Soldat : public Item
 {
 public:
-    Soldat(QObject* parent);
+    Soldat(QObject* parent, int maxPV);
     virtual ~Soldat();
-    void attaque(irr::core::vector3df direction);
+    void attaque(irr::core::vector3df direction, std::vector<Batiment *> *listeBatiment);
 
     void setPosition(irr::core::vector3df pos);
     int getType();
@@ -27,7 +28,6 @@ protected:
     int m_degats, m_vitesseAttaque, m_dps;
     irr::u32 m_heureDerniereAttaque;
     irr::ITimer* m_timer;
-    int m_pointsVies;
     int m_vitesse;
     int m_portee;
     int m_place;

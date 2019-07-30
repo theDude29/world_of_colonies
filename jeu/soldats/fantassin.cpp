@@ -1,14 +1,12 @@
 #include "fantassin.h"
-#include "singleton/SceneManager.h"
 
-Fantassin::Fantassin(QObject *parent) : Soldat(parent)
+Fantassin::Fantassin(QObject *parent) : Soldat(parent, PV_FANTASSIN)
 {
     m_type = fantassin;
 
     m_degats = DEGAT_FANTASSIN;
     m_vitesseAttaque = VITESSE_ATTAQUE_FANTASSIN;
     m_dps = m_degats / m_vitesseAttaque;
-    m_pointsVies = PV_FANTASSIN;
     m_vitesse = VITESSE_FANTASSIN;
     m_portee = PORTEE_FANTASSIN;
     m_cout.nbNourriture = COUT_NOURRITURRE_FANTASSIN;

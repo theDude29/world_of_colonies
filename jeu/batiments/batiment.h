@@ -3,7 +3,6 @@
 
 #include <QSize>
 #include <QProgressBar>
-#include "singleton/SceneManager.h"
 #include "singleton/Driver.h"
 #include "jeu/item.h"
 
@@ -46,9 +45,7 @@ protected:
     int m_id;
     int m_idFichierVillage;
     int m_typeBatiment;
-    int m_maxPV;
     int m_tempsDeConstruction;
-    irr::scene::ISceneCollisionManager* m_sceneCollisionManager;
     QSize m_taille;
     QString m_pseudo;
     irr::scene::IMesh *m_meshBatiment;

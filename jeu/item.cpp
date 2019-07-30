@@ -1,8 +1,20 @@
 #include "item.h"
+#include <iostream>
+#include "mainwindow.h"
+#include "utilitaire/getcss.h"
 
-Item::Item(QObject *parent) : QObject(parent)
+Item::Item(QObject *parent, int maxPV) : QObject(parent)
 {
-
+    m_sceneCollisionManager = SceneManager::getSceneManager()->getSceneCollisionManager();
+    m_maxPV = maxPV;
+    m_pvActuelle = maxPV;
+    m_pbPV = new QProgressBar(MainWindow::getMainWindow());
+    m_pbPV->setStyleSheet(getCSS("./gui/css/style_item.css"));
+    m_pbPV->setFormat(QString("%v/%m"));
+    m_pbPV->setMaximum(maxPV);
+    m_pbPV->setMinimum(0);
+    m_pbPV->setVisible(false);
+    m_intact = true;
 }
 
 cout Item::getCout()
@@ -28,6 +40,7 @@ irr::core::vector3df Item::getRotation()
 void Item::kill()
 {
     m_meshSceneNode->setVisible(false);
+    m_pbPV->setVisible(false);
 }
 
 irr::video::ITexture* Item::getTexture()
@@ -43,6 +56,29 @@ void Item::setVisible(bool visible)
 irr::scene::IMeshSceneNode* Item::getMeshSceneNode()
 {
     return m_meshSceneNode;
+}
+
+bool Item::prendreDesPV(int nbPv)
+{
+    if(m_intact && !m_pbPV->isVisible())
+    {
+        m_pbPV->setVisible(true);
+
+        m_intact = false;
+    } //ne pas se faire taper si on quitte et que les tire sont encore la
+
+    irr::core::vector2di screenPos = m_sceneCollisionManager->getScreenCoordinatesFrom3DPosition(getPosition());
+    m_pbPV->move(screenPos.X, screenPos.Y);
+
+    m_pvActuelle -= nbPv;
+    m_pbPV->setValue(m_pvActuelle);
+
+    if(m_pvActuelle <= 0)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 Item::~Item()

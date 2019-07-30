@@ -1,14 +1,12 @@
 #include "artilleur.h"
-#include "singleton/SceneManager.h"
 
-Artilleur::Artilleur(QObject *parent) : Soldat(parent)
+Artilleur::Artilleur(QObject *parent) : Soldat(parent, PV_ARTILLEUR)
 {
     m_type = artilleur;
 
     m_degats = DEGAT_ARTILLEUR;
     m_vitesseAttaque = VITESSE_ATTAQUE_ARTILLEUR;
     m_dps = m_degats / m_vitesseAttaque;
-    m_pointsVies = PV_ARTILLEUR;
     m_vitesse = VITESSE_ARTILLEUR;
     m_portee = PORTEE_ARTILLEUR;
     m_cout.nbNourriture = COUT_NOURRITURRE_ARTILLEUR;
