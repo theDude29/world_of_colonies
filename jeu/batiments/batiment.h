@@ -38,7 +38,6 @@ public:
     int getIdFichierVillage();
     int getType();
     int getId();
-    bool isVisible();
 
     virtual void estVise();
     virtual void estPlusVise();

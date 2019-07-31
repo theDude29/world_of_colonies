@@ -15,7 +15,10 @@ Mortier::Mortier(QObject* parent) : Defense(parent, MAX_PV_MORTIER, QSize(TAILLE
     m_spherePorte->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
     SceneManager::getSceneManager()->getMeshManipulator()->setVertexColorAlpha(m_spherePorte->getMesh(), 50);
 
-    m_dps = DPS_MORTIER;
+    m_dps = DEGAT_MORTIER / VITESSE_ATTAQUE_MORTIER;
+    m_vitesseAttaque = VITESSE_ATTAQUE_MORTIER;
+    m_degat = DEGAT_MORTIER;
+    m_tailleProjectile = 12;
 }
 
 QString Mortier::getInfo()

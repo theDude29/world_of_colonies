@@ -15,7 +15,10 @@ Tourelle::Tourelle(QObject* parent) : Defense(parent, MAX_PV_TOURELLE, QSize(TAI
     m_spherePorte->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
     SceneManager::getSceneManager()->getMeshManipulator()->setVertexColorAlpha(m_spherePorte->getMesh(), 50);
 
-    m_dps = DPS_TOURELLE;
+    m_dps = DEGAT_TOURELLE / VITESSE_ATTAQUE_TOURELLE;
+    m_vitesseAttaque = VITESSE_ATTAQUE_TOURELLE;
+    m_degat = DEGAT_TOURELLE;
+    m_tailleProjectile = 6;
 }
 
 QString Tourelle::getInfo()

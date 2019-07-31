@@ -31,6 +31,7 @@ public:
     void setVisible(bool visible);
     irr::scene::IMeshSceneNode* getMeshSceneNode();
     bool prendreDesPV(int nbPv);
+    bool isVisible();
 
 protected:
     int m_maxPV, m_pvActuelle;

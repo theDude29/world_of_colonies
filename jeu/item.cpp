@@ -17,6 +17,11 @@ Item::Item(QObject *parent, int maxPV) : QObject(parent)
     m_intact = true;
 }
 
+bool Item::isVisible()
+{
+    return m_meshSceneNode->isVisible();
+}
+
 cout Item::getCout()
 {
     return m_cout;

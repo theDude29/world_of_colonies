@@ -10,6 +10,14 @@ Soldat::Soldat(QObject *parent, int maxPV) : Item(parent, maxPV)
     m_timer = Device::getDevice()->getTimer();
     m_heureDerniereAttaque = 0;
 
+    m_pbPV->setStyleSheet(QString("QProgressBar::chunk"
+    "{"
+        "background-color: green;"
+        "width: 10px;"
+        "margin: 0.5px;"
+        "border-radius: 1px;"
+    "}"));
+
     m_texture = Driver::getDriver()->getTexture("mesh/texture/texture_troupes.png");
 }
 

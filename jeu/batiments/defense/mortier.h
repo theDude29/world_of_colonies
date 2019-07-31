@@ -10,7 +10,8 @@
 #define COUT_CONSTRUCTION_NOURRITURE_MORTIER 600
 #define XP_MORTIER 600
 #define PORTE_MORTIER 500
-#define DPS_MORTIER 100
+#define DEGAT_MORTIER 100
+#define VITESSE_ATTAQUE_MORTIER 3
 
 class Mortier : public Defense
 {

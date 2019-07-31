@@ -15,7 +15,10 @@ Canon::Canon(QObject* parent) : Defense(parent, MAX_PV_CANON, QSize(TAILLE_CANON
     m_spherePorte->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
     SceneManager::getSceneManager()->getMeshManipulator()->setVertexColorAlpha(m_spherePorte->getMesh(), 50);
 
-    m_dps = DPS_CANON;
+    m_dps = DEGAT_CANON / VITESSE_ATTAQUE_CANON;
+    m_vitesseAttaque = VITESSE_ATTAQUE_CANON;
+    m_degat = DEGAT_CANON;
+    m_tailleProjectile = 4;
 }
 
 QString Canon::getInfo()

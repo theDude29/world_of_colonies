@@ -36,11 +36,6 @@ void Batiment::setIdFichierVillage(int id)
     m_idFichierVillage = id;
 }
 
-bool Batiment::isVisible()
-{
-    return m_meshSceneNode->isVisible();
-}
-
 int Batiment::getIdFichierVillage()
 {
     return m_idFichierVillage;

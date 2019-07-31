@@ -10,7 +10,8 @@
 #define COUT_CONSTRUCTION_NOURRITURE_CANON 200
 #define XP_CANON 400
 #define PORTE_CANON 200
-#define DPS_CANON 20
+#define DEGAT_CANON 20
+#define VITESSE_ATTAQUE_CANON 1
 
 class Canon : public Defense
 {
