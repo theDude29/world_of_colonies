@@ -41,11 +41,11 @@ public:
     int getNbOr();
     int getNbNourriture();
     irr::scene::ITriangleSelector* getTerrainSelector();
-
-    void setArmee(Armee* armee);
-
     void perdreRessource(cout nb);
-
+    void setArmee(Armee* armee);
+    void setNiveau(int niveau, int xp);
+    void setNbOr(int nbOr);
+    void setNbNourriture(int nbNourriture);
     bool PortailDansLeVillage();
 
     bool essayerConstruireBatiment(Batiment *batiment);
@@ -55,9 +55,6 @@ public:
     void ajouterBatiment();
     void gagneDeLXp(int xp);
     bool batimentVise(irr::core::vector2di posMouse);
-    void setNiveau(int niveau, int xp);
-    void setNbOr(int nbOr);
-    void setNbNourriture(int nbNourriture);
 
     int creerIdFichierVillage(int typeBat);
     void supprimerIdFichierVillage(int typeBat, int id);

@@ -112,24 +112,32 @@ void MainWindow::passerEnGuiAssault()
 {
     if(m_village->PortailDansLeVillage())
     {
-        m_village->cacherBatiments();
-        afficherBoutonAssault();
-        m_villageEnnemie->montrerSoldat(true);
+        if(m_village->getNbOr() > 50)
+        {
+            m_village->cacherBatiments();
+            afficherBoutonAssault();
+            m_villageEnnemie->montrerSoldat(true);
 
-        disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
-        disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
-        disconnect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
+            disconnect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), m_menuConstruire, SLOT(afficherMenuConstruire()));
+            disconnect(ui->bouton_menuArmee, SIGNAL(clicked(bool)), m_menuArmee, SLOT(afficherMenuArmee()));
+            disconnect(ui->bouton_assault, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiAssault()));
 
-        connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiMonVillage()));
+            connect(ui->bouton_menuConstruire, SIGNAL(clicked(bool)), this, SLOT(passerEnGuiMonVillage()));
 
-        ui->bouton_menuConstruire->setText(QString(" Revenir au village"));
-        ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
-        //
-        ui->bouton_menuArmee->setText(QString(" Attaquer"));
-        ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
-        //
-        ui->bouton_assault->setText(QString("Village suivant (50 or)"));
-        ui->bouton_assault->setIcon(QIcon("pas d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
+            ui->bouton_menuConstruire->setText(QString(" Revenir au village"));
+            ui->bouton_menuConstruire->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/back-arrow.png"));
+            //
+            ui->bouton_menuArmee->setText(QString(" Attaquer"));
+            ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
+            //
+            ui->bouton_assault->setText(QString("Village suivant (50 or)"));
+            ui->bouton_assault->setIcon(QIcon("pas d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
+        }
+
+        else
+        {
+            QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez d'argent pour vous teleporter dans un village ennemie (50 or).");
+        }
     }
 
     else

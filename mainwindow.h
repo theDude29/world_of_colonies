@@ -5,9 +5,9 @@
 #include "bdd/widgetconnexion.h"
 #include "jeu/irrlichtwidget.h"
 #include "jeu/village.h"
+#include "jeu/villageennemi.h"
 #include "gui/menuconstruire.h"
 #include "gui/widgetarmee.h"
-#include "jeu/villageennemi.h"
 
 namespace Ui {
 class MainWindow;

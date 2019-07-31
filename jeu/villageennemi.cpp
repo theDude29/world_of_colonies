@@ -5,6 +5,7 @@
 
 VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Village* village, Armee* armee, QLabel* texteInfoEnnemie, QPushButton* bouttonArtilleur, QPushButton* bouttonFantassin, QPushButton* boutonTank, QLabel* textVictoire, irr::scene::ITriangleSelector* triangleSelector) : QObject(parent)
 {
+    m_mainWindow = parent;
     m_village = village;
     m_enAction = false;
 
@@ -150,7 +151,7 @@ void VillageEnnemi::genererVillage(QString fichier)
     itInfosNbResssource++;
     m_nbNourritureEnnemie = (*itInfosNbResssource).toInt();
     //
-    majTextEnnemie(m_nbOrEnnemie, m_nbNourritureEnnemie);
+    majTextEnnemie();
 
     //batiment :
 
@@ -210,7 +211,7 @@ void VillageEnnemi::genererVillage(QString fichier)
     genererTypeBatiment(mortier, infosMortier);
 }
 
-void VillageEnnemi::majTextEnnemie(int nbOr, int nbNourriture)
+void VillageEnnemi::majTextEnnemie()
 {
     //info joueurs :
     //pseudo
@@ -323,30 +324,39 @@ void VillageEnnemi::genererTypeBatiment(typeBatiment typeBat, QString fichier)
 
 void VillageEnnemi::genererVillageAuPif()
 {
-    detruireVillage();
-    m_enAction = true;
-    m_textVictoire->setVisible(false);
-
-    m_textInfoEnnemie->setVisible(true);
-    majTextBouttons();
-
-    QString pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
-    while(pseudoEnnemi == m_pseudo)
+    if(m_village->getNbOr() >= 50)
     {
-        pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
+        detruireVillage();
+        m_enAction = true;
+        m_textVictoire->setVisible(false);
+        m_village->setNbOr(m_village->getNbOr() - 50);
+
+        m_textInfoEnnemie->setVisible(true);
+        majTextBouttons();
+
+        QString pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
+        while(pseudoEnnemi == m_pseudo)
+        {
+            pseudoEnnemi = Bdd::getBdd()->getPseudoAuPif();
+        }
+        m_pseudoEnnemi = pseudoEnnemi;
+
+        QString fichierVillage = Bdd::getBdd()->getFichierVillage(pseudoEnnemi);
+
+        genererVillage(fichierVillage);
+
+        int nbBatiment = m_listeBatiments.size();
+        double ratioBat = 1.0 / nbBatiment;
+        m_valeurOrBatimentEnnemie = m_nbOrEnnemie * ratioBat;
+        m_valeurNourritureBatimentEnnemie = m_nbNourritureEnnemie * ratioBat;
+
+        m_gestionnaireAttaque->setListeBatiment(m_listeBatiments);
     }
-    m_pseudoEnnemi = pseudoEnnemi;
 
-    QString fichierVillage = Bdd::getBdd()->getFichierVillage(pseudoEnnemi);
-
-    genererVillage(fichierVillage);
-
-    int nbBatiment = m_listeBatiments.size();
-    double ratioBat = 1.0 / nbBatiment;
-    m_valeurOrBatimentEnnemie = m_nbOrEnnemie * ratioBat;
-    m_valeurNourritureBatimentEnnemie = m_nbNourritureEnnemie * ratioBat;
-
-    m_gestionnaireAttaque->setListeBatiment(m_listeBatiments);
+    else
+    {
+        QMessageBox::critical(m_mainWindow, "Erreur", "Vous n'avez pas assez d'argent pour vous teleporter dans un village ennemie (50 or).");
+    }
 }
 
 void VillageEnnemi::batimentDetruit()
@@ -359,7 +369,7 @@ void VillageEnnemi::batimentDetruit()
 
     Bdd::getBdd()->majNbRessource(m_pseudoEnnemi, m_nbOrEnnemie, m_nbNourritureEnnemie);
 
-    majTextEnnemie(m_nbOrEnnemie, m_nbNourritureEnnemie);
+    majTextEnnemie();
 }
 
 void VillageEnnemi::detruireVillage()

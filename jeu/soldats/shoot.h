@@ -2,9 +2,9 @@
 #define SHOOT_H
 
 #include <QObject>
+#include <vector>
 #include <irrlicht/irrlicht.h>
 #include "jeu/item.h"
-#include <vector>
 #include "jeu/batiments/batiment.h"
 #include "jeu/soldats/soldat.h"
 

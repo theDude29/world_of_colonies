@@ -34,9 +34,10 @@ public:
     void montrerSoldat(bool vrai);
 
     void majTextBouttons();
-    void majTextEnnemie(int nbOr, int nbNourriture);
+    void majTextEnnemie();
 
 private:
+    QWidget* m_mainWindow;
     Village* m_village;
     bool m_enAction;
     irr::scene::ISceneCollisionManager* m_collisionSceneManager;

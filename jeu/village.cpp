@@ -64,6 +64,8 @@ void Village::setNbOr(int nbOr)
         m_nbOr = m_nbMaxOr;
     }
 
+    if(m_nbOr < 0) m_nbOr = 0;
+
     m_pbOr->setValue(m_nbOr);
 
     Bdd::getBdd()->majNbRessource(m_pseudo, m_nbOr, m_nbNourriture);
@@ -76,6 +78,8 @@ void Village::setNbNourriture(int nbNourriture)
     {
         m_nbNourriture = m_nbMaxNourriture;
     }
+
+    if(m_nbNourriture < 0) m_nbNourriture = 0;
 
     m_pbNourriture->setValue(m_nbNourriture);
 
@@ -131,8 +135,8 @@ int Village::getNbNourriture()
 
 void Village::perdreRessource(cout nb)
 {
-    setNbOr(nb.nbOr);
-    setNbNourriture(nb.nbNourriture);
+    setNbOr(getNbOr() - nb.nbOr);
+    setNbNourriture(getNbNourriture() - nb.nbNourriture);
 }
 
 std::vector<Travailleur*> Village::getListeTravailleur()

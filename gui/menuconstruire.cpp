@@ -43,9 +43,9 @@ MenuConstruire::MenuConstruire(QWidget *parent, Village* village) :
     ui->label_ressource3->setText(ctnOr.getInfo());
     Conteneur_nourriture ctnNour(this);
     ui->label_ressource4->setText(ctnNour.getInfo());
-    Travailleur_Or trvOr(false);
+    Travailleur_Or trvOr(this, false);
     ui->label_descriptionRessource2->setText(trvOr.getInfo());
-    Travailleur_Nourriture trvNour(false);
+    Travailleur_Nourriture trvNour(this, false);
     ui->label_DescriptionRessource1->setText(trvNour.getInfo());
     CampEntrainement camp(this);
     ui->label_armee1->setText(camp.getInfo());

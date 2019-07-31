@@ -21,17 +21,20 @@ class Item : public QObject
 public:
     Item(QObject* parent, int maxPV = 0);
     ~Item();
+    virtual void kill();
+
     static QString getInfo();
     virtual cout getCout();
     irr::video::ITexture* getTexture();
     irr::core::vector3df getPosition();
     irr::core::vector3df getRotation();
+    bool isVisible();
+
     void setRotation(irr::core::vector3df rot);
-    virtual void kill();
     void setVisible(bool visible);
     irr::scene::IMeshSceneNode* getMeshSceneNode();
+
     bool prendreDesPV(int nbPv);
-    bool isVisible();
 
 protected:
     int m_maxPV, m_pvActuelle;

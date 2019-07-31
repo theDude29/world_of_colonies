@@ -1,12 +1,11 @@
 #ifndef GESTIONATTAQUEVILLAGE_H
 #define GESTIONATTAQUEVILLAGE_H
 
-#include <QObject>
+#include <QLabel>
 #include <vector>
 #include "jeu/armee.h"
 #include "jeu/batiments/batiment.h"
 #include "jeu/batiments/defense/defense.h"
-#include <QLabel>
 
 enum typeItem
 {
