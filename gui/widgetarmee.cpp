@@ -87,79 +87,103 @@ void widgetArmee::cacherMenuArmee()
 
 void widgetArmee::bouttonArtilleurClique()
 {
-    if(m_village->getNbOr() >= COUT_OR_ARTILLEUR &&
-            m_village->getNbNourriture() >= COUT_NOURRITURRE_ARTILLEUR)
+    if(m_village->campEntrainementDansLeVillage())
     {
-        if(m_armee->getNbPlaceMax() >= (m_armee->getNbPlaceOccupe() + PLACE_ARTILLEUR))
+        if(m_village->getNbOr() >= COUT_OR_ARTILLEUR &&
+                m_village->getNbNourriture() >= COUT_NOURRITURRE_ARTILLEUR)
         {
-            m_village->perdreRessource(cout{COUT_NOURRITURRE_ARTILLEUR, COUT_OR_ARTILLEUR, XP_ARTILLEUR});
-            m_armee->ajouterArtilleur();
-            majTexteStatsArmee();
+            if(m_armee->getNbPlaceMax() >= (m_armee->getNbPlaceOccupe() + PLACE_ARTILLEUR))
+            {
+                m_village->perdreRessource(cout{COUT_NOURRITURRE_ARTILLEUR, COUT_OR_ARTILLEUR, XP_ARTILLEUR});
+                m_armee->ajouterArtilleur();
+                majTexteStatsArmee();
+            }
+
+            else
+            {
+                QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez de place dans votre caserne"
+                " pour engager ce soldat. Construisez une caserne pour gagner 50 places de plus.");
+            }
         }
 
         else
         {
-            QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez de place dans votre caserne"
-            " pour engager ce soldat. Construisez une caserne pour gagner 50 places de plus.");
+            QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
+            " necessaires a la formation de ce soldat");
         }
     }
 
     else
     {
-        QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
-        " necessaires a la formation de ce soldat");
+        QMessageBox::critical(this, "Erreur", "Vous devez construire un camp d'entrainement afin de former des troupes.");
     }
 }
 
 void widgetArmee::bouttonTankClique()
 {
-    if(m_village->getNbOr() >= COUT_OR_TANK &&
-            m_village->getNbNourriture() >= COUT_NOURRITURRE_TANK)
+    if(m_village->campEntrainementDansLeVillage())
     {
-        if(m_armee->getNbPlaceMax() > (m_armee->getNbPlaceOccupe() + PLACE_TANK))
+        if(m_village->getNbOr() >= COUT_OR_TANK &&
+                m_village->getNbNourriture() >= COUT_NOURRITURRE_TANK)
         {
-            m_village->perdreRessource(cout{COUT_NOURRITURRE_TANK, COUT_OR_TANK, XP_TANK});
-            m_armee->ajouterTank();
-            majTexteStatsArmee();
+            if(m_armee->getNbPlaceMax() > (m_armee->getNbPlaceOccupe() + PLACE_TANK))
+            {
+                m_village->perdreRessource(cout{COUT_NOURRITURRE_TANK, COUT_OR_TANK, XP_TANK});
+                m_armee->ajouterTank();
+                majTexteStatsArmee();
+            }
+
+            else
+            {
+                QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez de place dans votre caserne"
+                " pour engager ce soldat. Construisez une caserne pour gagner 50 places de plus.");
+            }
         }
 
         else
         {
-            QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez de place dans votre caserne"
-            " pour engager ce soldat. Construisez une caserne pour gagner 50 places de plus.");
+            QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
+            " necessaires a la formation de ce soldat");
         }
     }
 
     else
     {
-        QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
-        " necessaires a la formation de ce soldat");
+        QMessageBox::critical(this, "Erreur", "Vous devez construire un camp d'entrainement afin de former des troupes.");
     }
 }
 
 void widgetArmee::bouttonFantassinClique()
 {
-    if(m_village->getNbOr() >= COUT_OR_FANTASSIN &&
-            m_village->getNbNourriture() >= COUT_NOURRITURRE_FANTASSIN)
+    if(m_village->campEntrainementDansLeVillage())
     {
-        if(m_armee->getNbPlaceMax() > (m_armee->getNbPlaceOccupe() + PLACE_FANTASSIN))
+        if(m_village->getNbOr() >= COUT_OR_FANTASSIN &&
+                m_village->getNbNourriture() >= COUT_NOURRITURRE_FANTASSIN)
         {
-            m_village->perdreRessource(cout{COUT_NOURRITURRE_FANTASSIN, COUT_OR_FANTASSIN, XP_FANTASSIN});
-            m_armee->ajouterFantassin();
-            majTexteStatsArmee();
+            if(m_armee->getNbPlaceMax() > (m_armee->getNbPlaceOccupe() + PLACE_FANTASSIN))
+            {
+                m_village->perdreRessource(cout{COUT_NOURRITURRE_FANTASSIN, COUT_OR_FANTASSIN, XP_FANTASSIN});
+                m_armee->ajouterFantassin();
+                majTexteStatsArmee();
+            }
+
+            else
+            {
+                QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez de place dans votre caserne"
+                " pour engager ce soldat. Construisez une caserne pour gagner 50 places de plus.");
+            }
         }
 
         else
         {
-            QMessageBox::critical(this, "Erreur", "Vous n'avez pas assez de place dans votre caserne"
-            " pour engager ce soldat. Construisez une caserne pour gagner 50 places de plus.");
+            QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
+            " necessaires a la formation de ce soldat");
         }
     }
 
     else
     {
-        QMessageBox::critical(this, "Erreur", "Vous ne possedez pas les materiaux"
-        " necessaires a la formation de ce soldat");
+        QMessageBox::critical(this, "Erreur", "Vous devez construire un camp d'entrainement afin de former des troupes.");
     }
 }
 

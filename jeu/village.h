@@ -47,6 +47,7 @@ public:
     void setNbOr(int nbOr);
     void setNbNourriture(int nbNourriture);
     bool PortailDansLeVillage();
+    bool campEntrainementDansLeVillage();
 
     bool essayerConstruireBatiment(Batiment *batiment);
     void majPosBatimentAConstruire(irr::core::vector2di posMouse);

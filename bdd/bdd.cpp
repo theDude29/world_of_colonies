@@ -2,11 +2,18 @@
 #include <QStringList>
 #include "bdd.h"
 #include <QDateTime>
+#include <QFile>
+#include <QTextStream>
 
 Bdd* Bdd::m_instance = NULL;
+QString Bdd::m_adresseBDD = "";
+QString Bdd::m_droitBDD = "";
+QString Bdd::m_nomBDD = "";
+QString Bdd::m_pwdBDD = "";
 
 Bdd::Bdd()
 {
+    extraireInfoFichierParam();
     m_instance = this;
 }
 
@@ -23,10 +30,30 @@ Bdd* Bdd::getBdd()
 sql::Connection* Bdd::getBddConnection()
 {
     sql::Driver *driver = get_driver_instance();
-    sql::Connection* connection = driver->connect("localhost", "root", "");
-    connection->setSchema("info_site_world_of_colonies");
+    sql::Connection* connection = driver->connect(m_adresseBDD.toStdString(), m_droitBDD.toStdString(), m_pwdBDD.toStdString());
+    connection->setSchema(m_nomBDD.toStdString());
 
     return connection;
+}
+
+void Bdd::extraireInfoFichierParam()
+{
+    QFile file("./parametre/parametre_connection_BDD.txt");
+
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        std::cout<<"le fichier de parametre de la BDD n'a pas pu etre ouvert.\n";
+    }
+
+    QTextStream flux(&file);
+    flux.setCodec("UTF-8");
+
+    flux>>m_adresseBDD;
+    flux>>m_droitBDD;
+    flux>>m_pwdBDD; if(m_pwdBDD == "\"\"") m_pwdBDD = "";
+    flux>>m_nomBDD;
+
+    file.close();
 }
 
 QStringList Bdd::recupererListJoueurs()

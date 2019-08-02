@@ -26,7 +26,7 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
 
     //terrain
     //sol
-    irr::scene::IMesh* plane = m_sceneManager->getGeometryCreator()->createPlaneMesh(irr::core::dimension2df(10,10), irr::core::dimension2du(100, 100));
+    irr::scene::IMesh* plane = m_sceneManager->getGeometryCreator()->createPlaneMesh(irr::core::dimension2df(10,10), irr::core::dimension2du(120, 120));
     m_terrain = m_sceneManager->addMeshSceneNode(plane);
     m_terrain->setMaterialTexture(0, m_driver->getTexture("mesh/texture/sol.jpg"));
     m_terrainSelector = m_sceneManager->createTriangleSelector(m_terrain->getMesh(), m_terrain);
@@ -91,6 +91,19 @@ bool Village::PortailDansLeVillage()
     for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
     {
         if((*it)->getType() == portail && (*it)->isVisible())
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Village::campEntrainementDansLeVillage()
+{
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
+    {
+        if((*it)->getType() == campEntrainement && (*it)->isVisible())
         {
             return true;
         }

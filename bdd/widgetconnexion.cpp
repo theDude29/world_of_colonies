@@ -30,7 +30,7 @@ WidgetConnexion::WidgetConnexion(QWidget *parent) :
     parent->setPalette(palette);
 
     //nom utilisateur retenue
-    QFile fichier(QString("pseudo.txt"));
+    QFile fichier(QString("parametre/pseudo.txt"));
     fichier.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream flux(&fichier);
     QString nomUtilisateurRetenu = flux.readAll();
@@ -129,7 +129,7 @@ QString WidgetConnexion::getPseudo()
 
 void WidgetConnexion::retenirNomUtilisateur(QString pseudo, bool vraiment)
 {
-    QFile file("pseudo.txt");
+    QFile file("parametre/pseudo.txt");
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
@@ -146,6 +146,8 @@ void WidgetConnexion::retenirNomUtilisateur(QString pseudo, bool vraiment)
     {
         flux<<"";
     }
+
+    file.close();
 }
 
 WidgetConnexion::~WidgetConnexion()

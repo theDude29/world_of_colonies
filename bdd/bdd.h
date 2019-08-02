@@ -14,6 +14,7 @@ class Bdd
 public:
     static Bdd* getBdd();
     sql::Connection* getBddConnection();
+    void extraireInfoFichierParam();
 
     QStringList recupererListJoueurs();
     QString getFichierVillageEnnemieAuPif(QString pseudo);
@@ -48,6 +49,8 @@ private:
     sql::Connection* m_connection;
 
     int m_nbJoueurs;
+
+    static QString m_adresseBDD, m_droitBDD, m_pwdBDD, m_nomBDD;
 };
 
 #endif // BDDCONNECTION_H
