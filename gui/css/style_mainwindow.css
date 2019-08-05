@@ -1,0 +1,41 @@
+QWidget
+{
+	font-family: 'Distant Galaxy';
+}
+
+#MainWindow > QLabel
+{
+	background-color: rgba(0,0,0,255);
+	color: white;
+}
+
+#label_niveau
+{
+	font-size: 13px;
+}
+
+QProgressBar
+{
+	border: 1px solid black;
+	text-align: center;
+}
+
+#progressBar_niveau::chunk
+{
+	background-color: green;
+	width: 10px;
+	margin: 0.5px;
+	border-radius: 3px;
+}
+
+#progressBar_ressource1::chunk
+{
+	background-color: #f2de05;
+	border-radius: 6px;
+}
+
+#progressBar_ressource2::chunk
+{
+	background-color: #d86d26;
+	border-radius: 6px;
+}
