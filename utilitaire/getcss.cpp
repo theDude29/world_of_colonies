@@ -1,6 +1,7 @@
 #include "utilitaire/getcss.h"
 #include <QFile>
 #include <iostream>
+
 const QString getCSS(const QString chemin)
 {
     QFile file(chemin);

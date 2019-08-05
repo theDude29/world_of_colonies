@@ -1,12 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QGridLayout>
 #include <QTimer>
 #include <QIcon>
 #include <QFontDatabase>
 #include <QPicture>
-
 #include "utilitaire/getcss.h"
 
 MainWindow* MainWindow::m_this = NULL;

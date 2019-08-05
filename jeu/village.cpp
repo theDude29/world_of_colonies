@@ -28,7 +28,7 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     //sol
     irr::scene::IMesh* plane = m_sceneManager->getGeometryCreator()->createPlaneMesh(irr::core::dimension2df(10,10), irr::core::dimension2du(120, 120));
     m_terrain = m_sceneManager->addMeshSceneNode(plane);
-    m_terrain->setMaterialTexture(0, m_driver->getTexture("mesh/texture/sol.jpg"));
+    m_terrain->setMaterialTexture(0, m_driver->getTexture("mesh/texture/sol.png"));
     m_terrainSelector = m_sceneManager->createTriangleSelector(m_terrain->getMesh(), m_terrain);
     m_terrain->setTriangleSelector(m_terrainSelector);
 
@@ -223,12 +223,12 @@ void Village::majPosBatimentAConstruire(irr::core::vector2di posMouse)
 
     if(collisionEntreBatiment())
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.png"));
     }
 
     else
     {
-        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
+        m_batimentADeplacer->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.png"));
     }
 }
 

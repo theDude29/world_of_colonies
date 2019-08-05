@@ -1,12 +1,10 @@
 #include "widgetconnexion.h"
 #include "ui_widgetconnexion.h"
-
 #include "utilitaire/getcss.h"
 #include <QFontDatabase>
 #include <QApplication>
 #include <QFile>
 #include <QTextStream>
-
 #include "bdd/bdd.h"
 #include <utilitaire/sha1.h>
 

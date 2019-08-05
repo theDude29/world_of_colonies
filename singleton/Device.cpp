@@ -1,5 +1,4 @@
 #include "Device.h"
-#include <iostream>
 
 irr::IrrlichtDevice* Device::m_instance = NULL;
 

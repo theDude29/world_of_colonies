@@ -1,7 +1,6 @@
 #include "shoot.h"
 #include "singleton/Driver.h"
 #include <QTimer>
-#include <iostream>
 
 Shoot::Shoot(QObject* parent, int degat, std::vector<Batiment*> *listeBatiment, irr::core::vector3df pos, int taille, irr::core::vector3df direction) : Item(parent)
 {
@@ -22,10 +21,10 @@ Shoot::Shoot(QObject* parent, int degat, std::vector<Batiment*> *listeBatiment, 
     switch(taille)
     {
     case 3:
-        texture = Driver::getDriver()->getTexture("mesh/texture/particlegreen.jpg");
+        texture = Driver::getDriver()->getTexture("mesh/texture/particlegreen.png");
         break;
     case 5:
-        texture = Driver::getDriver()->getTexture("mesh/texture/particlegreen.jpg");
+        texture = Driver::getDriver()->getTexture("mesh/texture/particlegreen.png");
         break;
     case 10:
         texture = Driver::getDriver()->getTexture("mesh/texture/particle.bmp");
@@ -108,7 +107,7 @@ void Shoot::maj()
     {
         double y = m_coefficient*(m_x*m_x) + m_hauteurMax;
         m_x += (m_direction.getLength() * VITESSE);
-        newPos.Y = y + 50;
+        newPos.Y = y + 30;
     }
 
     m_meshSceneNode->setPosition(newPos);

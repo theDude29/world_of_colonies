@@ -19,7 +19,7 @@
 #define SHA1_HPP
 
 
-#include <iostream>
+
 #include <string>
 
 class SHA1

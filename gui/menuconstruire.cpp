@@ -4,8 +4,6 @@
 #include <QMessageBox>
 #include <utilitaire/getcss.h>
 
-#include <iostream>
-
 MenuConstruire::MenuConstruire(QWidget *parent, Village* village) :
     QFrame(parent),
     ui(new Ui::MenuConstruire)

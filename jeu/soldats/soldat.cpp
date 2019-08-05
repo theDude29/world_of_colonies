@@ -1,7 +1,6 @@
 #include "soldat.h"
 #include "singleton/Driver.h"
 #include "singleton/Device.h"
-#include <iostream>
 #include <time.h>
 #include "jeu/soldats/shoot.h"
 

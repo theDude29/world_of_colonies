@@ -1,7 +1,6 @@
 #include "widgetarmee.h"
 #include "ui_widgetarmee.h"
 #include "utilitaire/getcss.h"
-#include <iostream>
 
 widgetArmee::widgetArmee(QWidget *parent, Village *village, QString pseudo) :
     QFrame(parent),

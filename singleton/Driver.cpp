@@ -1,6 +1,5 @@
 #include "Device.h"
 #include "Driver.h"
-#include <iostream>
 
 irr::video::IVideoDriver* Driver::m_instance = NULL;
 

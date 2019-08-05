@@ -1,5 +1,4 @@
 #include "villageennemi.h"
-#include "iostream"
 #include "bdd/bdd.h"
 #include <QMouseEvent>
 
@@ -17,9 +16,6 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Village* village, 
     m_pseudo = pseudo;
 
     m_armee = armee;
-    m_nbArtilleur = m_armee->getNbArtilleur();
-    m_nbFantassin = m_armee->getNbFantassin();
-    m_nbTank = m_armee->getNbTank();
 
     m_pasDeSoldatSelectionnerEnReserve = false;
     m_soldatActuelle = new Artilleur(this);
@@ -51,12 +47,12 @@ void VillageEnnemi::majSoldatSelectionne(irr::core::vector2di posMouse)
 
     if(collisionAvecBatiment() || m_pasDeSoldatSelectionnerEnReserve)
     {
-        m_soldatActuelle->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.jpg"));
+        m_soldatActuelle->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/rouge.png"));
     }
 
     else
     {
-        m_soldatActuelle->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.jpg"));
+        m_soldatActuelle->getMeshSceneNode()->setMaterialTexture(0, Driver::getDriver()->getTexture("mesh/texture/vert.png"));
     }
 }
 
@@ -326,6 +322,10 @@ void VillageEnnemi::genererVillageAuPif()
 {
     if(m_village->getNbOr() >= 50)
     {
+        m_nbArtilleur = m_armee->getNbArtilleur();
+        m_nbFantassin = m_armee->getNbFantassin();
+        m_nbTank = m_armee->getNbTank();
+
         detruireVillage();
         m_enAction = true;
         m_textVictoire->setVisible(false);

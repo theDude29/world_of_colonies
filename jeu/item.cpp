@@ -1,5 +1,4 @@
 #include "item.h"
-#include <iostream>
 #include "mainwindow.h"
 #include "utilitaire/getcss.h"
 

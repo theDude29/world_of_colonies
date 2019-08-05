@@ -1,6 +1,5 @@
 #include "Device.h"
 #include "SceneManager.h"
-#include <iostream>
 
 irr::scene::ISceneManager* SceneManager::m_instance = NULL;
 

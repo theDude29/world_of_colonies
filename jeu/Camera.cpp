@@ -3,16 +3,14 @@
 #include <QApplication>
 #include <QWheelEvent>
 #include <QMouseEvent>
-
-#include <iostream>
 #include "mainwindow.h"
 
 using namespace irr;
 
 CameraSTR::CameraSTR(QObject *mainWindow) : QObject(mainWindow)
 {
-    m_camera = SceneManager::getSceneManager()->addCameraSceneNode(NULL, core::vector3df(0,600,0));
-    m_tarCamera = core::vector3df(0,0,600);
+    m_camera = SceneManager::getSceneManager()->addCameraSceneNode(NULL, core::vector3df(0,600,-700));
+    m_tarCamera = core::vector3df(0,0,0);
     m_camera->setTarget(m_tarCamera);
 
     m_pause = false;

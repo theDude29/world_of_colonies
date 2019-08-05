@@ -1,9 +1,8 @@
 #include "Gestionattaquevillage.h"
 #include <QTimer>
 #include <math.h>
-#include <iostream>
 #include <irrlicht/irrlicht.h>
-#include <iostream>
+
 
 GestionAttaqueVillage::GestionAttaqueVillage(QObject *parent, QLabel* textVictoire) : QObject(parent)
 {
