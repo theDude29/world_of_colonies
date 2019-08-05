@@ -1,0 +1,25 @@
+QWidget
+{
+	font-family: 'Distant Galaxy';
+}
+
+QLabel
+{
+	font-size: 20px;
+	color: white;
+}
+
+QPushButton
+{
+	font-size: 30px;
+}
+
+#label_titre
+{
+	font-size: 50px;
+}
+
+#label_description
+{
+	font-size: 30px;
+}

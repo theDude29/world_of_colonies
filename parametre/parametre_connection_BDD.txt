@@ -1,0 +1,4 @@
+localhost
+root
+""
+info_site_world_of_colonies
