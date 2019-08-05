@@ -24,6 +24,7 @@ public:
 
     void ajouterTroupe(int typeDuSoldat, irr::core::vector3df pos);
     void setListeBatiment(std::vector<Batiment*> listeBats);
+    bool gagner();
 
     std::vector<Item*> convertBatimentToItem();
     std::vector<Item*> convertSoldatToItem();

@@ -32,6 +32,8 @@ void Soldat::attaque(irr::core::vector3df direction, std::vector<Batiment*> *lis
 
 void Soldat::setPosition(irr::core::vector3df pos)
 {
+    irr::core::vector2di screenPos = m_sceneCollisionManager->getScreenCoordinatesFrom3DPosition(getPosition());
+    m_pbPV->move(screenPos.X, screenPos.Y);
     m_meshSceneNode->setPosition(pos);
 }
 

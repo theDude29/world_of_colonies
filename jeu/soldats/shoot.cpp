@@ -79,13 +79,13 @@ Shoot::Shoot(QObject *parent, int degat, std::vector<Soldat *> *listeSoldat, irr
     if(m_shootMortier)
     {
         m_posCible = posCible;
-        m_x = 0;
         irr::core::vector3df difference = m_posCible - m_meshSceneNode->getPosition();
         m_longueur = sqrt(pow(difference.X, 2) + pow(difference.Z, 2));
-        m_hauteurMax = 100;
-        //0 = m_coefficient*(m_longueur/2)^2 + m_hauteurMax;
+        m_x = -m_longueur/2;
+        m_hauteurMax = 300 * m_longueur / 500;
+        //0 = m_coefficient*m_x^2 + m_hauteurMax;
         // m_coefficient -> x (a trouvve avec l equation) donc :
-        m_coefficient = -m_hauteurMax / pow((m_longueur/2), 2);
+        m_coefficient = -m_hauteurMax / pow(m_x, 2);
     }
 
     irr::scene::IBillboardSceneNode* bill = SceneManager::getSceneManager()->addBillboardSceneNode(m_meshSceneNode, irr::core::dimension2df(10*taille,10*taille));
@@ -108,7 +108,7 @@ void Shoot::maj()
     {
         double y = m_coefficient*(m_x*m_x) + m_hauteurMax;
         m_x += (m_direction.getLength() * VITESSE);
-        newPos.Y = y;
+        newPos.Y = y + 50;
     }
 
     m_meshSceneNode->setPosition(newPos);

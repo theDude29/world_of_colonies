@@ -54,6 +54,20 @@ void GestionAttaqueVillage::majDefense()
     }
 }
 
+bool GestionAttaqueVillage::gagner()
+{
+    bool gagner = true;
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
+    {
+        if((*it)->isVisible())
+        {
+            gagner = false;
+        }
+    }
+
+    return gagner;
+}
+
 void GestionAttaqueVillage::majSoldat()
 {
     irr::core::vector3df posBatLePlusPres;
@@ -88,18 +102,18 @@ void GestionAttaqueVillage::majSoldat()
                     (*it)->attaque(direction.normalize(), &m_listeBatiments);
                 }
             }
-
-            else //tout les batiments sont detruit
-            {
-                m_textVictoire->setText(" Victoire !!! ");
-                m_textVictoire->setVisible(true);
-            }
         }
     }
 }
 
 irr::core::vector3df GestionAttaqueVillage::getItemLePlusPres(irr::core::vector3df posSoldat, int typeItem)
 {
+    //on teste victoire
+    if(gagner())
+    {
+        m_textVictoire->setVisible(true);
+    }
+
     std::vector<Item*> listeChoisi;
 
     if(typeItem == batiment) listeChoisi = convertBatimentToItem();
