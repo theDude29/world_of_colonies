@@ -1,9 +1,11 @@
 #include "shoot.h"
 #include "singleton/Driver.h"
 #include <QTimer>
+#include <iostream>
 
 Shoot::Shoot(QObject* parent, int degat, std::vector<Batiment*> *listeBatiment, irr::core::vector3df pos, int taille, irr::core::vector3df direction) : Item(parent)
 {
+    m_shootMortier = false;
     m_listeBatiment = listeBatiment;
     m_listeSoldat = NULL;
     m_direction = direction;
@@ -43,8 +45,9 @@ Shoot::Shoot(QObject* parent, int degat, std::vector<Batiment*> *listeBatiment, 
     connect(m_timer, SIGNAL(timeout()), this, SLOT(maj()));
 }
 
-Shoot::Shoot(QObject *parent, int degat, std::vector<Soldat *> *listeSoldat, irr::core::vector3df pos, int taille, irr::core::vector3df direction) : Item(parent)
+Shoot::Shoot(QObject *parent, int degat, std::vector<Soldat *> *listeSoldat, irr::core::vector3df pos, int taille, irr::core::vector3df direction, irr::core::vector3df posCible) : Item(parent)
 {
+    m_shootMortier = false;
     m_listeBatiment = NULL;
     m_listeSoldat = listeSoldat;
     m_direction = direction;
@@ -60,15 +63,6 @@ Shoot::Shoot(QObject *parent, int degat, std::vector<Soldat *> *listeSoldat, irr
     irr::video::ITexture* texture;
     switch(taille)
     {
-    case 3:
-        texture = Driver::getDriver()->getTexture("mesh/texture/particlegreen.jpg");
-        break;
-    case 5:
-        texture = Driver::getDriver()->getTexture("mesh/texture/particlegreen.jpg");
-        break;
-    case 10:
-        texture = Driver::getDriver()->getTexture("mesh/texture/particle.bmp");
-        break;
     case 4:
         texture = Driver::getDriver()->getTexture("mesh/texture/particlewhite.bmp");
         break;
@@ -76,9 +70,22 @@ Shoot::Shoot(QObject *parent, int degat, std::vector<Soldat *> *listeSoldat, irr
         texture = Driver::getDriver()->getTexture("mesh/texture/particlewhite.bmp");
         break;
     case 12:
+        m_shootMortier = true;
         texture = Driver::getDriver()->getTexture("mesh/texture/particle.bmp");
         break;
     default : break;
+    }
+
+    if(m_shootMortier)
+    {
+        m_posCible = posCible;
+        m_x = 0;
+        irr::core::vector3df difference = m_posCible - m_meshSceneNode->getPosition();
+        m_longueur = sqrt(pow(difference.X, 2) + pow(difference.Z, 2));
+        m_hauteurMax = 100;
+        //0 = m_coefficient*(m_longueur/2)^2 + m_hauteurMax;
+        // m_coefficient -> x (a trouvve avec l equation) donc :
+        m_coefficient = -m_hauteurMax / pow((m_longueur/2), 2);
     }
 
     irr::scene::IBillboardSceneNode* bill = SceneManager::getSceneManager()->addBillboardSceneNode(m_meshSceneNode, irr::core::dimension2df(10*taille,10*taille));
@@ -95,8 +102,17 @@ Shoot::Shoot(QObject *parent, int degat, std::vector<Soldat *> *listeSoldat, irr
 
 void Shoot::maj()
 {
-    m_meshSceneNode->setPosition(m_meshSceneNode->getPosition() + (m_direction * VITESSE));
+    irr::core::vector3df newPos = m_meshSceneNode->getPosition() + (m_direction * VITESSE);
     
+    if(m_shootMortier)
+    {
+        double y = m_coefficient*(m_x*m_x) + m_hauteurMax;
+        m_x += (m_direction.getLength() * VITESSE);
+        newPos.Y = y;
+    }
+
+    m_meshSceneNode->setPosition(newPos);
+
     irr::core::aabbox3df maBox = m_meshSceneNode->getTransformedBoundingBox();
     irr::core::aabbox3df boxEnnemi;
 

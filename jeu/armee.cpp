@@ -38,16 +38,19 @@ void Armee::ajouterTank()
 
 int Armee::getNbArtilleur()
 {
+    m_nbArtilleur = Bdd::getBdd()->getNbArtilleur(m_pseudo);
     return m_nbArtilleur;
 }
 
 int Armee::getNbFantassin()
 {
+    m_nbFantassin = Bdd::getBdd()->getNbFantassin(m_pseudo);
     return m_nbFantassin;
 }
 
 int Armee::getNbTank()
 {
+    m_nbTank = Bdd::getBdd()->getNbTank(m_pseudo);
     return m_nbTank;
 }
 
@@ -63,5 +66,6 @@ int Armee::getNbPlaceMax()
 
 int Armee::getNbPlaceOccupe()
 {
+    m_nbPlaceOccupee = m_nbArtilleur*PLACE_ARTILLEUR + m_nbFantassin*PLACE_FANTASSIN + m_nbTank*PLACE_TANK;
     return m_nbPlaceOccupee;
 }

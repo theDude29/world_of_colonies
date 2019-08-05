@@ -8,7 +8,7 @@ class Defense : public Batiment
 {
 public:
     Defense(QObject* parent, int maxPV, QSize taille, cout coutDeConstruction);
-    void attaque(irr::core::vector3df direction, std::vector<Soldat*> *listeSoldats);
+    void attaque(irr::core::vector3df direction,irr::core::vector3df posCible, std::vector<Soldat*> *listeSoldats);
     virtual void estVise();
     virtual void estPlusVise();
     int getPorte();

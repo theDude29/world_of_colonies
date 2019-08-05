@@ -47,7 +47,7 @@ void GestionAttaqueVillage::majDefense()
                 {
                     //on s oriente dans cette direction
                     (*it)->setRotation(direction.getHorizontalAngle());
-                    (*it)->attaque(direction.normalize(), &m_listeSoldats);
+                    (*it)->attaque(direction.normalize(), posSoldatLePlusPres, &m_listeSoldats);
                 }
             }
         }

@@ -15,7 +15,7 @@ class Shoot : public Item
     Q_OBJECT
 public:
     Shoot(QObject *parent, int degat, std::vector<Batiment*> *listeBatiment, irr::core::vector3df pos, int taille, irr::core::vector3df direction);
-    Shoot(QObject *parent, int degat, std::vector<Soldat*> *listeSoldat, irr::core::vector3df pos, int taille, irr::core::vector3df direction);
+    Shoot(QObject *parent, int degat, std::vector<Soldat*> *listeSoldat, irr::core::vector3df pos, int taille, irr::core::vector3df direction, irr::core::vector3df posCible);
     virtual void kill();
 
 protected:
@@ -26,6 +26,14 @@ protected:
     int m_degat;
     irr::scene::ILightSceneNode* m_meshSceneNode;
     QTimer* m_timer;
+
+    //shoot mortier
+    irr::core::vector3df m_posCible;
+    bool m_shootMortier;
+    double m_longueur;
+    double m_coefficient;
+    double m_hauteurMax;
+    double m_x;
 
 signals:
 

@@ -9,12 +9,12 @@ Defense::Defense(QObject* parent, int maxPV, QSize taille, cout coutDeConstructi
     m_porte = 0;
 }
 
-void Defense::attaque(irr::core::vector3df direction, std::vector<Soldat*> *listeSoldats)
+void Defense::attaque(irr::core::vector3df direction, irr::core::vector3df posCible, std::vector<Soldat*> *listeSoldats)
 {
     if(m_heureDerniereAttaque < (m_timer->getRealTime() - m_vitesseAttaque * 1000))
     {
         m_heureDerniereAttaque = m_timer->getRealTime();
-        new Shoot(this, m_degat, listeSoldats, this->getPosition(), m_tailleProjectile, direction);
+        new Shoot(this, m_degat, listeSoldats, this->getPosition(), m_tailleProjectile, direction, posCible);
     }
 }
 
