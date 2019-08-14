@@ -17,6 +17,10 @@ VillageEnnemi::VillageEnnemi(QWidget* parent, QString pseudo, Village* village, 
 
     m_armee = armee;
 
+    m_nbArtilleur = m_armee->getNbArtilleur();
+    m_nbFantassin = m_armee->getNbFantassin();
+    m_nbTank = m_armee->getNbTank();
+
     m_pasDeSoldatSelectionnerEnReserve = false;
     m_soldatActuelle = new Artilleur(this);
     soldatActuelle_artilleur();

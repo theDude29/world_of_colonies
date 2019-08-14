@@ -8,6 +8,7 @@ Item::Item(QObject *parent, int maxPV) : QObject(parent)
     m_maxPV = maxPV;
     m_pvActuelle = maxPV;
     m_pbPV = new QProgressBar(MainWindow::getMainWindow());
+    m_pbPV->setFixedHeight(20);
     m_pbPV->setStyleSheet(getCSS("./gui/css/style_item.css"));
     m_pbPV->setFormat(QString("%v/%m"));
     m_pbPV->setMaximum(maxPV);

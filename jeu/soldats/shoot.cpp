@@ -107,7 +107,7 @@ void Shoot::maj()
     {
         double y = m_coefficient*(m_x*m_x) + m_hauteurMax;
         m_x += (m_direction.getLength() * VITESSE);
-        newPos.Y = y + 30;
+        newPos.Y = y + 10;
     }
 
     m_meshSceneNode->setPosition(newPos);

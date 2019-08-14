@@ -53,7 +53,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pas encore de compte ? &lt;a href=&quot;http://localhost/test/site/site_world_of_colonies/vue/inscription.php&quot;&gt;Inscrivez-vous des maintenant !&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pas encore de compte ? &lt;a href=&quot;http://remi.perenne.free.fr/site_world_of_colonies/vue/inscription.php&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Inscrivez-vous des maintenant !&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>

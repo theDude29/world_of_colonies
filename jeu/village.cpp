@@ -56,6 +56,26 @@ Village::Village(QWidget* parent, QString pseudo, QProgressBar* pbNiveau, QLabel
     m_leBatimentEtaitDejaConstruit = false;
 }
 
+void Village::afficherBoutonRessource(bool vrai)
+{
+    for(std::vector<Batiment*>::iterator it = m_listeBatiments.begin(); it != m_listeBatiments.end(); ++it)
+    {
+        if((*it)->getType() == travailleurNourriture || (*it)->getType() == travailleurOr)
+        {
+            Travailleur* travailleur = (Travailleur*)(*it);
+            if(!vrai)
+            {
+                travailleur->cacherBoutonCollecte();
+            }
+
+            else
+            {
+                travailleur->verifierTiming();
+            }
+        }
+    }
+}
+
 void Village::setNbOr(int nbOr)
 {
     m_nbOr = nbOr;

@@ -48,6 +48,7 @@ public:
     void setNbNourriture(int nbNourriture);
     bool PortailDansLeVillage();
     bool campEntrainementDansLeVillage();
+    void afficherBoutonRessource(bool vrai);
 
     bool essayerConstruireBatiment(Batiment *batiment);
     void majPosBatimentAConstruire(irr::core::vector2di posMouse);

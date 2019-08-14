@@ -112,6 +112,7 @@ void MainWindow::passerEnGuiAssault()
     {
         if(m_village->getNbOr() > 50)
         {
+            m_village->afficherBoutonRessource(false);
             m_village->cacherBatiments();
             afficherBoutonAssault();
             m_villageEnnemie->montrerSoldat(true);
@@ -129,7 +130,7 @@ void MainWindow::passerEnGuiAssault()
             ui->bouton_menuArmee->setIcon(QIcon(QCoreApplication::applicationDirPath() + "/gui/image/icon/sword.png"));
             //
             ui->bouton_assault->setText(QString("Village suivant (50 or)"));
-            ui->bouton_assault->setIcon(QIcon("pas d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
+            ui->bouton_assault->setIcon(QIcon("plus d'iconne ( j'ai pas trouvé moyen de faire ca proprement !! )"));
         }
 
         else
@@ -146,6 +147,7 @@ void MainWindow::passerEnGuiAssault()
 
 void MainWindow::passerEnGuiMonVillage()
 {
+    m_village->afficherBoutonRessource(true);
     m_villageEnnemie->detruireVillage();
     cacherBoutonsAssault();
     m_villageEnnemie->montrerSoldat(false);
