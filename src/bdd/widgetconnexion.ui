@@ -91,7 +91,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_nomUtilisateur">
        <property name="text">
-        <string>singe</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -145,7 +145,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_mdp">
        <property name="text">
-        <string>Singesinge59</string>
+        <string/>
        </property>
       </widget>
      </item>
