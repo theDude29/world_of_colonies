@@ -8,9 +8,9 @@ L'executable doit être placé a côté des dossiers "gui", "parametre" et "mesh
 
 Si le programme plante après avoir tenter de vous connecter (Quand vous appuyer sur "jouer") vérifier bien les informations du fichier "parametre/parametre_connection_BDD.txt" en vous aidant du fichier "parametre/README.txt".
 
-Une version compilé pour Linux ainsi qu'un paquet Debian est présente sur mon site (lien en dessous).
+Une version compilé pour Linux ainsi qu'un paquet Debian sont présents sur mon site (lien en dessous).
 
-Pour plus de détails aller voire mon site : http://remi.perenne.free.fr/site_world_of_colonies/vue/jouer.php
+Pour plus de détails allez voire mon site : http://remi.perenne.free.fr/site_world_of_colonies/vue/jouer.php
 
 Me contacter:
 6 rue Bourdelle, Brest 29200
