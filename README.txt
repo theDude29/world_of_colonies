@@ -10,7 +10,7 @@ Si le programme plante après avoir tenter de vous connecter (Quand vous appuyer
 
 Une version compilé pour Linux ainsi qu'un paquet Debian sont présents sur mon site (lien en dessous).
 
-Pour plus de détails allez voire mon site : http://remi.perenne.free.fr/site_world_of_colonies/vue/jouer.php
+Pour plus de détails allez voire mon site : http://remi.perenne.free.fr/site/html/worldOfColonies.html
 
 Me contacter:
 6 rue Bourdelle, Brest 29200
